@@ -26,6 +26,6 @@ function inputPass($name, $label='', $value=''){
 function inputList($name, $label='', $options=array(), $value=''){
 	$input='';
 	$input.= form_label($label,$name);
-	$input.= form_dropdown($name, $options,$value,'class="form-control" id="$name"');
+	$input.= form_dropdown($name, $options,$value,'class="form-control" id="'.$name.'"');
 	return $input;
 }
