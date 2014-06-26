@@ -6,10 +6,10 @@
     </a>
     <ul class="dropdown-menu">
       <?php //muda kelverty ?>
-     <li class="active"><?php echo anchor("usuarios/listar", "Usuario" ); ?></li>
-     <li class="active"><?php echo anchor("setor/listar", "Setor" ); ?></li>
-          <li class="active"><?php echo anchor("empresa/listar", "Setor" ); ?></li>
-           <li class="active"><?php echo anchor("Socio/listar", "Setor" ); ?></li>
+     <li ><?php echo anchor("usuarios/listar", "Usuario" ); ?></li>
+     <li ><?php echo anchor("setor/listar", "Setor" ); ?></li>
+          <li ><?php echo anchor("empresa/listar", "Empresa" ); ?></li>
+           <li ><?php echo anchor("atividade/listar", "Atividade" ); ?></li>
     </ul>
   </li>
 
