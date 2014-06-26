@@ -30,14 +30,12 @@ echo form_open("empresa/cadAtividade");
 
 
 $options = array();
-
 foreach ($atividades as $atividade) {$options[$atividade['idAtividade']]=$atividade['descricao'];}
-echo form_label("Atividade","atividade");
-echo form_dropdown("Atividade_idAtividade", $options,$Atividade_idAtividade,'class="form-control" id="atividade"');
+echo inputList("atividade","Atividade",$options,$Atividade_idAtividade);
+
 $options = array();
 foreach ($setores as $setor) {$options[$setor['idSetor']]=$setor['descricao'];}
-echo form_label("Setor","setor");
-echo form_dropdown("Setor_idSetor", $options,$Setor_idSetor,'class="form-control" id="setor"');
+echo inputList("setor","Setor",$options,$Setor_idSetor);
 
 echo DataPicker('dataControle','Data Inicial',$dataControle);
 echo form_hidden('Empresa_idEmpresa',$empresa['idEmpresa']);
