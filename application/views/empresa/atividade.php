@@ -74,7 +74,7 @@ echo form_close();
 			<td><?php  echo $empresaAtividade['dataControle']  ?> </td>
 
 			<td><?php echo anchor("empresa/Atividade/{$empresaAtividade['Empresa_idEmpresa']}/{$empresaAtividade['idAtividadeEmpresa']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
-			<td><?php echo anchor("empresa/excluirAtividade/{$empresaAtividade['idAtividadeEmpresa']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
+			<td><?php echo anchor("empresa/excluirAtividade/{$empresaAtividade['idAtividadeEmpresa']}/{$empresaAtividade['Empresa_idEmpresa']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
 
 		</tr>
 

@@ -74,5 +74,14 @@ class Empresa  extends CI_Controller{
 		redirect('empresa/atividade/'.$this->input->post("Empresa_idEmpresa"));
 
 	}
+	public function excluirAtividade($id_atividade,$id_empresa){
+		$this->load->model("empresa_model");
+		$empresa=$this->empresa_model->excluirAtividade($id_atividade);
+		$this->session->set_flashdata('success',"Atividade Excluida com Sucesso");
+		redirect('empresa/atividade/'.$id_empresa);
+
+
+
+	}
 
 }
