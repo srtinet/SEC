@@ -1,6 +1,8 @@
 <h1>Empresa</h1>
 <?= anchor('empresa/form', 'Novo', array("class" => "btn btn-primary")); ?>
-<table class="table table-hover">
+<br/>
+<br/>
+<table class="table table-striped table-hover table-responsive">
 	<thead>
 		<tr>
 			<th>Razao Social</th>
