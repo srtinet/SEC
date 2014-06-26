@@ -13,6 +13,23 @@ class Empresa_model extends CI_Model {
 
 	} 
 
+	public function listarSetor($where=array()){
+		return $this->db->get_where("SetorUsuario", $where)->result_array();
+
+
+	} 
+
+	public function listarSetorJoin($where=array()){
+
+		$this->db->select(" SetorUsuario.*,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome");
+		$this->db->from(" SetorUsuario");
+		$this->db->join("Empresa", "Empresa.idEmpresa =  SetorUsuario.Empresa_idEmpresa");
+		$this->db->join("Setor", "Setor.idSetor =  SetorUsuario.Setor_idSetor");
+		$this->db->join("Usuario", "Usuario.idUsuario =  SetorUsuario.Usuario_idUsuario");
+		$this->db->where($where);
+
+		return $this->db->get()->result_array();
+	}
 	public function listarAtividadeJoin($where=array()){
 
 		$this->db->select("AtividadeEmpresa.*, Empresa.razaoSocial,Setor.descricao as setorDescricao , Atividade.descricao as atividadeDescricao");
@@ -41,7 +58,7 @@ class Empresa_model extends CI_Model {
 		$this->db->delete('Empresa'); 
 
 	}
-		public function excluirAtividade($id){
+	public function excluirAtividade($id){
 		$this->db->where("idAtividadeEmpresa",$id);
 		$this->db->delete('AtividadeEmpresa'); 
 
@@ -50,15 +67,35 @@ class Empresa_model extends CI_Model {
 
 	public function cadAtividade($atividade){
 
-			if ($atividade['idAtividadeEmpresa']>0){
+		if ($atividade['idAtividadeEmpresa']>0){
 			$this->db->where("idAtividadeEmpresa",$atividade['idAtividadeEmpresa']);
 			$this->db->update("AtividadeEmpresa",$atividade);
 
 		}else{
-		$this->db->insert("AtividadeEmpresa",$atividade);
+			$this->db->insert("AtividadeEmpresa",$atividade);
 
-}
+		}
+
+
 	}
+
+	public function cadResponsavel($reponsavel){
+
+		if ($reponsavel['idSetorUsuario']>0){
+			$this->db->where("idSetorUsuario",$reponsavel['idSetorUsuario']);
+			$this->db->update("SetorUsuario",$reponsavel);
+
+		}else{
+			$this->db->insert("SetorUsuario",$reponsavel);
+
+		}
+	}
+	public function excluirResponsavel($id){
+		$this->db->where("idSetorUsuario",$id);
+		$this->db->delete('SetorUsuario'); 
+
+	}
+
 
 
 }

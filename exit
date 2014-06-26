@@ -1,0 +1,142 @@
+commit 81caa85e270b8a0f844dcd01170e59cc11fd88fd
+Merge: bbced69 e5c81b3
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Thu Jun 26 13:40:15 2014 -0300
+
+    Merge branch 'master' of https://github.com/srtinet/SEC
+
+commit bbced693e6728500b7ddbc045e941fc44ae6ac36
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Thu Jun 26 13:39:08 2014 -0300
+
+    atualizacao formularios/criacao helper formulario
+
+commit e5c81b3d03379850aa94f99c1d38a55384a329cb
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Thu Jun 26 13:38:25 2014 -0300
+
+    alteração nos formularios usando novos helper
+
+commit 6f4fcb6dbb1af0129854f4d4313342ea61f56648
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Thu Jun 26 13:25:38 2014 -0300
+
+    criacao helper formulario
+
+commit 206c91b7c684c98e2018c14e69d45a1b61dab79f
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Thu Jun 26 11:58:19 2014 -0300
+
+    alteracao css jquery calendario
+
+commit 11f5c0f9eea61c973683636db8fefd9ae9e68008
+Merge: d6f498e 8c0efef
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Thu Jun 26 11:22:09 2014 -0300
+
+    Merge branch 'master' of https://github.com/srtinet/SEC
+
+commit d6f498e848cb0381041bef5b66f61f10a61c4f0a
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Thu Jun 26 11:22:05 2014 -0300
+
+    função excluir atividade empresa
+
+commit 8c0efef1d18b557fd2d5f1d15e8d40055b2db367
+Merge: 7940879 0e12f86
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Thu Jun 26 11:15:14 2014 -0300
+
+    Merge branch 'master' of https://github.com/srtinet/SEC
+
+commit 7940879aeffb64a4445cfd9b239f7085e35804a0
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Thu Jun 26 11:15:03 2014 -0300
+
+    alteracao css jquery tabelas
+
+commit 858acd533ca46dab49532f3dd55784603ed1fba8
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Thu Jun 26 11:14:46 2014 -0300
+
+    alteracao css jquery tabelas
+
+commit 0e12f8633694c7bf9340cce5b666d000264a4301
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Thu Jun 26 11:12:40 2014 -0300
+
+    funções no cadastro de atividade nas empresa
+
+commit cf881c4e29d487c4d962b64a5187e85ab5077023
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Thu Jun 26 10:19:09 2014 -0300
+
+    correção database
+
+commit 3fff0e2837ffef3025ce6a9f6467ec45b6888ea0
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Thu Jun 26 10:17:19 2014 -0300
+
+    alteracao arquivo database
+
+commit 9c378ff5f1124473e4a4d69d1c2896f2852a8a62
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Thu Jun 26 10:08:30 2014 -0300
+
+    Criação do CRUD de Empresa e Atrelação da tabela Atividade empresa
+
+commit da3f57262165ecb3bc56ee2ffbd6940fe4e7ce59
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Thu Jun 26 07:50:52 2014 -0300
+
+    Criação do Grud de atividade , e já criei controler e model da responsabilidade
+
+commit 446014f334a94e4c16b71e81e9bd923dccc2ac45
+Merge: 7942cd5 309eb01
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Wed Jun 25 21:47:02 2014 -0300
+
+    Merge branch 'master' of https://github.com/srtinet/SEC
+
+commit 309eb01183b02428f2f082afb4d557e76c3b0534
+Author: jrluiscarvalho <jrluiscarvalho@mgail.com>
+Date:   Wed Jun 25 21:42:03 2014 -0300
+
+    asasasasas
+
+commit 7942cd5c31b1b4a6c8565d788cc3ac45546de646
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Wed Jun 25 21:39:48 2014 -0300
+
+    teste~
+
+commit d368accf18befa3f60e82c5afa2c7c9af10c2308
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Wed Jun 25 21:17:07 2014 -0300
+
+    Adicionei o menu Socio
+
+commit 095ec277068fe71e0b236929e3fdedb3446262c5
+Merge: c916163 6e58f27
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Wed Jun 25 20:24:40 2014 -0300
+
+    Merge branch 'master' of https://github.com/srtinet/SEC
+
+commit 6e58f27d11ab279febee0947c49d2ca0c9dcd458
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Wed Jun 25 20:19:16 2014 -0300
+
+    Initial commit
+
+commit c91616337d5b5905caed1a6644013687970a9d8c
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Wed Jun 25 20:06:20 2014 -0300
+
+    alteração menu
+
+commit 6cb60729881c307c142ba47e0831b75677418d6a
+Author: kelverty <kelverty.ktec@gmail.com>
+Date:   Wed Jun 25 19:23:13 2014 -0300
+
+    cargar inicial
