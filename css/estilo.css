@@ -1,4 +1,4 @@
-.topo{
+footer.topo{
 	padding-top: 30px;
 	background-color: #375FB8;
 	height: 100px;
@@ -55,7 +55,7 @@ th{
 }
 
 footer h5{
-	color: #fff;
+	
 	margin-top: 30px;
 
 }
