@@ -60,12 +60,13 @@ class Empresa  extends CI_Controller{
 
 	public function cadAtividade(){
 		$this->load->model("empresa_model");
+		$data=dataPtBrParaMysql($this->input->post("dataControle"));
 		$atividade=array(
 				"idAtividadeEmpresa" => $this->input->post("idAtividadeEmpresa"),
 		"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
 			"Setor_idSetor" => $this->input->post("Setor_idSetor"),
 				"Atividade_idAtividade" => $this->input->post("Atividade_idAtividade"),
-				"dataControle" => $this->input->post("dataControle")
+				"dataControle" => $data
 
 
 			);
