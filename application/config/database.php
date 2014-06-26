@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'r2d2';
-$db['default']['database'] = 'SEC';
+$db['default']['hostname'] = 'dbmy0049.whservidor.com/';
+$db['default']['username'] = 'rasreviri_1';
+$db['default']['password'] = 'r2d2@42';
+$db['default']['database'] = 'rasreviri_1';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
