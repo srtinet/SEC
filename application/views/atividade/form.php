@@ -23,8 +23,7 @@
 
 
 	echo form_open("atividade/cadastrar");
-	echo form_label("Descrição","descricao");
-	echo form_input(array("name"=>"descricao","class"=>"form-control","id"=>"descricao" ,"value"=>$descricao,  "maxlength"=>"255"));
+	echo inputText("descricao", "Descrição", $descricao);
 
 
 	$options = array(
@@ -33,9 +32,7 @@
 		'3'   => 'Cliente',
 		
 		);
-
-	echo form_label("Nivel","nivel");
-	echo form_dropdown("nivel", $options,$nivel,'class="form-control" id="nivel"');
+	echo inputList("nivel","Nivel",$options, $nivel);
 	
 	
 
@@ -63,7 +60,7 @@
 
 
 	echo form_hidden('idAtividade', $idAtividade);
-	echo form_button(array("class"=>"btn btn-primary","content"=>"Login","type"=>"submit"));
+	echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 	echo form_close();
 
 

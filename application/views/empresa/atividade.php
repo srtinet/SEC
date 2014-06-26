@@ -38,11 +38,8 @@ $options = array();
 foreach ($setores as $setor) {$options[$setor['idSetor']]=$setor['descricao'];}
 echo form_label("Setor","setor");
 echo form_dropdown("Setor_idSetor", $options,$Setor_idSetor,'class="form-control" id="setor"');
-echo form_label("Data Inicial","dataControle");
-echo '<div id="datepicker" class="picker input-group">';
-echo form_input(array("name"=>"dataControle","class"=>"form-control","id"=>"dataControle" ,"value"=>$dataControle, "data-format"=>"dd/MM/yyyy", "maxlength"=>"255"));
-echo '<span class="input-group-addon add-on btn-primary glyphicon glyphicon-calendar"></span>';
-echo '</div>';
+
+echo DataPicker('dataControle','Data Inicial',$dataControle);
 echo form_hidden('Empresa_idEmpresa',$empresa['idEmpresa']);
 echo form_hidden('idAtividadeEmpresa',$idAtividadeEmpresa);
 
