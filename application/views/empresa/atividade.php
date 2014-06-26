@@ -31,11 +31,11 @@ echo form_open("empresa/cadAtividade");
 
 $options = array();
 foreach ($atividades as $atividade) {$options[$atividade['idAtividade']]=$atividade['descricao'];}
-echo inputList("atividade","Atividade",$options,$Atividade_idAtividade);
+echo inputList("Atividade_idAtividade","Atividade",$options,$Atividade_idAtividade);
 
 $options = array();
 foreach ($setores as $setor) {$options[$setor['idSetor']]=$setor['descricao'];}
-echo inputList("setor","Setor",$options,$Setor_idSetor);
+echo inputList("Setor_idSetor","Setor",$options,$Setor_idSetor);
 
 echo DataPicker('dataControle','Data Inicial',$dataControle);
 echo form_hidden('Empresa_idEmpresa',$empresa['idEmpresa']);
@@ -69,7 +69,7 @@ echo form_close();
 		<tr>
 			<td><?php  echo $empresaAtividade['atividadeDescricao']  ?> </td>
 			<td><?php  echo $empresaAtividade['setorDescricao']  ?> </td>
-			<td><?php  echo $empresaAtividade['dataControle']  ?> </td>
+			<td><?php  echo dataMysqlParaPtBr($empresaAtividade['dataControle'])  ?> </td>
 
 			<td><?php echo anchor("empresa/Atividade/{$empresaAtividade['Empresa_idEmpresa']}/{$empresaAtividade['idAtividadeEmpresa']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
 			<td><?php echo anchor("empresa/excluirAtividade/{$empresaAtividade['idAtividadeEmpresa']}/{$empresaAtividade['Empresa_idEmpresa']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
