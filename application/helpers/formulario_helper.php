@@ -16,6 +16,13 @@ function inputText($name, $label='', $value=''){
 	return $input;
 }
 
+function inputPass($name, $label='', $value=''){
+	$input= '';
+	$input.= form_label($label,$name);
+	$input.= form_password(array("name"=>$name,"class"=>"form-control","id"=>$name ,"value"=>$value,  "maxlength"=>"255"));
+	return $input;
+}
+
 function inputList($name, $label='', $options=array(), $value=''){
 	$input='';
 	$input.= form_label($label,$name);
