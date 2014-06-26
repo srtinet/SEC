@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'dbmy0049.whservidor.com/';
+$db['default']['hostname'] = 'dbmy0049.whservidor.com';
 $db['default']['username'] = 'rasreviri_1';
 $db['default']['password'] = 'r2d2@42';
 $db['default']['database'] = 'rasreviri_1';
