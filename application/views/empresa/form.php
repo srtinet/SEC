@@ -11,8 +11,7 @@ if($empresas){
 }
 
 	echo form_open("empresa/cadastrar");
-	echo form_label("Razão Social","razaoSocial");
-	echo form_input(array("name"=>"razaoSocial","class"=>"form-control","id"=>"razaoSocial" , "value" => $razaoSocial,  "maxlength"=>"255"));
+	echo inputText("razaoSocial","Razão Social",$razaoSocial);
 	echo form_hidden('idEmpresa', $idEmpresa);
 	echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 	echo form_close();
