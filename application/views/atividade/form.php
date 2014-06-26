@@ -34,7 +34,7 @@ $options = array(
              
                 );
 
-	echo form_label("Nivel","nivel");
+echo form_label("Nivel","nivel");
 echo form_dropdown("nivel", $options,$nivel,'class="form-control" id="nivel"');
       
       
