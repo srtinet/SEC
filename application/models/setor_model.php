@@ -14,7 +14,7 @@ class Setor_model extends CI_Model {
 			$this->db->where('idSetor', $setor['idSetor']);
 			$this->db->update('Setor', $setor);
 		}else{
-			$this->db->insert('Setor', $setor);	
+			$this->db->insert('Setor', $setor);
 		}
 		
 	}
