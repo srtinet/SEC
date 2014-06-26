@@ -1,6 +1,8 @@
 <h1>Atividade</h1>
 <?= anchor('atividade/form', 'Novo', array("class" => "btn btn-primary")); ?>
-<table class="table table-hover">
+<br/>
+<br/>
+<table class="table table-striped table-hover table-responsive">
 	<thead>
 		<tr>
 			<th>Descrição</th>

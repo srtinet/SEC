@@ -1,6 +1,8 @@
 <h1>Setor</h1>
 <?= anchor('setor/form', 'Novo', array("class" => "btn btn-primary")); ?>
-<table class="table table-hover">
+<br/>
+<br/>
+<table class="table table-striped table-hover table-responsive">
 	<thead>
 		<th>Descrição</th>
 		<th>Modificar</th>
