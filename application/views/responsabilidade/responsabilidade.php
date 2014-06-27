@@ -1,6 +1,5 @@
 <?php 
-foreach ($periodo as $data ) {
-echo $data['dataControle'];
-}
+
+var_dump($data2);
 
  ?>

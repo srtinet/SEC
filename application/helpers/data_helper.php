@@ -7,3 +7,14 @@
 		$data = new DateTime($dataMysql);
 		return $data->format("d/m/Y");
 	}
+	
+
+	function adicionaMes($data,$quantidadeMes){
+
+
+	$data = explode('-',$data);
+		$nova_data = mktime(0, 0, 0, ($data[1] + $quantidadeMes), $data[2], $data[0]);
+  return strftime("%Y-%m-%d", $nova_data);
+
+
+	}

@@ -29,6 +29,7 @@
 		<tr>
 			<td><?php echo $lig['login']?></td>
 			<td><?php echo $lig['razaoSocial']?></td>
+			
 		</tr>
 	<?php endforeach; ?> 
 	</tbody>
