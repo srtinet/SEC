@@ -22,16 +22,33 @@ class Ligacao extends CI_Controller{
 	}
 
 	public function listar(){
+		$usuario = $this->session->userdata['usuario_logado'];
 		$this->load->model("ligacao_model");
-		$ligacao = $this->ligacao_model->listar();
-		$dados = array("ligacao" => $ligacao);
-		$this->load->template("ligacao/lista", $dados);
+		$ligacao = $this->ligacao_model->listar(array("Usuario_idUsuario"=>$usuario['idUsuario']));
+		$dados = array("lista" => $ligacao);
+		$this->load->template("ligacao/lista",$dados);
 	}
 
-		// public function buscar(){
-		// 	$this->load->model("ligacao_model");
-		// 	$ligacao->$this->ligacao_model->BuscaUsuario();
-		// }
+	public function listarTelefonista(){
+		$this->load->model("ligacao_model");
+		$ligacao = $this->ligacao_model->listar();
+		$dados=array('lista' => $ligacao);
+		$this->load->template("ligacao/listaTelefonista", $dados);
+	}
+
+	public function alteraEstado(){
+		$estado = array(
+			"idTelefonema" => $this->input->post('idTelefonema'),
+			"estado" => $this->input->post('estado')
+		);
+		$this->load->model("ligacao_model");
+		$novoEstado = $this->ligacao_model->alteraEstado($estado);
+		if($estado['estado'] == 3 || $estado['estado'] == 0){
+			$this->listar();
+		}else{
+			$this->listarTelefonista();
+		}
+	}
 
 
 }

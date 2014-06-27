@@ -13,5 +13,11 @@
       <li ><?php echo anchor("atividade/listar", "Atividade" ); ?></li>
     </ul>
   </li>
-
+  <?php
+    $usuario = $this->session->userdata['usuario_logado']['telefonista'];
+    if($usuario == 0){ ?>
+      <li ><?php echo anchor("ligacao/listar", "Sol. Chamada");?></li>
+    <?php } else{ ?>
+      <li ><?php echo anchor("ligacao/listarTelefonista", "Sol. Chamada");?></li>
+    <?php } ?>
 </ul>
