@@ -1,5 +1,5 @@
 <h1>Ligações</h1>
-<?= anchor('empresa/form', 'Novo', array("class" => "btn btn-primary")); ?>
+<?= anchor('ligacao/form', 'Novo', array("class" => "btn btn-primary")); ?>
 <br/>
 <br/>
 
@@ -14,16 +14,6 @@
 			<th>Reenviar</th>
 		</tr>
 	</thead>
-	<tfoot>
-		<tr>
-			<th>Solicitante</th>
-			<th>Empresa</th>
-			<th>Telefone Comercial</th>
-			<th>Telefone Residencial</th>
-			<th>Aceitar</th>
-			<th>Reenviar</th>
-		</tr>
-	</tfoot>
 	<tbody>
 	<?php foreach($ligacao as $lig): ?>
 		<tr>
