@@ -22,6 +22,7 @@
 			<td><?php echo ""?></td>
 			<td><?php echo ""?></td>
 			<td>
+				<!--  -->
 				<?php
 				echo form_open("ligacao/alteraEstado");
 				echo form_hidden('estado', 1);
