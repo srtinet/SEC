@@ -18,6 +18,20 @@ class Ligacao extends CI_Controller{
 		);
 		$this->ligacao_model->salvar($ligacao);
 		$this->session->set_flashdata('success', 'Solicitado com Sucesso');
-		redirect("/");
+		redirect("ligacao/listar");
 	}
+
+	public function listar(){
+		$this->load->model("ligacao_model");
+		$ligacao = $this->ligacao_model->listar();
+		$dados = array("ligacao" => $ligacao);
+		$this->load->template("ligacao/lista", $dados);
+	}
+
+		// public function buscar(){
+		// 	$this->load->model("ligacao_model");
+		// 	$ligacao->$this->ligacao_model->BuscaUsuario();
+		// }
+
+
 }
