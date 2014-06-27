@@ -21,15 +21,37 @@ class Responsabilidade extends CI_Controller{
 		$this->load->template("responsabilidade/responsabilidade",$dados);
 	}
 
-	public function concluir($id){
+	public function validar(){
+
+		$this->load->model("responsabilidade_model");
+		$usuario=$this->session->userdata('usuario_logado');
+		$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidadeGestor(array("idUsuario"=>$usuario['idUsuario'],"EstadoResponsabilidade.estado"=>'1'));
+		$dados=array("responsabilidade"=>$responsabilidadelst);
+		$this->load->template("responsabilidade/validar",$dados);
+
+	}
+
+	public function concluir(){
+		$id= $this->input->post("idEstadoResponsabilidade");
+		$estadoMudar= $this->input->post("estado");
+		$local= $this->input->post("local");
+		$nivel= $this->input->post("nivel");
+	
+		if ($nivel==1 ) {$estadoMudar=4;}
+
 		$this->load->model("responsabilidade_model");	
 		$estadoAt=$this->responsabilidade_model->listarEstado(array('idEstadoResponsabilidade'=>$id));
-		$estado= array('idEstadoResponsabilidade'=>$id,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estadoProximo' => 1 );
+		$estado= array('idEstadoResponsabilidade'=>$id,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estadoProximo' => $estadoMudar );
 		$this->responsabilidade_model->salvarEstado($estado);
 
-		$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estado' => 1 );
+		$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estado' => $estadoMudar );
 		$this->responsabilidade_model->salvarEstado($estado);
-		$this->index();
+		if ($local==2 ){
+	redirect('responsabilidade/validar');
+}
+			else{
+	redirect('responsabilidade');
+	}
 
 	}
 
@@ -51,7 +73,7 @@ class Responsabilidade extends CI_Controller{
 		foreach ($controle as $con) {
 
 			$usuario=$this->empresa_model->listarSetor(array('Empresa_idEmpresa' =>$con['Empresa_idEmpresa'] ,'Setor_idSetor' =>$con['Setor_idSetor']),1);
-			
+
 
 			$responsabilidade=array(
 				"Usuario_idUsuario"	=>$usuario['Usuario_idUsuario'],
@@ -63,7 +85,7 @@ class Responsabilidade extends CI_Controller{
 			$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $respom,'estado' => 0 );
 			$this->responsabilidade_model->salvarEstado($estado);
 
-			
+
 
 		}	
 

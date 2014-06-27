@@ -1,6 +1,7 @@
 <ul class="nav nav-pills">
   <li class="active"><a href="#">Home</a></li>
    <li ><?php echo anchor("responsabilidade", "Responsabilidade" ); ?></li>
+      <li ><?php echo anchor("responsabilidade/validar", "Validações" ); ?></li>
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       Cadastros <span class="caret"></span>
