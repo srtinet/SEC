@@ -44,9 +44,9 @@ class Ligacao extends CI_Controller{
 		$this->load->model("ligacao_model");
 		$novoEstado = $this->ligacao_model->alteraEstado($estado);
 		if($estado['estado'] == 3 || $estado['estado'] == 0){
-			$this->listar();
+			redirect("ligacao/listar");
 		}else{
-			$this->listarTelefonista();
+			redirect("ligacao/listarTelefonista");
 		}
 	}
 

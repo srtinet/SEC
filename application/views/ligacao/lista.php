@@ -24,22 +24,25 @@
 			<td><?php echo ""?></td>
 			<td><?php echo ""?></td>
 			<td>
-				<?php
+			<?php if($lig['estado'] == 1){
 				echo form_open("ligacao/alteraEstado");
 				echo form_hidden('estado', 3);
 				echo form_hidden('idTelefonema', $lig['idTelefonema']);
 				echo form_button(array("class"=>"btn btn-success glyphicon glyphicon-ok","content"=>" ","type"=>"submit"));
 				echo form_close();
-				?>
-			</td>
-			<td>
-				<?php
-				echo form_open("ligacao/alteraEstado");
+			}else if ($lig['estado'] == 0){
+				echo form_open("ligacao/listar");
+				echo form_hidden('estado', 0);
+				echo form_hidden('idTelefonema', $lig['idTelefonema']);
+				echo form_button(array("class"=>"btn btn-primary","content"=>"Pendente","type"=>"submit"));
+				echo form_close();
+			}else{
+				echo form_open("ligacao/listar");
 				echo form_hidden('estado', 2);
 				echo form_hidden('idTelefonema', $lig['idTelefonema']);
-				echo form_button(array("class"=>"btn btn-danger","content"=>"Ocupado","disable"=>"disable", "type"=>"submit"));
+				echo form_button(array("class"=>"btn btn-danger","content"=>"Ocupado","type"=>"submit"));
 				echo form_close();
-				?>
+				}?>
 			</td>
 			<td>
 				<?php
@@ -50,7 +53,6 @@
 				echo form_close();
 				?>
 			</td>
-
 			<?php }?>
 		<?php endforeach; ?>
 	</tbody>
