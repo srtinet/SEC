@@ -17,10 +17,10 @@ function adicionaMes($data,$quantidadeMes){
 	return strftime("%Y-%m-%d", $nova_data);
 
 
-<<<<<<< HEAD
+
 }
-=======
-	}
+
+	
 		function tiraDia($data,$quantidadeDia){
 
 
@@ -30,4 +30,4 @@ function adicionaMes($data,$quantidadeMes){
 
 
 	}
->>>>>>> 5a23924a4e85c04441eb9d4abe090d87680222b3
+
