@@ -13,9 +13,12 @@ class Empresa_model extends CI_Model {
 
 	} 
 
-	public function listarSetor($where=array()){
+	public function listarSetor($where=array(),$tipo=0){
+		if ($tipo==0){
 		return $this->db->get_where("SetorUsuario", $where)->result_array();
-
+}else{
+	return $this->db->get_where("SetorUsuario", $where)->row_array();
+}
 
 	} 
 
