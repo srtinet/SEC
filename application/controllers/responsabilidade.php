@@ -10,7 +10,7 @@ class Responsabilidade extends CI_Controller{
 		$controle=$this->responsabilidade_model->controle();
 		$ultimadata=$controle['data'];
 		$hoje=date("Y-m-d");
-				if ($ultimadata!=$hoje){
+		if ($ultimadata!=$hoje){
 			$this->gerarRespopnsabilidade($ultimadata,$hoje);
 		}
 		$dataInicioFiltro=tiraDia($hoje,10);
@@ -22,14 +22,14 @@ class Responsabilidade extends CI_Controller{
 	}
 
 	public function concluir($id){
-	$this->load->model("responsabilidade_model");	
-$estadoAt=$this->responsabilidade_model->listarEstado(array('idEstadoResponsabilidade'=>$id));
-	$estado= array('idEstadoResponsabilidade'=>$id,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estadoProximo' => 1 );
-	$this->responsabilidade_model->salvarEstado($estado);
+		$this->load->model("responsabilidade_model");	
+		$estadoAt=$this->responsabilidade_model->listarEstado(array('idEstadoResponsabilidade'=>$id));
+		$estado= array('idEstadoResponsabilidade'=>$id,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estadoProximo' => 1 );
+		$this->responsabilidade_model->salvarEstado($estado);
 
-			$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estado' => 1 );
-				$this->responsabilidade_model->salvarEstado($estado);
-				$this->index();
+		$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estado' => 1 );
+		$this->responsabilidade_model->salvarEstado($estado);
+		$this->index();
 
 	}
 
@@ -46,28 +46,28 @@ $estadoAt=$this->responsabilidade_model->listarEstado(array('idEstadoResponsabil
 	public function gerarRespopnsabilidade($ultimadata,$hoje){
 		$this->load->model("responsabilidade_model");
 		$this->load->model("empresa_model");
-$controle=$this->responsabilidade_model->periodoAtividade($ultimadata,$hoje);
+		$controle=$this->responsabilidade_model->periodoAtividade($ultimadata,$hoje);
 
-			foreach ($controle as $con) {
+		foreach ($controle as $con) {
 
-				$usuario=$this->empresa_model->listarSetor(array('Empresa_idEmpresa' =>$con['Empresa_idEmpresa'] ,'Setor_idSetor' =>$con['Setor_idSetor']),1);
-				
+			$usuario=$this->empresa_model->listarSetor(array('Empresa_idEmpresa' =>$con['Empresa_idEmpresa'] ,'Setor_idSetor' =>$con['Setor_idSetor']),1);
+			
 
-				$responsabilidade=array(
+			$responsabilidade=array(
 				"Usuario_idUsuario"	=>$usuario['Usuario_idUsuario'],
 				'AtividadeEmpresa_idAtividadeEmpresa' => $con['idAtividadeEmpresa'],
 				'dataVencimento'=>adicionaMes($con['dataControle'],1),
 				'descricao'=>$con['atividadeDescricao']
 				);
-				$respom=$this->responsabilidade_model->salvar($responsabilidade);
-				$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $respom,'estado' => 0 );
-				$this->responsabilidade_model->salvarEstado($estado);
+			$respom=$this->responsabilidade_model->salvar($responsabilidade);
+			$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $respom,'estado' => 0 );
+			$this->responsabilidade_model->salvarEstado($estado);
 
-				
+			
 
-}	
+		}	
 
-$this->responsabilidade_model->salvarControle(array("data"=>$hoje));			
+		$this->responsabilidade_model->salvarControle(array("data"=>$hoje));			
 
 	}
 
