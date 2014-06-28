@@ -13,8 +13,7 @@ class Atividade extends CI_Controller{
 
 	public function form($id=0){
 		$this->load->model("atividade_model");
-		$atividade=$this->atividade_model->listar(array("idAtividade"=>$id));	
-		
+		$atividade=$this->atividade_model->listar(array("idAtividade"=>$id));
 		$dados=array("atividades"=>$atividade);
 		$this->load->template("atividade/form",$dados);
 	}
@@ -26,12 +25,9 @@ class Atividade extends CI_Controller{
 			"descricao" => $this->input->post("descricao"),
 			"nivel" => $this->input->post("nivel"),
 			"anexo" => $this->input->post("anexo"));
-
 		$this->atividade_model->salvar($atividade);
-
 		$this->session->set_flashdata('success',"Atividade salvo com sucesso");
 		redirect('atividade/listar');
-
 	}
 
 		public function excluir($id){

@@ -13,8 +13,7 @@ class Empresa  extends CI_Controller{
 
 	public function form($id=0){
 		$this->load->model("empresa_model");
-		$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id));	
-
+		$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id));
 		$dados=array("empresas"=>$empresa);
 		$this->load->template("empresa/form",$dados);
 	}
@@ -29,9 +28,11 @@ class Empresa  extends CI_Controller{
 		$this->load->model("empresa_model");
 		$empresa=array(
 			"idEmpresa" => $this->input->post("idEmpresa"),
+			"tipoEmpresa" => $this->input->post("tipoEmpresa"),
+			"enquadramento" => $this->input->post("enquadramento"),
 			"razaoSocial" => $this->input->post("razaoSocial"));
 		$this->empresa_model->salvar($empresa);
-		$this->session->set_flashdata('success',"Empresa Salvo com Sucesso");
+		$this->session->set_flashdata('success',"Empresa Salva com Sucesso");
 		redirect('empresa/listar');
 
 	}

@@ -30,8 +30,7 @@
 		'1'  => 'Operacional',
 		'2'    => 'Gestor',
 		'3'   => 'Cliente',
-		
-		);
+	);
 	echo inputList("nivel","Nivel",$options, $nivel);
 	
 	
