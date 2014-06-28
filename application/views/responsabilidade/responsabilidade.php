@@ -1,5 +1,37 @@
 <h1>Responsabilidade</h1>
+			
 
+			<?php 
+
+	$empresa=array();
+	$atividade=array();
+	$usuario=array()	;	
+foreach ($filtroEmpresa as $filtro) {
+	$empresa[$filtro['idEmpresa']]=	$filtro['razaoSocial'];
+	
+}
+foreach ($filtroAtividade as $filtro) {
+	$atividade[$filtro['idAtividade']]=	$filtro['atividadedescricao'];
+	
+}
+foreach ($filtroUsuario as $usuarios) {
+	$usuario[$usuarios['idUsuario']]=	$usuarios['usuarioNome'];
+	
+}
+
+
+				echo form_open("responsabilidade/filtrar");
+		
+	echo inputList("Empresa_idEmpresa","Empresa",$empresa);
+		echo inputList("Atividade_idAtividade","Atividade",$atividade);
+				echo inputList("Usuario_idUsuario","Usuario",$usuario);
+	echo DataPicker("dataInicio","De");
+		echo DataPicker("dataFim","á");
+					echo form_button(array("class"=>"btn btn-success","content"=>"Filtrar","type"=>"submit"));
+					echo form_close();
+
+
+			 ?>
 
 <table class="table table-striped table-hover table-responsive">
 	<thead>

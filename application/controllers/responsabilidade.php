@@ -16,9 +16,30 @@ class Responsabilidade extends CI_Controller{
 		$dataInicioFiltro=tiraDia($hoje,15);
 		$dataFimFiltro=adicionaMes($hoje,1);
 		$usuario=$this->session->userdata('usuario_logado');
+		if($usuario['tipo']==1){
+
+			$filtroEmpresa=$this->responsabilidade_model->listarResponsabilidade(array("idUsuario"=>$usuario['idUsuario']),'','','idEmpresa');
+			$filtroAtividade=$this->responsabilidade_model->listarResponsabilidade(array("idUsuario"=>$usuario['idUsuario']),'','','idAtividade');
+			$filtroUsuario=array();
+		}
+		if($usuario['tipo']==2){
+			$filtroEmpresa=$this->responsabilidade_model->listarResponsabilidadeGestor(array("GestorSetor.Usuario_idUsuario"=>$usuario['idUsuario']),'idEmpresa');
+			$filtroAtividade=$this->responsabilidade_model->listarResponsabilidadeGestor(array("GestorSetor.Usuario_idUsuario"=>$usuario['idUsuario']),'idAtividade');
+			$filtroUsuario=$this->responsabilidade_model->listarResponsabilidadeGestor(array("GestorSetor.Usuario_idUsuario"=>$usuario['idUsuario']),'idUsuario');
+				
+		}
+
+
+		
 		$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidade(array("idUsuario"=>$usuario['idUsuario']),$dataInicioFiltro,$dataFimFiltro);
-		$dados=array("responsabilidade"=>$responsabilidadelst);
+		$dados=array("responsabilidade"=>$responsabilidadelst,"filtroEmpresa"=>$filtroEmpresa,"filtroAtividade"=>$filtroAtividade,"filtroUsuario"=>$filtroUsuario);
 		$this->load->template("responsabilidade/responsabilidade",$dados);
+	}
+	public function filtrar(){
+
+
+
+
 	}
 
 	public function validar(){
@@ -36,7 +57,7 @@ class Responsabilidade extends CI_Controller{
 		$estadoMudar= $this->input->post("estado");
 		$local= $this->input->post("local");
 		$nivel= $this->input->post("nivel");
-	
+
 		if ($nivel==1 ) {$estadoMudar=4;}
 
 		$this->load->model("responsabilidade_model");	
@@ -47,11 +68,11 @@ class Responsabilidade extends CI_Controller{
 		$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $estadoAt['Responsabilidade_idResponsabilidade'],'estado' => $estadoMudar );
 		$this->responsabilidade_model->salvarEstado($estado);
 		if ($local==2 ){
-	redirect('responsabilidade/validar');
-}
-			else{
-	redirect('responsabilidade');
-	}
+			redirect('responsabilidade/validar');
+		}
+		else{
+			redirect('responsabilidade');
+		}
 
 	}
 
@@ -73,14 +94,14 @@ class Responsabilidade extends CI_Controller{
 		foreach ($controle as $con) {
 
 			$usuario=$this->empresa_model->listarSetor(array('Empresa_idEmpresa' =>$con['Empresa_idEmpresa'] ,'Setor_idSetor' =>$con['Setor_idSetor']),1);
-if($con['tipo']==0){$vencimento=adicionaDia($con['dataControle'],15);}
-if($con['tipo']==1){$vencimento=adicionaMes($con['dataControle'],1);}
-if($con['tipo']==2){$vencimento=adicionaMes($con['dataControle'],2);}
-if($con['tipo']==3){$vencimento=adicionaMes($con['dataControle'],3);}
-if($con['tipo']==4){$vencimento=adicionaMes($con['dataControle'],6);}
-if($con['tipo']==5){$vencimento=adicionaAno($con['dataControle'],1);}
+			if($con['tipo']==0){$vencimento=adicionaDia($con['dataControle'],15);}
+			if($con['tipo']==1){$vencimento=adicionaMes($con['dataControle'],1);}
+			if($con['tipo']==2){$vencimento=adicionaMes($con['dataControle'],2);}
+			if($con['tipo']==3){$vencimento=adicionaMes($con['dataControle'],3);}
+			if($con['tipo']==4){$vencimento=adicionaMes($con['dataControle'],6);}
+			if($con['tipo']==5){$vencimento=adicionaAno($con['dataControle'],1);}
 
-				
+
 
 			$responsabilidade=array(
 				"Usuario_idUsuario"	=>$usuario['Usuario_idUsuario'],
@@ -91,7 +112,7 @@ if($con['tipo']==5){$vencimento=adicionaAno($con['dataControle'],1);}
 			$respom=$this->responsabilidade_model->salvar($responsabilidade);
 			$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $respom,'estado' => 0 );
 			$this->responsabilidade_model->salvarEstado($estado);
-		$atividade=array('idAtividadeEmpresa'=>$con['idAtividadeEmpresa'],"dataControle"=>$vencimento);
+			$atividade=array('idAtividadeEmpresa'=>$con['idAtividadeEmpresa'],"dataControle"=>$vencimento);
 			$this->empresa_model->cadAtividade($atividade);
 
 

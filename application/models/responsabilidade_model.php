@@ -51,8 +51,8 @@ $this->db->insert('EstadoResponsabilidade',$estado);
 return $this->db->get_where("EstadoResponsabilidade",$where)->row_array();
 
 	}
-	public function listarResponsabilidade($where=array(),$data1='',$data2=''){
-		$this->db->select(" Responsabilidade.*,EstadoResponsabilidade.idEstadoResponsabilidade,EstadoResponsabilidade.estado as estadoResponsabilidade,EstadoResponsabilidade.estadoProximo,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome as usuarioNome,Atividade.nivel,Atividade.anexo,Atividade.descricao as atividadedescricao");
+	public function listarResponsabilidade($where=array(),$data1='',$data2='',$agrupar=''){
+		$this->db->select(" Responsabilidade.*,EstadoResponsabilidade.idEstadoResponsabilidade,EstadoResponsabilidade.estado as estadoResponsabilidade,EstadoResponsabilidade.estadoProximo,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome as usuarioNome,Atividade.nivel,Atividade.anexo,Atividade.descricao as atividadedescricao,Empresa.idEmpresa,Atividade.idAtividade,Usuario.idUsuario");
 		$this->db->from(" Responsabilidade");
 		$this->db->join("AtividadeEmpresa", "AtividadeEmpresa.idAtividadeEmpresa =  Responsabilidade.AtividadeEmpresa_idAtividadeEmpresa");
 		$this->db->join("Atividade", "Atividade.idAtividade =  AtividadeEmpresa.Atividade_idAtividade");
@@ -67,12 +67,13 @@ return $this->db->get_where("EstadoResponsabilidade",$where)->row_array();
 		if($data1!='' and $data2!='')
 		$this->db->where("dataVencimento BETWEEN '" . $data1 . "' AND '" . $data2."'");
 		$this->db->order_by("dataVencimento", "desc"); 
+		$this->db->group_by($agrupar); 
 				return $this->db->get()->result_array();
 	}
 
 
-		public function listarResponsabilidadeGestor($where=array()){
-		$this->db->select(" Responsabilidade.*,GestorSetor.Usuario_idUsuario as gestorID,EstadoResponsabilidade.idEstadoResponsabilidade,EstadoResponsabilidade.estado as estadoResponsabilidade,EstadoResponsabilidade.estadoProximo,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome as usuarioNome,Atividade.nivel,Atividade.anexo,Atividade.descricao as atividadedescricao");
+		public function listarResponsabilidadeGestor($where=array(),$agrupar=''){
+		$this->db->select(" Responsabilidade.*,GestorSetor.Usuario_idUsuario as gestorID,EstadoResponsabilidade.idEstadoResponsabilidade,EstadoResponsabilidade.estado as estadoResponsabilidade,EstadoResponsabilidade.estadoProximo,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome as usuarioNome,Atividade.nivel,Atividade.anexo,Atividade.descricao as atividadedescricao,Empresa.idEmpresa,Atividade.idAtividade,Usuario.idUsuario");
 		$this->db->from(" Responsabilidade");
 		$this->db->join("AtividadeEmpresa", "AtividadeEmpresa.idAtividadeEmpresa =  Responsabilidade.AtividadeEmpresa_idAtividadeEmpresa");
 		$this->db->join("Atividade", "Atividade.idAtividade =  AtividadeEmpresa.Atividade_idAtividade");
@@ -83,6 +84,7 @@ return $this->db->get_where("EstadoResponsabilidade",$where)->row_array();
 		$this->db->join("Usuario", "Usuario.idUsuario =  Responsabilidade.Usuario_idUsuario");
 		$this->db->where('estadoProximo is null');
 		$this->db->where($where);
+				$this->db->group_by($agrupar); 
 		
 
 		$this->db->order_by("dataVencimento", "desc"); 
