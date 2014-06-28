@@ -58,8 +58,7 @@ class Empresa_model extends CI_Model {
 	}
 	public function excluir($id){
 		$this->db->where("idEmpresa",$id);
-		$this->db->delete('Empresa'); 
-
+		$this->db->delete('Empresa');
 	}
 	public function excluirAtividade($id){
 		$this->db->where("idAtividadeEmpresa",$id);
