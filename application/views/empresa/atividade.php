@@ -6,8 +6,8 @@ if ($AtividadeSelecionada){
 		$idAtividadeEmpresa=$atividadeSl['idAtividadeEmpresa'];
 		$Atividade_idAtividade=$atividadeSl['Atividade_idAtividade'];
 		$Setor_idSetor=$atividadeSl['Setor_idSetor'];
-		$dataControle=$atividadeSl['dataControle'];
-		
+		$dataControle=dataMysqlParaPtBr($atividadeSl['dataControle']);
+			$tipo=$atividadeSl['tipo'];
 	}
 }
 else{
@@ -15,6 +15,7 @@ else{
 	$Atividade_idAtividade='';
 	$Setor_idSetor='';
 	$dataControle='';
+	$tipo='';
 
 
 }
@@ -36,6 +37,17 @@ echo inputList("Atividade_idAtividade","Atividade",$options,$Atividade_idAtivida
 $options = array();
 foreach ($setores as $setor) {$options[$setor['idSetor']]=$setor['descricao'];}
 echo inputList("Setor_idSetor","Setor",$options,$Setor_idSetor);
+
+$options = array(
+	'0'=>'Quinzenal',
+'1'=>'Mensal',
+'2'=>'Bimestral',
+'3'=>'Trimestral',
+'4'=>'Semestral',
+'5'=>'Anual'
+	);
+
+echo inputList("tipo","Tipo",$options,$tipo);
 
 echo DataPicker('dataControle','Data Inicial',$dataControle);
 echo form_hidden('Empresa_idEmpresa',$empresa['idEmpresa']);

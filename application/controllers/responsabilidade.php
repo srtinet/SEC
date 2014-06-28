@@ -13,7 +13,7 @@ class Responsabilidade extends CI_Controller{
 		if ($ultimadata!=$hoje){
 			$this->gerarRespopnsabilidade($ultimadata,$hoje);
 		}
-		$dataInicioFiltro=tiraDia($hoje,10);
+		$dataInicioFiltro=tiraDia($hoje,15);
 		$dataFimFiltro=adicionaMes($hoje,1);
 		$usuario=$this->session->userdata('usuario_logado');
 		$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidade(array("idUsuario"=>$usuario['idUsuario']),$dataInicioFiltro,$dataFimFiltro);
@@ -22,10 +22,10 @@ class Responsabilidade extends CI_Controller{
 	}
 
 	public function validar(){
-
+		$this->output->enable_profiler(TRUE);
 		$this->load->model("responsabilidade_model");
 		$usuario=$this->session->userdata('usuario_logado');
-		$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidadeGestor(array("idUsuario"=>$usuario['idUsuario'],"EstadoResponsabilidade.estado"=>'1'));
+		$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidadeGestor(array("GestorSetor.Usuario_idUsuario"=>$usuario['idUsuario'],"EstadoResponsabilidade.estado"=>'1'));
 		$dados=array("responsabilidade"=>$responsabilidadelst);
 		$this->load->template("responsabilidade/validar",$dados);
 
@@ -73,17 +73,27 @@ class Responsabilidade extends CI_Controller{
 		foreach ($controle as $con) {
 
 			$usuario=$this->empresa_model->listarSetor(array('Empresa_idEmpresa' =>$con['Empresa_idEmpresa'] ,'Setor_idSetor' =>$con['Setor_idSetor']),1);
+if($con['tipo']==0){$vencimento=adicionaDia($con['dataControle'],15);}
+if($con['tipo']==1){$vencimento=adicionaMes($con['dataControle'],1);}
+if($con['tipo']==2){$vencimento=adicionaMes($con['dataControle'],2);}
+if($con['tipo']==3){$vencimento=adicionaMes($con['dataControle'],3);}
+if($con['tipo']==4){$vencimento=adicionaMes($con['dataControle'],6);}
+if($con['tipo']==5){$vencimento=adicionaAno($con['dataControle'],1);}
 
+				
 
 			$responsabilidade=array(
 				"Usuario_idUsuario"	=>$usuario['Usuario_idUsuario'],
-				'AtividadeEmpresa_idAtividadeEmpresa' => $con['idAtividadeEmpresa'],
-				'dataVencimento'=>adicionaMes($con['dataControle'],1),
-				'descricao'=>$con['atividadeDescricao']
+				"AtividadeEmpresa_idAtividadeEmpresa" => $con['idAtividadeEmpresa'],
+				"dataVencimento"=>$vencimento,
+				"descricao"=>$con['atividadeDescricao']
 				);
 			$respom=$this->responsabilidade_model->salvar($responsabilidade);
 			$estado= array('idEstadoResponsabilidade'=>null,'Responsabilidade_idResponsabilidade' => $respom,'estado' => 0 );
 			$this->responsabilidade_model->salvarEstado($estado);
+		$atividade=array('idAtividadeEmpresa'=>$con['idAtividadeEmpresa'],"dataControle"=>$vencimento);
+			$this->empresa_model->cadAtividade($atividade);
+
 
 
 

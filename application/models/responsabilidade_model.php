@@ -72,7 +72,7 @@ return $this->db->get_where("EstadoResponsabilidade",$where)->row_array();
 
 
 		public function listarResponsabilidadeGestor($where=array()){
-		$this->db->select(" Responsabilidade.*,EstadoResponsabilidade.idEstadoResponsabilidade,EstadoResponsabilidade.estado as estadoResponsabilidade,EstadoResponsabilidade.estadoProximo,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome as usuarioNome,Atividade.nivel,Atividade.anexo,Atividade.descricao as atividadedescricao");
+		$this->db->select(" Responsabilidade.*,GestorSetor.Usuario_idUsuario as gestorID,EstadoResponsabilidade.idEstadoResponsabilidade,EstadoResponsabilidade.estado as estadoResponsabilidade,EstadoResponsabilidade.estadoProximo,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome as usuarioNome,Atividade.nivel,Atividade.anexo,Atividade.descricao as atividadedescricao");
 		$this->db->from(" Responsabilidade");
 		$this->db->join("AtividadeEmpresa", "AtividadeEmpresa.idAtividadeEmpresa =  Responsabilidade.AtividadeEmpresa_idAtividadeEmpresa");
 		$this->db->join("Atividade", "Atividade.idAtividade =  AtividadeEmpresa.Atividade_idAtividade");

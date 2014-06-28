@@ -14,11 +14,29 @@ function adicionaMes($data,$quantidadeMes){
 	$nova_data = mktime(0, 0, 0, ($data[1] + $quantidadeMes), $data[2], $data[0]);
 	return strftime("%Y-%m-%d", $nova_data);
 }
+function adicionaDia($data,$quantidadeDia){
 
 
-function tiraDia($data,$quantidadeDia){
 	$data = explode('-',$data);
-	$nova_data = mktime(0, 0, 0, $data[1] , ($data[2]-$quantidadeDia), $data[0]);
+	$nova_data = mktime(0, 0, 0, $data[1] , ($data[2]+$quantidadeDia), $data[0]);
 	return strftime("%Y-%m-%d", $nova_data);
+
+
+
 }
+function adicionaAno($data,$quantidadeDia){
+
+	$data = explode('-',$data);
+	$nova_data = mktime(0, 0, 0, $data[1] , $data[2], ($data[0]+$quantidadeDia));
+	return strftime("%Y-%m-%d", $nova_data);
+
+
+
+}
+
+	function tiraDia($data,$quantidadeDia){
+		$data = explode('-',$data);
+		$nova_data = mktime(0, 0, 0, $data[1] , ($data[2]-$quantidadeDia), $data[0]);
+		return strftime("%Y-%m-%d", $nova_data);
+	}
 
