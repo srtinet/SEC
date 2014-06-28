@@ -59,6 +59,7 @@ class Empresa  extends CI_Controller{
 			"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
 			"Setor_idSetor" => $this->input->post("Setor_idSetor"),
 			"Atividade_idAtividade" => $this->input->post("Atividade_idAtividade"),
+			"tipo" => $this->input->post("tipo"),
 			"dataControle" => $data);
 		$this->empresa_model->cadAtividade($atividade);
 		$this->session->set_flashdata('success',"Atividade vinculada Sucesso");
