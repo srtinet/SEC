@@ -189,7 +189,7 @@ if($empresas){
 		echo inputText("complemento","Complemento",$complemento);
 		echo inputText("bairro","Bairro",$bairro);
 		echo inputText("municipio","Municipio",$municipio);
-		
+
 		$options = array(
 			'1'  => 'Acre - AC',
 			'2'  => 'Alagoas - AL',
@@ -289,4 +289,3 @@ if($empresas){
 
 		echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 		echo form_close();
-
