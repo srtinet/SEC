@@ -2,8 +2,31 @@
 	if($socios){
 		foreach($socios as $socio){
 			$idSocio = $socio['idSocio'];
+			$Empresa_idEmpresa = $socio['Empresa_idEmpresa'];
 			$nome = $socio['nome'];
 			$idSocio = $socio['idSocio'];
+			$estadoCivil = $socio['estadoCivil'];
+			$rg = $socio['rg'];
+			$tituloEleitor = $socio['tituloEleitor'];
+			$orgaoEmissorRg = $socio['orgaoEmissorRg'];
+			$dataExpedicao = $socio['dataExpedicao'];
+			$dataNascimento = $socio['dataNascimento'];
+			$uf = $socio['uf'];
+			$naturalidade = $socio['naturalidade'];
+			$tipoLogradouro = $socio['tipoLogradouro'];
+			$logradouro = $socio['logradouro'];
+			$numero = $socio['numero'];
+			$bairro = $socio['bairro'];
+			$numero = $socio['numero'];
+			$municipio = $socio['municipio'];
+			$complemento = $socio['complemento'];
+			$cep = $socio['cep'];
+			$numero = $socio['numero'];
+			$nReciboIr = $socio['nReciboIr'];
+			$capitalSocial = $socio['capitalSocial'];
+			$tipoParticipacao = $socio['tipoParticipacao'];
+			$porcentagemSocio = $socio['porcentagemSocio'];
+			$capitalSocioDoSocio = $socio['capitalSocioDoSocio'];
 			$inicioContribuicao = $socio['inicioContribuicao'];
 			$proLabore = $socio['proLabore'];
 			$valorProLabore = $socio['valorProLabore'];
@@ -29,8 +52,31 @@
 		}
 	}else{
 			$idSocio = '';
+			$Empresa_idEmpresa = $idEmpresa;
 			$nome = '';
 			$idSocio = '';
+			$estadoCivil = '';
+			$rg = '';
+			$tituloEleitor = '';
+			$orgaoEmissorRg = '';
+			$dataExpedicao = '';
+			$dataNascimento = '';
+			$uf = '';
+			$naturalidade = '';
+			$tipoLogradouro = '';
+			$logradouro = '';
+			$numero = '';
+			$bairro = '';
+			$numero = '';
+			$municipio = '';
+			$complemento = '';
+			$cep = '';
+			$numero = '';
+			$nReciboIr = '';
+			$capitalSocial = '';
+			$tipoParticipacao = '';
+			$porcentagemSocio = '';
+			$capitalSocioDoSocio = '';
 			$inicioContribuicao = '';
 			$proLabore = '';
 			$valorProLabore = '';
@@ -61,8 +107,29 @@
 	<?php
 		echo form_open("socio/cadastrar");
 		echo form_hidden('idSocio', $idSocio);
+		echo form_hidden('idEmpresa', $Empresa_idEmpresa);
 
 		echo inputText("nome","Nome",$nome);
+		echo inputText("estadoCivil","Estado Civil",$estadoCivil);
+		echo inputText("rg","RG",$rg);
+		echo inputText("tituloEleitor","Título Eleitor",$tituloEleitor);
+		echo inputText("orgaoEmissorRg","Orgão Emissor Rg",$orgaoEmissorRg);
+		echo inputText("dataExpedicao","Data Expedição",$dataExpedicao);
+		echo inputText("dataNascimento","Data Nascimento",$dataNascimento);
+		echo inputText("uf","UF",$uf);
+		echo inputText("naturalidade","Naturalidade",$naturalidade);
+		echo inputText("tipoLogradouro","Tipo Logradouro",$tipoLogradouro);
+		echo inputText("logradouro","Logradouro",$logradouro);
+		echo inputText("numero","Número",$numero);
+		echo inputText("bairro","Bairro",$bairro);
+		echo inputText("municipio","Municipio",$municipio);
+		echo inputText("complemento","Complemento",$complemento);
+		echo inputText("cep","CEP",$cep);
+		echo inputText("nReciboIr","Número Recibo IR",$nReciboIr);
+		echo inputText("capitalSocial","Capital Social",$capitalSocial);
+		echo inputText("tipoParticipacao","Tipo Participação",$tipoParticipacao);
+		echo inputText("porcentagemSocio","Porcentagem Sócio",$porcentagemSocio);
+		echo inputText("capitalSocioDoSocio","Capital Sócio Do Sócio",$capitalSocioDoSocio);
 		echo DataPicker("inicioContribuicao","Início Contribuição",$inicioContribuicao);
 
 		$options = array(
@@ -140,7 +207,7 @@
 		echo inputList("empregadoAutonomo","Exerce outra ativida como empregado ou autônomo?",$options, $empregadoAutonomo);
 
 		echo inputText("nomeAtividadeAutonomo","Nome atividade autônomo",$nomeAtividadeAutonomo);
-		echo inputText("valorRemuneracao","NValor remuneração",$valorRemuneracao);
+		echo inputText("valorRemuneracao","Valor remuneração",$valorRemuneracao);
 
 		echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 		echo form_close();

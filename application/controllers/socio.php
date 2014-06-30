@@ -2,17 +2,16 @@
 
 class Socio extends CI_Controller{
 
-
-	public function listar(){
+	public function listar($idEmpresa){
 		$this->load->model("socio_model");
-		$socio = $this->socio_model->listar();
-		$dados = array('socios' => $socio);
+		$socio = $this->socio_model->listarSocioEmpresa(array('idEmpresa' => $idEmpresa));
+		$dados = array('socios' => $socio, 'idEmpresa' => $idEmpresa);
 		$this->load->template("socio/lista", $dados);
 		}
-	public function form($id=0){
+	public function form($idEmpresa, $id=0){
 		$this->load->model("socio_model");
 		$socio = $this->socio_model->listar(array("idSocio"=>$id));
-		$dados = array('socios' => $socio);
+		$dados = array('socios' => $socio,"idEmpresa"=>$idEmpresa);
 		$this->load->template("socio/form", $dados);
 	}
 
@@ -20,8 +19,30 @@ class Socio extends CI_Controller{
 		$this->load->model("socio_model");
 		$socio = array(
 			'idSocio' => $this->input->post('idSocio'),
+			'Empresa_idEmpresa' => $this->input->post('idEmpresa'),
 			'nome' => $this->input->post('nome'),
-			'idSocio' => $this->input->post('idSocio'),
+			'estadoCivil' => $this->input->post('estadoCivil'),
+			'rg' => $this->input->post('rg'),
+			'tituloEleitor' => $this->input->post('tituloEleitor'),
+			'orgaoEmissorRg' => $this->input->post('orgaoEmissorRg'),
+			'dataExpedicao' => $this->input->post('dataExpedicao'),
+			'dataNascimento' => $this->input->post('dataNascimento'),
+			'uf' => $this->input->post('uf'),
+			'naturalidade' => $this->input->post('naturalidade'),
+			'tipoLogradouro' => $this->input->post('tipoLogradouro'),
+			'logradouro' => $this->input->post('logradouro'),
+			'numero' => $this->input->post('numero'),
+			'bairro' => $this->input->post('bairro'),
+			'numero' => $this->input->post('numero'),
+			'municipio' => $this->input->post('municipio'),
+			'complemento' => $this->input->post('complemento'),
+			'cep' => $this->input->post('cep'),
+			'numero' => $this->input->post('numero'),
+			'nReciboIr' => $this->input->post('nReciboIr'),
+			'capitalSocial'=> $this->input->post('capitalSocial'),
+			'tipoParticipacao' => $this->input->post('tipoParticipacao'),
+			'porcentagemSocio' => $this->input->post('porcentagemSocio'),
+			'capitalSocioDoSocio' => $this->input->post('capitalSocioDoSocio'),
 			'inicioContribuicao' => $this->input->post('inicioContribuicao'),
 			'proLabore' => $this->input->post('proLabore'),
 			'valorProLabore' => $this->input->post('valorProLabore'),
@@ -47,12 +68,12 @@ class Socio extends CI_Controller{
 		);
 		$this->socio_model->salvar($socio);
 		$this->session->set_flashdata('success',"Sócio Salvo com Sucesso");
-		redirect('socio/listar');
+		redirect('socio/listar/'.$this->input->post("idEmpresa"));
 	}
 
-	public function excluir($id){
+	public function excluir($idEmpresa, $id){
 		$this->load->model("socio_model");
 		$socio = $this->socio_model->excluir($id);
-		redirect('socio/listar');
+		redirect('socio/listar/'.$idEmpresa);
 	}
 }

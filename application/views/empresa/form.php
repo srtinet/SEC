@@ -38,7 +38,7 @@ if($empresas){
 		$remessaVigilancia = $empresa['remessaVigilancia'];
 		$retornoVigilancia = $empresa['retornoVigilancia'];
 		$statusVigilancia = $empresa['remessaVigilancia'];
-		$remessaConselhoRegional = $empresa['remessaVigremessaConselhoRegionalilancia'];
+		$remessaConselhoRegional = $empresa['remessaVigremessaConselhoRegional'];
 		$retornoConselhoRegional = $empresa['retornoConselhoRegional'];
 		$statusConselhoRegional = $empresa['statusConselhoRegional'];
 		$remessaJucesp = $empresa['remessaJucesp'];
@@ -99,6 +99,7 @@ if($empresas){
 	<h3>Abertura de Empresa</h3>
 	<?php
 		echo form_open("empresa/cadastrar");
+
 		echo form_hidden('idEmpresa', $idEmpresa);
 
 		$options = array(
