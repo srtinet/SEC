@@ -1,11 +1,11 @@
 <h1>Responsabilidade</h1>
-			
 
-			<?php 
 
-	$empresa=array();
-	$atividade=array();
-	$usuario=array()	;	
+<?php 
+
+$empresa=array();
+$atividade=array();
+$usuario=array()	;	
 foreach ($filtroEmpresa as $filtro) {
 	$empresa[$filtro['idEmpresa']]=	$filtro['razaoSocial'];
 	
@@ -20,18 +20,18 @@ foreach ($filtroUsuario as $usuarios) {
 }
 
 
-				echo form_open("responsabilidade/filtrar");
-		
-	echo inputList("Empresa_idEmpresa","Empresa",$empresa);
-		echo inputList("Atividade_idAtividade","Atividade",$atividade);
-				echo inputList("Usuario_idUsuario","Usuario",$usuario);
-	echo DataPicker("dataInicio","De");
-		echo DataPicker("dataFim","á");
-					echo form_button(array("class"=>"btn btn-success","content"=>"Filtrar","type"=>"submit"));
-					echo form_close();
+echo form_open("responsabilidade/filtrar");
+
+echo inputList("Empresa_idEmpresa","Empresa",$empresa);
+echo inputList("Atividade_idAtividade","Atividade",$atividade);
+echo inputList("Usuario_idUsuario","Usuario",$usuario);
+echo DataPicker("dataInicio","De");
+echo DataPicker("dataFim","á");
+echo form_button(array("class"=>"btn btn-success","content"=>"Filtrar","type"=>"submit"));
+echo form_close();
 
 
-			 ?>
+?>
 
 <table class="table table-striped table-hover table-responsive">
 	<thead>
@@ -68,7 +68,7 @@ foreach ($filtroUsuario as $usuarios) {
 				<button type="button" class="btn btn-warning">Aguardando Validação</button>
 				<?php }?>
 
-					<?php if ($respon['estadoResponsabilidade']==2){ ?>
+				<?php if ($respon['estadoResponsabilidade']==2){ ?>
 				<button type="button" class="btn btn-warning">Aguardando Cliente</button>
 				<?php }?></td>
 

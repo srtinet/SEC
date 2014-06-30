@@ -5,13 +5,15 @@ class Socio_model extends CI_Model{
 		return $this->db->get_where("Socio", $where)->result_array();
 	}
 
+	public function salvar ($socio){
+		if ($socio['idSocio']>0){
+			$this->db->where("idSocio",$socio['idSocio']);
+			$this->db->update("Socio",$socio);
 
-	public function form($where=array()){
-		return $this->db->get_where("Socio", $where)->result_array();
-	}
+		}else{
+			$this->db->insert("Socio",$socio);
+		}
 
-	public function salvar($socio){
-		$this->db->insert('Socio', $socio);
 	}
 
 	public function excluir($id){
