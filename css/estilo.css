@@ -185,6 +185,11 @@ form{
 .dropdown-menu>li>a{
 	color: #000 !important;
 }
+.dropdown-menu {z-index: 99999 !important;}
+
+
+
+
 /*.lista{
 	background-color: #428bca;
 	color:#fff !important;
