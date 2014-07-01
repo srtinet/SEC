@@ -94,6 +94,10 @@ ul{
 	color:#fff !important;
 }
 
+.btn{
+	margin-top: 10px;
+}
+
 a button:hover{
 	color:#fff;
 }
@@ -125,6 +129,38 @@ thead, th{
 
 .title-blue{
 	color: #428bca;
+}
+
+.menu-lat{
+	margin-top: 20px;
+}
+
+header, footer{
+	background-color: #3055AB !important;
+	color: #fff !important;
+}
+
+header h2{
+	font-family: "Trebuchet MS", sans-serif;
+}
+
+footer{
+	text-align: center;
+}
+
+.login{
+	color:#fff;
+	font-size: 16px !important;
+}
+
+.login-box{
+	float:right;
+	margin-top: -50px;
+}
+
+.login-box .btn{
+	margin-top: -10px;
+	float:right;
 }
 
 /*.lista{

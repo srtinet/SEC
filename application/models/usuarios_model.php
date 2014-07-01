@@ -18,28 +18,27 @@ class Usuarios_model extends CI_Model {
 
 	}
 	public function listar($where=array(),$tipo=0){
-if ($tipo==0){
-		return $this->db->get_where('Usuario',$where)->result_array();
-}else{
+		if ($tipo==0){
+			return $this->db->get_where('Usuario',$where)->result_array();
+		}else{
 
-return $this->db->get_where('Usuario',$where)->row_array();
+			return $this->db->get_where('Usuario',$where)->row_array();
 
-}
+		}
 
 	}
 	public function buscaPorUsuarioESenha($usuario,$senha){
 		$this->db->where("login",$usuario);
 		$this->db->where("senha",$senha);
 		$usuario= $this->db->get("Usuario")->row_array();
-
 		return   $usuario;
 	}
 
-		public function listarGestorJoin($where=array()){
+	public function listarGestorJoin($where=array()){
 
 		$this->db->select(" GestorSetor.*,Setor.descricao as setorDescricao , Usuario.nome");
 		$this->db->from(" GestorSetor");
-	
+		
 		$this->db->join("Setor", "Setor.idSetor =  GestorSetor.Setor_idSetor");
 		$this->db->join("Usuario", "Usuario.idUsuario =  GestorSetor.Usuario_idUsuario");
 		$this->db->where($where);

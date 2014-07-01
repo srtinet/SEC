@@ -3,17 +3,10 @@
 class Home extends CI_Controller{
 
 
-public function index(){
-
-$usuario=$this->session->userdata("usuario_logado");
+	public function index(){
+		$usuario=$this->session->userdata("usuario_logado");
 		$this->load->template("index");
-
- 
-
+	}
 }
 
-
-
-} 
-
- ?>
+?>

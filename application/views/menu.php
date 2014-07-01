@@ -1,3 +1,4 @@
+<div class="container">
 <ul class="nav nav-pills">
   <li class="active"><a href="#">Home</a></li>
    <li ><?php echo anchor("responsabilidade", "Responsabilidade" ); ?></li>
@@ -12,6 +13,7 @@
       <li ><?php echo anchor("setor/listar", "Setor" ); ?></li>
       <li ><?php echo anchor("empresa/listar", "Empresa" ); ?></li>
       <li ><?php echo anchor("atividade/listar", "Atividade" ); ?></li>
+
     </ul>
   </li>
   <?php
@@ -21,4 +23,6 @@
     <?php } else{ ?>
       <li ><?php echo anchor("ligacao/listarTelefonista", "Sol. Chamada");?></li>
     <?php } ?>
+    
 </ul>
+</div>
