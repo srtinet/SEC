@@ -14,9 +14,17 @@ foreach ($filtroAtividade as $filtro) {
 	$atividade[$filtro['idAtividade']]=	$filtro['atividadedescricao'];
 	
 }
+$user=$this->session->userdata('usuario_logado');
+ if ($user['tipo']==2){
 foreach ($filtroUsuario as $usuarios) {
 	$usuario[$usuarios['idUsuario']]=	$usuarios['usuarioNome'];
 	
+}
+}else
+{
+$usuario[$user['idUsuario']]=	$user['nome'];
+	# code...
+
 }
 
 

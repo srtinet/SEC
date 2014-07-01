@@ -13,8 +13,17 @@ class Responsabilidade extends CI_Controller{
 		if ($ultimadata!=$hoje){
 			$this->gerarRespopnsabilidade($ultimadata,$hoje);
 		}
+			
+		if(is_array($this->session->userdata('periodo'))){
+
+	$periodo=$this->session->userdata('periodo');
+		$dataInicioFiltro=dataPtBrParaMysql($periodo['dataInicio']);
+		$dataFimFiltro=dataPtBrParaMysql($periodo['dataFim']);
+		}else{
+
 		$dataInicioFiltro=tiraDia($hoje,15);
 		$dataFimFiltro=adicionaMes($hoje,1);
+	}
 		$usuario=$this->session->userdata('usuario_logado');
 		if($usuario['tipo']==1){
 
@@ -26,7 +35,7 @@ class Responsabilidade extends CI_Controller{
 			$filtroEmpresa=$this->responsabilidade_model->listarResponsabilidadeGestor(array("GestorSetor.Usuario_idUsuario"=>$usuario['idUsuario']),'idEmpresa');
 			$filtroAtividade=$this->responsabilidade_model->listarResponsabilidadeGestor(array("GestorSetor.Usuario_idUsuario"=>$usuario['idUsuario']),'idAtividade');
 			$filtroUsuario=$this->responsabilidade_model->listarResponsabilidadeGestor(array("GestorSetor.Usuario_idUsuario"=>$usuario['idUsuario']),'idUsuario');
-				
+
 		}
 
 
@@ -37,7 +46,22 @@ class Responsabilidade extends CI_Controller{
 	}
 	public function filtrar(){
 
+		$filtro=array(
+			"Empresa_idEmpresa"=>$this->input->post("Empresa_idEmpresa"),
+			"Atividade_idAtividade"=>$this->input->post("Atividade_idAtividade"),
+			"Usuario_idUsuario"=>$this->input->post("Usuario_idUsuario")
 
+			);
+		$periodo=array('dataInicio' => $this->input->post("dataInicio"), 'dataFim' => $this->input->post("dataFim"));
+
+
+		$array = array(
+			'filtro' => $filtro,'periodo'=>$periodo
+			);
+		
+		$this->session->set_userdata( $array );
+
+		redirect('responsabilidade');
 
 
 	}
