@@ -14,9 +14,15 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url("css/estilo.css") ?>" media="screen">
 </head>
 <body>
-	<header class="jumbotron header">
-		<h2><img src="<?php echo base_url("img/logo.png") ?>" width="140"/> - Sistema de Escritorio Contabil</h2>
-		<div class="login-box">
+	<header class="header">
+		<div class="row">
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+			<img class="img-responsive"src="<?php echo base_url("img/logo.png") ?>"/>
+		</div>
+		<div class="col-lg-9 col-md-9 col-sm-7 col-xs-7">
+			<h2> - Sistema de Escritório Contábil</h2>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 login-box">
 			<?php
 			if(isset($this->session->userdata['usuario_logado'])){
 				$usuario = $this->session->userdata['usuario_logado']['nome'];
@@ -24,8 +30,6 @@
 				echo anchor('login/logout', 'Logout', array("class" => "btn btn-danger"));
 			}
 			?>
-		</div>
+		</div></div>
 	</header>
-	<div class="container">
-		<div class="row">
-
+	
