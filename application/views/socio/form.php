@@ -6,6 +6,7 @@
 			$nome = $socio['nome'];
 			$idSocio = $socio['idSocio'];
 			$estadoCivil = $socio['estadoCivil'];
+			$cpf = $socio['cpf'];
 			$rg = $socio['rg'];
 			$tituloEleitor = $socio['tituloEleitor'];
 			$orgaoEmissorRg = $socio['orgaoEmissorRg'];
@@ -26,7 +27,7 @@
 			$capitalSocial = $socio['capitalSocial'];
 			$tipoParticipacao = $socio['tipoParticipacao'];
 			$porcentagemSocio = $socio['porcentagemSocio'];
-			$capitalSocioDoSocio = $socio['capitalSocioDoSocio'];
+			$capitalSocioalDoSocio = $socio['capitalSocioalDoSocio'];
 			$inicioContribuicao = $socio['inicioContribuicao'];
 			$proLabore = $socio['proLabore'];
 			$valorProLabore = $socio['valorProLabore'];
@@ -36,11 +37,11 @@
 			$dependente = $socio['dependente'];
 			$nomeDependente = $socio['nomeDependente'];
 			$dataNascimentoDependente = $socio['dataNascimentoDependente'];
-			$empregada = $socio['empregada'];
+			$empregadaDomestica = $socio['empregadaDomestica'];
 			$rotinaTrabalhista = $socio['rotinaTrabalhista'];
-			$nomeEmpregada = $socio['nomeEmpregada'];
-			$cpf = $socio['cpf'];
-			$nit = $socio['nit'];
+			$nomeEmpregadaDomestica = $socio['nomeEmpregadaDomestica'];
+			$cpfDomestica = $socio['cpfDomestica'];
+			$nitDomestica = $socio['nitDomestica'];
 			$obrigadoImpostoRenda = $socio['obrigadoImpostoRenda'];
 			$declaracaoEscritorio = $socio['declaracaoEscritorio'];
 			$titularOutraEmpresa = $socio['titularOutraEmpresa'];
@@ -56,6 +57,7 @@
 			$nome = '';
 			$idSocio = '';
 			$estadoCivil = '';
+			$cpf = '';
 			$rg = '';
 			$tituloEleitor = '';
 			$orgaoEmissorRg = '';
@@ -76,7 +78,7 @@
 			$capitalSocial = '';
 			$tipoParticipacao = '';
 			$porcentagemSocio = '';
-			$capitalSocioDoSocio = '';
+			$capitalSocioalDoSocio = '';
 			$inicioContribuicao = '';
 			$proLabore = '';
 			$valorProLabore = '';
@@ -86,11 +88,11 @@
 			$dependente = '';
 			$nomeDependente = '';
 			$dataNascimentoDependente = '';
-			$empregada = '';
+			$empregadaDomestica = '';
 			$rotinaTrabalhista = '';
-			$nomeEmpregada = '';
-			$cpf = '';
-			$nit = '';
+			$nomeEmpregadaDomestica = '';
+			$cpfDomestica = '';
+			$nitDomestica = '';
 			$obrigadoImpostoRenda = '';
 			$declaracaoEscritorio = '';
 			$titularOutraEmpresa = '';
@@ -111,8 +113,9 @@
 
 		echo inputText("nome","Nome",$nome);
 		echo inputText("estadoCivil","Estado Civil",$estadoCivil);
-		echo inputText("rg","RG",$rg);
+		echo inputText("cpf","CPF",$cpf);
 		echo inputText("tituloEleitor","Título Eleitor",$tituloEleitor);
+		echo inputText("rg","RG",$rg);
 		echo inputText("orgaoEmissorRg","Orgão Emissor Rg",$orgaoEmissorRg);
 		echo inputText("dataExpedicao","Data Expedição",$dataExpedicao);
 		echo inputText("dataNascimento","Data Nascimento",$dataNascimento);
@@ -129,8 +132,8 @@
 		echo inputText("capitalSocial","Capital Social",$capitalSocial);
 		echo inputText("tipoParticipacao","Tipo Participação",$tipoParticipacao);
 		echo inputText("porcentagemSocio","Porcentagem Sócio",$porcentagemSocio);
-		echo inputText("capitalSocioDoSocio","Capital Sócio Do Sócio",$capitalSocioDoSocio);
-		echo DataPicker("inicioContribuicao","Início Contribuição",$inicioContribuicao);
+		echo inputText("capitalSocioalDoSocio","Capital Social Do Sócio",$capitalSocioalDoSocio);
+		echo DataPicker("inicioContribuicao","Início Contribuição INSS",$inicioContribuicao);
 
 		$options = array(
 			'1'  => 'Sim',
@@ -162,7 +165,7 @@
 			'1'  => 'Sim',
 			'2'  => 'Não'
 		);
-		echo inputList("empregada","Possui Empregada?",$options, $empregada);
+		echo inputList("empregadaDomestica","Possui Empregada Domestica?",$options, $empregadaDomestica);
 
 		$options = array(
 			'1'  => 'Sim',
@@ -170,9 +173,10 @@
 		);
 		echo inputList("rotinaTrabalhista","Deseja que o escritório faça o serviço de registro e demais rotinas trabalhistas?",$options, $rotinaTrabalhista);
 
-		echo inputText("nomeEmpregada","Nome Empregada",$nomeEmpregada);
-		echo inputText("cpf","CPF",$cpf);
-		echo inputText("nit","NIT",$nit);
+		echo inputText("nomeEmpregadaDomestica","Nome Empregada Doméstica",$nomeEmpregadaDomestica);
+		
+		echo inputText("cpfDomestica","CPF da Empregada Doméstica",$cpfDomestica);
+		echo inputText("nitDomestica","NIT da Empregada Doméstica",$nitDomestica);
 
 		$options = array(
 			'1'  => 'Sim',

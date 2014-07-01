@@ -14,8 +14,8 @@ if($empresas){
 		$razaoSocial = $empresa['razaoSocial'];
 		$nomeFantasia = $empresa['nomeFantasia'];
 		$matrizFilial = $empresa['matrizFilial'];
-		$im = $empresa['im'];
-		$ir = $empresa['ir'];
+		$inscricaoMunicipal = $empresa['inscricaoMunicipal'];
+		$inscricaoEstadual = $empresa['inscricaoEstadual'];
 		$telefone = $empresa['telefone'];
 		$telefoneResidencial = $empresa['telefoneResidencial'];
 		$celular = $empresa['celular'];
@@ -62,8 +62,8 @@ if($empresas){
 		$razaoSocial = '';
 		$nomeFantasia = '';
 		$matrizFilial = '';
-		$im = '';
-		$ir = '';
+		$inscricaoMunicipal = '';
+		$inscricaoEstadual = '';
 		$telefone = '';
 		$telefoneResidencial = '';
 		$celular = '';
@@ -172,8 +172,8 @@ if($empresas){
 		);
 		echo inputList("matrizFilial","Matriz Filial",$options, $matrizFilial);
 
-		echo inputText("im","IM",$im);
-		echo inputText("ir","IR",$ir);
+		echo inputText("inscricaoMunicipal","Inscrição Municipal",$inscricaoMunicipal);
+		echo inputText("inscricaoEstadual","Inscrição Estadual",$inscricaoEstadual);
 		echo inputText("telefone","Telefone",$telefone);
 		echo inputText("telefoneResidencial","Telefone Residencial",$telefoneResidencial);
 		echo inputText("Celular","Celular",$celular);

@@ -2,5 +2,6 @@
 	<ul class="nav nav-pills nav-stacked menu-lat">
 		<li ><?php echo anchor("/", "Home" ); ?></li>
 		<li ><?php echo anchor("ligacao/form", "Solicitar Ligação" ); ?></li>
+		<li ><?php echo anchor("recado/form", "Enviar Recado" ); ?></li>
 	</ul>
 </div>

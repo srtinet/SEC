@@ -24,6 +24,10 @@ footer.topo{
 	padding: 5px 5px 5px;
 }
 
+.menu-lat{
+	margin-bottom: 20px;
+}
+
 .menu-lat li a{
 	background-color: #80A8D6;
 	color:#fff;

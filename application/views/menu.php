@@ -1,7 +1,7 @@
 <ul class="nav nav-pills navbar navbar-default">
   <li><a href="#">Home</a></li>
-   <li ><?php echo anchor("responsabilidade", "Responsabilidade" ); ?></li>
-      <li ><?php echo anchor("responsabilidade/validar", "Validações" ); ?></li>
+   <li><?php echo anchor("responsabilidade", "Responsabilidade" ); ?></li>
+      <li><?php echo anchor("responsabilidade/validar", "Validações" ); ?></li>
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       Cadastros <span class="caret"></span>
@@ -12,8 +12,10 @@
       <li ><?php echo anchor("setor/listar", "Setor" ); ?></li>
       <li ><?php echo anchor("empresa/listar", "Empresa" ); ?></li>
       <li ><?php echo anchor("atividade/listar", "Atividade" ); ?></li>
+      
     </ul>
   </li>
+  <li><?php echo anchor("recado/listar", "Recado" ); ?></li>
   <?php
     $usuario = $this->session->userdata['usuario_logado']['telefonista'];
     if($usuario == 0){ ?>
