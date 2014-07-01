@@ -185,10 +185,17 @@ form{
 .dropdown-menu>li>a{
 	color: #000 !important;
 }
+
 .dropdown-menu {z-index: 99999 !important;}
 
 
 
+
+=======
+
+.telaLogin{
+	margin: 30px;
+}
 
 /*.lista{
 	background-color: #428bca;
