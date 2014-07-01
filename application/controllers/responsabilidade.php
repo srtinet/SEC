@@ -13,17 +13,17 @@ class Responsabilidade extends CI_Controller{
 		if ($ultimadata!=$hoje){
 			$this->gerarRespopnsabilidade($ultimadata,$hoje);
 		}
-			
+
 		if(is_array($this->session->userdata('periodo'))){
 
-	$periodo=$this->session->userdata('periodo');
-		$dataInicioFiltro=dataPtBrParaMysql($periodo['dataInicio']);
-		$dataFimFiltro=dataPtBrParaMysql($periodo['dataFim']);
+			$periodo=$this->session->userdata('periodo');
+			$dataInicioFiltro=dataPtBrParaMysql($periodo['dataInicio']);
+			$dataFimFiltro=dataPtBrParaMysql($periodo['dataFim']);
 		}else{
 
-		$dataInicioFiltro=tiraDia($hoje,15);
-		$dataFimFiltro=adicionaMes($hoje,1);
-	}
+			$dataInicioFiltro=tiraDia($hoje,15);
+			$dataFimFiltro=adicionaMes($hoje,1);
+		}
 		$usuario=$this->session->userdata('usuario_logado');
 		if($usuario['tipo']==1){
 
@@ -38,23 +38,37 @@ class Responsabilidade extends CI_Controller{
 
 		}
 
+		if(is_array($this->session->userdata('filtro'))){
+			$filtrando=$this->session->userdata('filtro');
+			$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidade($filtrando,$dataInicioFiltro,$dataFimFiltro);
 
-		
-		$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidade(array("idUsuario"=>$usuario['idUsuario']),$dataInicioFiltro,$dataFimFiltro);
+		}else{
+
+			$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidade(array("idUsuario"=>$usuario['idUsuario']),$dataInicioFiltro,$dataFimFiltro);
+		}
 		$dados=array("responsabilidade"=>$responsabilidadelst,"filtroEmpresa"=>$filtroEmpresa,"filtroAtividade"=>$filtroAtividade,"filtroUsuario"=>$filtroUsuario);
 		$this->load->template("responsabilidade/responsabilidade",$dados);
 	}
 	public function filtrar(){
+		$idEmpresa=array();
+		$idAtividade=array();
+		$idUsuario=array();
+	$this->session->set_flashdata('success',"Filtrado com Sucesso");
+		if ($this->input->post("Empresa_idEmpresa")!=0){$idEmpresa=array("idEmpresa"=>$this->input->post("Empresa_idEmpresa"));}
+		if ($this->input->post("Atividade_idAtividade")!=0){$idAtividade=array("idAtividade"=>$this->input->post("Atividade_idAtividade"));}
+		if ($this->input->post("Usuario_idUsuario")!=0){$idUsuario=array("idUsuario"=>$this->input->post("Usuario_idUsuario"));}
 
-		$filtro=array(
-			"Empresa_idEmpresa"=>$this->input->post("Empresa_idEmpresa"),
-			"Atividade_idAtividade"=>$this->input->post("Atividade_idAtividade"),
-			"Usuario_idUsuario"=>$this->input->post("Usuario_idUsuario")
-
-			);
-		$periodo=array('dataInicio' => $this->input->post("dataInicio"), 'dataFim' => $this->input->post("dataFim"));
 
 
+		$filtro=array_merge($idEmpresa, $idAtividade,$idUsuario);
+
+		if($this->input->post("dataInicio")!='' and $this->input->post("dataFim")!='' ){
+			$periodo=array('dataInicio' => $this->input->post("dataInicio"), 'dataFim' => $this->input->post("dataFim"));
+
+		}
+		else{
+			$perido=array();
+		}
 		$array = array(
 			'filtro' => $filtro,'periodo'=>$periodo
 			);
@@ -64,6 +78,13 @@ class Responsabilidade extends CI_Controller{
 		redirect('responsabilidade');
 
 
+	}
+	public function limparFiltro(){
+$this->session->unset_userdata("periodo");
+				$this->session->unset_userdata("filtro");
+		$this->session->set_flashdata('success',"Filtro limpo com Sucesso");
+
+		redirect('responsabilidade');
 	}
 
 	public function validar(){
