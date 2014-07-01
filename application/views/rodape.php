@@ -2,7 +2,7 @@
 </div>
 
 	<footer class="jumbotron">
-		<h5>© 2012-2013 SEC - Todos os direitos reservados | Design by SRTI |</h5>
+		<h5>© 2014 SEC - Todos os direitos reservados | Design by SRTI |</h5>
 	</footer>
 </div>
 
