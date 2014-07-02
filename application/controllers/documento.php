@@ -38,6 +38,21 @@ public function form($id=0){
 				redirect('documento/listarTipo');
 	}
 
+	public function novo(){
+		$this->load->model("documento_model");
+		$this->load->model("empresa_model");
+		$this->load->model("usuarios_model");
+		$empresa=$this->empresa_model->listar();
+		$usuario=$this->usuarios_model->listar();
+		$tipo=$this->documento_model->listarTipo();
+		$dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
+		$this->load->template("documento/novo",$dados);
+
+
+
+
+	}
+
 
 
 
