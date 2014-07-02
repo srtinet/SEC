@@ -19,7 +19,7 @@ function inputText($name, $label='', $value=''){
 function inputTextArea($name, $label='', $value=''){
 	$input= '';
 	$input.= form_label($label,$name);
-	$input.= form_input(array("name"=>$name,"class"=>"form-control","id"=>$name ,"value"=>$value,  "rows"=>"4"));
+	$input.= form_textarea(array("name"=>$name,"class"=>"form-control","id"=>$name ,"value"=>$value,  "rows"=>"4"));
 	return $input;
 }
 
