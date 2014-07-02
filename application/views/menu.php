@@ -13,10 +13,13 @@
       <li ><?php echo anchor("empresa/listar", "Empresa" ); ?></li>
       <li ><?php echo anchor("atividade/listar", "Atividade" ); ?></li>
         <li ><?php echo anchor("documento/listarTipo", "Documento" ); ?></li>
+
       
     </ul>
   </li>
   <li><?php echo anchor("recado/listarRecado", "Recado" ); ?></li>
+
+  <li><?php echo anchor("documento/ver", "Recado" ); ?></li>
   <?php
     $usuario = $this->session->userdata['usuario_logado']['telefonista'];
     if($usuario == 0){ ?>

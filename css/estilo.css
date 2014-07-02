@@ -199,6 +199,21 @@ form{
 	margin: 30px;
 }
 
+.nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
+
+color:white;
+
+}
+
+.nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus
+{
+
+	color:white!important;
+}
+.taber{
+padding: 15px;
+
+}
 /*.lista{
 	background-color: #428bca;
 	color:#fff !important;
