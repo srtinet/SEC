@@ -12,6 +12,7 @@
       <li ><?php echo anchor("setor/listar", "Setor" ); ?></li>
       <li ><?php echo anchor("empresa/listar", "Empresa" ); ?></li>
       <li ><?php echo anchor("atividade/listar", "Atividade" ); ?></li>
+        <li ><?php echo anchor("documento/listarTipo", "Documento" ); ?></li>
       
     </ul>
   </li>

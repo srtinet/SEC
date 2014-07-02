@@ -9,12 +9,12 @@ class Documento_model extends CI_Model {
 		$this->db->delete("TipoDocumento");
 	}
 
-	public function salvarTipo($setor){
-		if($setor['idTipoDocumento'] > 0){
-			$this->db->where('idTipoDocumento', $setor['idTipoDocumento']);
-			$this->db->update('idTipoDocumento', $setor);
+	public function salvarTipo($documento){
+		if($documento['idTipoDocumento'] > 0){
+			$this->db->where('idTipoDocumento', $documento['idTipoDocumento']);
+			$this->db->update('TipoDocumento', $documento);
 		}else{
-			$this->db->insert('TipoDocumento', $setor);
+			$this->db->insert('TipoDocumento', $documento);
 		}
 		
 	}

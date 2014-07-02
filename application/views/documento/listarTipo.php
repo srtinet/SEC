@@ -23,8 +23,8 @@
 		<tr>
 			<td><?php  echo $documento['descricao']  ?> </td>
 
-			<td><?php echo anchor("atividade/form/{$documento['idTipoDocumento']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
-			<td><?php echo anchor("atividade/excluir/{$documento['idTipoDocumento']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
+			<td><?php echo anchor("documento/form/{$documento['idTipoDocumento']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
+			<td><?php echo anchor("documento/excluir/{$documento['idTipoDocumento']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
 
 		</tr>
 
