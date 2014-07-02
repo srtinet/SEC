@@ -8,6 +8,7 @@
 			<th>Empresa</th>
 			<th>Usuário</th>
 			<th>Data Abertura</th>
+			<th>Visualizar</th>
 			<th>Encaminhar</th>
 			<th>Finalizar</th>
 		</tr>
@@ -18,11 +19,10 @@
 			<td><?php echo $recado['razaoSocial']?></td>
 			<td><?php echo $recado['nome']?></td>
 			<td><?php echo $recado['dataAbertura']?></td>
+			<td><?php echo anchor("recado/listarMensagem/{$recado['idRecado']}","Visualizar", array("class" => "btn btn-primary"));  ?> </td>
 			<td><?php echo anchor("#","Encaminhar", array("class" => "btn btn-primary"));  ?> </td>
 			<td><?php echo anchor("#","Finalizar", array("class" => "btn btn-danger"));  ?> </td>
 		</tr>
 		<?php endforeach;?>
 	</tbody>
 </table>
-	
-
