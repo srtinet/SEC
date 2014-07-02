@@ -10,7 +10,7 @@ foreach($empresa as $e) {
 echo inputList("Empresa_idEmpresa","Empresa",$options);
 
 
-echo inputText("observacao", "Observação");
+echo inputTextArea("observacao", "Observação");
 
 $idUsuario = $this->session->userdata("usuario_logado");
 $estado = 0;
