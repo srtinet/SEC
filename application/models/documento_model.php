@@ -20,8 +20,14 @@ class Documento_model extends CI_Model {
 	}
 
 		public function salvarDoc($documento){
-	
+	if($documento['idDocumento'] > 0){
+
+			$this->db->where('idDocumento', $documento['idDocumento']);
+			$this->db->update('Documento', $documento);
+	}
+		else{
 			$this->db->insert('Documento', $documento);
+		}
 			return $this->db->insert_id();
 		}
 		public function salvarAceiteDoc($salvarAceiteDoc){
@@ -30,7 +36,7 @@ class Documento_model extends CI_Model {
 			return $this->db->insert_id();
 		}
 
-		public function ListarDoc($where=array()){
+		public function listarDoc($where=array()){
 		 $this->db->select("AceiteDocumento.*,Documento.descricao as descricaoDocumento , Empresa.razaoSocial,TipoDocumento.descricao as descricaoTipoDocumento, desUse.nome as destinatario,envUse.nome as remetente");
 		 $this->db->from("Documento");
 		 $this->db->join("AceiteDocumento", "AceiteDocumento.Documento_idDocumento = Documento.idDocumento");
@@ -38,11 +44,32 @@ class Documento_model extends CI_Model {
 		 $this->db->join("Usuario as desUse", "desUse.idUsuario = AceiteDocumento.Usuario_idUsuarioDest");
 		 $this->db->join("Usuario as envUse", "envUse.idUsuario = AceiteDocumento.Usuario_idUsuarioEnv");
 		 $this->db->join("TipoDocumento", "TipoDocumento.idTipoDocumento = Documento.TipoDocumento_idTipoDocumento");
+		 $this->db->where('estadoAnterior is null');
 		 $this->db->where($where);
 		 	$this->db->order_by("AceiteDocumento.dataRegistro", "desc"); 
 	
 				return $this->db->get()->result_array();
 		 		 
+
+		}
+		public function aceitar($aceite){
+
+
+			$this->db->where('idAceiteDocumento', $aceite['idAceiteDocumento']);
+			$this->db->update('AceiteDocumento', $aceite);
+
+
+
+
+
+
+		}
+
+
+
+		public function listarAceite($where){
+			return $this->db->get_where("AceiteDocumento", $where)->row_array();
+
 
 		}
 
