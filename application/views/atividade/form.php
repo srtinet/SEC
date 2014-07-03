@@ -1,10 +1,11 @@
+	<?php echo validation_errors("<p class='alert alert-danger'>","</p>");?>
 	<?php 
-	if ($atividades){
+	if (isset($atividades)){
 		foreach ($atividades as $atividade ) {
 			
 
 
-			$descricao=$atividade['descricao'];;
+			// $descricao=$atividade['descricao'];;
 			$anexo=$atividade['anexo'];;
 			$nivel=$atividade['nivel'];;
 			$idAtividade=$atividade['idAtividade'];;
@@ -12,7 +13,7 @@
 		}
 	}
 	else{
-		$descricao='';
+		// $descricao='';
 		$anexo='';
 
 		$nivel='';

@@ -18,24 +18,30 @@ class Atividade extends CI_Controller{
 		$this->load->template("atividade/form",$dados);
 	}
 
-		public function cadastrar(){
-		$this->load->model("atividade_model");
-		$atividade=array(
-			"idAtividade" => $this->input->post("idAtividade"),
-			"descricao" => $this->input->post("descricao"),
-			"nivel" => $this->input->post("nivel"),
-			"anexo" => $this->input->post("anexo"));
-		$this->atividade_model->salvar($atividade);
-		$this->session->set_flashdata('success',"Atividade salvo com sucesso");
-		redirect('atividade/listar');
+	public function cadastrar(){
+		$this->form_validation->set_rules("descricao", "descricao", "required");
+		$sucesso = $this->form_validation->run();
+		if($sucesso){
+			$this->load->model("atividade_model");
+			$atividade=array(
+				"idAtividade" => $this->input->post("idAtividade"),
+				"descricao" => $this->input->post("descricao"),
+				"nivel" => $this->input->post("nivel"),
+				"anexo" => $this->input->post("anexo"));
+			$this->atividade_model->salvar($atividade);
+			$this->session->set_flashdata('success',"Atividade salvo com sucesso");
+			redirect('atividade/listar');
+		}else{
+			$this->load->template("atividade/form");
+		}
 	}
 
 		public function excluir($id){
-		$this->load->model("atividade_model");
-		$this->atividade_model->excluir($id);
-		$this->session->set_flashdata('success', 'Excluido com Sucesso');
-		redirect("atividade/listar");
+			$this->load->model("atividade_model");
+			$this->atividade_model->excluir($id);
+			$this->session->set_flashdata('success', 'Excluido com Sucesso');
+			redirect("atividade/listar");
+		}
+
+
 	}
-
-
-}

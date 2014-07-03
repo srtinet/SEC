@@ -4,8 +4,8 @@ class Recado extends CI_Controller{
 	public function listarRecado(){
 		$usuario = $this->session->userdata['usuario_logado'];
 		$this->load->model("recado_model");
-		$idUsuarioDestino = $this->recado_model->joinUsuarioDestino();
-		$recado = $this->recado_model->listarRecado(array("idUsuarioDestino" => $idUsuarioDestino['idUsuarioDestino']));
+		// $idUsuarioDestino = $this->recado_model->joinUsuarioDestino();
+		$recado = $this->recado_model->listarRecado(array("idUsuario" => $usuario['idUsuario']));
 		$dados = array("recados" => $recado);
 		$this->load->template("recado/lista", $dados);
 	}
@@ -25,17 +25,17 @@ class Recado extends CI_Controller{
 		$usuario = $this->session->userdata('usuario_logado');
 		$recado = array(
 			"Usuario_idUsuario" => $usuario['idUsuario'],
-			"idUsuarioDestino" => $this->input->post("idUsuarioDestino"),
 			"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
 			"dataAbertura" => date("Y-m-d")
 			);
 		$idRecado = $this->recado_model->salvarRecado($recado);
 		$mensagem = array(
-			"Usuario_idUsuario" => $this->input->post("idUsuarioDestino"),
+			"Usuario_idUsuarioDes" => $this->input->post("idUsuarioDestino"),
+			"Usuario_idUsuarioRem" => $usuario['idUsuario'] ,
 			"Recado_idRecado" => $idRecado,
 			"recado" => $this->input->post("recado"),
 			"estado" => 0
-			);
+			);	
 		$this->recado_model->salvarMensagem($mensagem);
 		$this->session->set_flashdata('success',"Recado Salvo com Sucesso");
 		redirect('recado/listarRecado');

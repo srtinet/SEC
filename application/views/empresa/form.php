@@ -1,6 +1,7 @@
+<?php echo validation_errors();?>
 <?php
 
-if($empresas){
+if(isset($empresas)){
 	foreach($empresas as $empresa){
 
 		$idEmpresa = $empresa['idEmpresa'];
