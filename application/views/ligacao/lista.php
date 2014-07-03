@@ -18,7 +18,7 @@
 		<?php foreach($lista as $lig): ?>
 		<?php if($lig['estado'] != 3){?>
 		<tr>
-			<td><?php echo $lig['login']?></td>
+			<td><?php echo $lig['nome']?></td>
 			<td><?php echo $lig['razaoSocial']?></td>
 			<td><?php echo $lig['observacao']?></td>
 			<td><?php echo ""?></td>

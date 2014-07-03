@@ -1,10 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Recado extends CI_Controller{
-	public function listarRecado($idUsuarioDestino){
+	public function listarRecado(){
 		$usuario = $this->session->userdata['usuario_logado'];
 		$this->load->model("recado_model");
-		$recado = $this->recado_model->listarRecado(array("Usuario_idUsuario" => $usuario['idUsuario'], "idUsuarioDestino" => $idUsuarioDestino));
+		$idUsuarioDestino = $this->recado_model->joinUsuarioDestino();
+		$recado = $this->recado_model->listarRecado(array("idUsuarioDestino" => $idUsuarioDestino['idUsuarioDestino']));
 		$dados = array("recados" => $recado);
 		$this->load->template("recado/lista", $dados);
 	}
@@ -24,13 +25,13 @@ class Recado extends CI_Controller{
 		$usuario = $this->session->userdata('usuario_logado');
 		$recado = array(
 			"Usuario_idUsuario" => $usuario['idUsuario'],
-			"idUsuarioDestino" => $this->input->post("Usuario_idUsuario"),
+			"idUsuarioDestino" => $this->input->post("idUsuarioDestino"),
 			"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
 			"dataAbertura" => date("Y-m-d")
 			);
 		$idRecado = $this->recado_model->salvarRecado($recado);
 		$mensagem = array(
-			"Usuario_idUsuario" => $this->input->post("Usuario_idUsuario"),
+			"Usuario_idUsuario" => $this->input->post("idUsuarioDestino"),
 			"Recado_idRecado" => $idRecado,
 			"recado" => $this->input->post("recado"),
 			"estado" => 0
