@@ -23,6 +23,26 @@ class MY_loader extends CI_Loader{
 
 	}
 
+		public function relatorio($nome,$dados=array()){
+
+		$this->view("cabecalhoRel.php");
+		$CI =& get_instance();
+		$usuario=$CI->session->userdata("usuario_logado");
+		if ($usuario){
+		
+
+
+			$this->view($nome,$dados);
+		}else {
+			$this->view("login/logar");
+
+		}
+
+		$this->view("rodapeRel.php");
+
+	}
+
+
 
 
 
