@@ -5,7 +5,7 @@
 			
 
 
-			// $descricao=$atividade['descricao'];;
+			$descricao=$atividade['descricao'];;
 			$anexo=$atividade['anexo'];;
 			$nivel=$atividade['nivel'];;
 			$idAtividade=$atividade['idAtividade'];;
@@ -13,7 +13,7 @@
 		}
 	}
 	else{
-		// $descricao='';
+		$descricao='';
 		$anexo='';
 
 		$nivel='';

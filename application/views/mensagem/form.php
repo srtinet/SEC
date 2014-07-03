@@ -1,3 +1,4 @@
+
 <h3>Mensagem</h3>
 <?php
 echo form_open("recado/cadastrar");
@@ -19,4 +20,6 @@ echo inputList("idUsuarioDestino","Usuário",$options);
 echo inputTextArea("recado","Recado");
 
 echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
+
 echo form_close();
+

@@ -19,12 +19,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($recados as $recado) : ?>
+					<?php foreach($enviados as $enviado) : ?>
 					<tr>
-						<td><?php echo $recado['razaoSocial']?></td>
-						<td><?php echo $recado['nome']?></td>
-						<td><?php echo dataMysqlParaPtBr($recado['dataAbertura'])?></td>
-						<td><?php echo anchor("mensagem/listar/{$recado['idRecado']}","Responder", array("class" => "btn btn-primary"));  ?> </td>
+						<td><?php echo $enviado['razaoSocial']?></td>
+						<td><?php echo $enviado['nomeDestinatario']?></td>
+						<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura'])?></td>
+						<td><?php echo anchor("mensagem/listar/{$enviado['idRecado']}","Responder", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("#","Finalizar", array("class" => "btn btn-danger"));  ?> </td>
 					</tr>
 				<?php endforeach;?>
@@ -39,19 +39,19 @@
 				<thead>
 					<tr>
 						<th>Empresa</th>
-						<th>Destinatário</th>
+						<th>Remetente</th>
 						<th>Data Abertura</th>
 						<th>Responder</th>
 						<th>Finalizar</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($recados as $recado) : ?>
+					<?php foreach($recebidos as $recebido) : ?>
 					<tr>
-						<td><?php echo $recado['razaoSocial']?></td>
-						<td><?php echo $recado['nome']?></td>
-						<td><?php echo dataMysqlParaPtBr($recado['dataAbertura'])?></td>
-						<td><?php echo anchor("mensagem/listar/{$recado['idRecado']}","Responder", array("class" => "btn btn-primary"));  ?> </td>
+						<td><?php echo $recebido['razaoSocial']?></td>
+						<td><?php echo $recebido['nomeRemetente']?></td>
+						<td><?php echo dataMysqlParaPtBr($recebido['dataAbertura'])?></td>
+						<td><?php echo anchor("mensagem/listar/{$recebido['idRecado']}","Responder", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("#","Finalizar", array("class" => "btn btn-danger"));  ?> </td>
 					</tr>
 				<?php endforeach;?>

@@ -5,8 +5,11 @@ class Recado extends CI_Controller{
 		$usuario = $this->session->userdata['usuario_logado'];
 		$this->load->model("recado_model");
 		// $idUsuarioDestino = $this->recado_model->joinUsuarioDestino();
-		$recado = $this->recado_model->listarRecado(array("idUsuario" => $usuario['idUsuario']));
-		$dados = array("recados" => $recado);
+		$enviados = $this->recado_model->listarRecado(array("remetente.idUsuario" => $usuario['idUsuario']));
+		$destinatario = $this->recado_model->listarRecado(array("destinatario.idUsuario" => $usuario['idUsuario']));
+		
+
+		$dados = array("enviados" => $enviados,"recebidos"=>$destinatario);
 		$this->load->template("recado/lista", $dados);
 	}
 
