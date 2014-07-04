@@ -39,18 +39,23 @@ class Documento extends CI_Controller{
 	}
 
 	public function novo(){
-		$this->load->model("documento_model");
-		$this->load->model("empresa_model");
-		$this->load->model("usuarios_model");
-		$empresa=$this->empresa_model->listar();
-		$usuario=$this->usuarios_model->listar();
-		$tipo=$this->documento_model->listarTipo();
-		$dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
-		$this->load->template("documento/novo",$dados);
-
-
-
-
+		// $this->form_validation->set_rules("TipoDocumento_idTipoDocumento", "TipoDocumento_idTipoDocumento", "required");
+		// $this->form_validation->set_rules("Usuario_idUsuario", "Usuario_idUsuario", "required");
+		// $this->form_validation->set_rules("descricao", "descricao", "required");
+		// $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
+		// $sucesso = $this->form_validation->run();
+		// if($sucesso){
+			$this->load->model("documento_model");
+			$this->load->model("empresa_model");
+			$this->load->model("usuarios_model");
+			$empresa=$this->empresa_model->listar();
+			$usuario=$this->usuarios_model->listar();
+			$tipo=$this->documento_model->listarTipo();
+			$dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
+			$this->load->template("documento/novo",$dados);
+		// } else {
+			// $this->load->template("documento/novo");
+		// }
 	}
 
 	public function salvarDoc(){
@@ -69,7 +74,7 @@ class Documento extends CI_Controller{
 			"Documento_idDocumento"=>$doc,
 			"situacao"=>0,
 			"dataRegistro"=>date('Y-m-d'),
-				"estadoAnterior"=>0
+			"estadoAnterior"=>0
 			);
 
 		$acc=$this->documento_model->salvarAceiteDoc($aceite);
@@ -78,39 +83,39 @@ class Documento extends CI_Controller{
 			"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
 			"Documento_idDocumento"=>$doc,
 			"situacao"=>1,
-		
+
 			);
 
 		$acc=$this->documento_model->salvarAceiteDoc($aceite);
 
 
 
-			$this->session->set_flashdata('success',"Documento enviado com sucesso");
-	redirect('documento/novo');
+		$this->session->set_flashdata('success',"Documento enviado com sucesso");
+		redirect('documento/novo');
 
 
 	}
 
 	public function ver(){
 		$this->output->enable_profiler(TRUE);
-$this->load->model("documento_model");
-$usuario=$this->session->userdata('usuario_logado');
-$enviadas=$this->documento_model->listarDoc(array("situacao"=>1,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
-$rejeitadas=$this->documento_model->listarDoc(array("situacao"=>2,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
+		$this->load->model("documento_model");
+		$usuario=$this->session->userdata('usuario_logado');
+		$enviadas=$this->documento_model->listarDoc(array("situacao"=>1,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
+		$rejeitadas=$this->documento_model->listarDoc(array("situacao"=>2,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
 
-$recebidas=$this->documento_model->listarDoc(array("situacao"=>1,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
-$histEnviadas=$this->documento_model->listarDoc(array("situacao"=>3,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
-$histRecebidas=$this->documento_model->listarDoc(array("situacao"=>3,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
+		$recebidas=$this->documento_model->listarDoc(array("situacao"=>1,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
+		$histEnviadas=$this->documento_model->listarDoc(array("situacao"=>3,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
+		$histRecebidas=$this->documento_model->listarDoc(array("situacao"=>3,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
 
-$dados=array("enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeitadas,"hisEnviadas"=>$histEnviadas,"hisRecebidas"=>$histRecebidas);
+		$dados=array("enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeitadas,"hisEnviadas"=>$histEnviadas,"hisRecebidas"=>$histRecebidas);
 		$this->load->template("documento/ver",$dados);
 	}
 	public function aceite($id){
 		$this->load->model("documento_model");
 		$aceite=array(
-"idAceiteDocumento"=>$id,
-"dataRegistro"=>date('Y-m-d'),
-"situacao"=>3
+			"idAceiteDocumento"=>$id,
+			"dataRegistro"=>date('Y-m-d'),
+			"situacao"=>3
 
 			);
 		$enviadas=$doc=$this->documento_model->aceitar($aceite);
@@ -122,12 +127,12 @@ $dados=array("enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeit
 
 	}
 
-		public function rejeite($id){
+	public function rejeite($id){
 		$this->load->model("documento_model");
 		$aceite=array(
-"idAceiteDocumento"=>$id,
-"dataRegistro"=>date('Y-m-d'),
-"situacao"=>2
+			"idAceiteDocumento"=>$id,
+			"dataRegistro"=>date('Y-m-d'),
+			"situacao"=>2
 
 			);
 		$enviadas=$doc=$this->documento_model->aceitar($aceite);
@@ -141,7 +146,7 @@ $dados=array("enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeit
 	public function reenviar($id){
 		$this->output->enable_profiler(TRUE);
 		$this->load->model("documento_model");
-		
+
 		$aceite=array(
 			"idAceiteDocumento"=>$id,
 			"estadoAnterior"=>'0');
@@ -171,13 +176,13 @@ $dados=array("enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeit
 	public function cliente($id){
 		$this->load->model('documento_model');
 		$enviadas=$this->documento_model->listarDoc(array("Documento_idDocumento"=>$id));
-	
+
 
 		$this->documento_model->salvarDoc(array("idDocumento"=>$id,"cliente"=>1));
-			$dados=array('documentos'=>$enviadas);
+		$dados=array('documentos'=>$enviadas);
 
 
-			$this->load->relatorio("documento/cliente",$dados);
+		$this->load->relatorio("documento/cliente",$dados);
 
 
 	}
@@ -200,7 +205,7 @@ $dados=array("enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeit
 			"Documento_idDocumento"=>$anterior['Documento_idDocumento'],
 			"situacao"=>4,
 			"dataRegistro"=>date('Y-m-d'),
-						"observacao"=>$this->input->post("observacao")
+			"observacao"=>$this->input->post("observacao")
 
 
 			);

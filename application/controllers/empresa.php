@@ -26,64 +26,64 @@ class Empresa  extends CI_Controller{
 
 
 	public function cadastrar(){
-		$this->form_validation->set_rules("nome", "nome", "required");
-		$sucesso = $this->form_validation->run();
-		if($sucesso){
-			$this->load->model("empresa_model");
-			$empresa=array(
-				'idEmpresa' => $this->input->post('idEmpresa'),
-				'tipoEmpresa' => $this->input->post('tipoEmpresa'),
-				'enquadramento' => $this->input->post('enquadramento'),
-				'tributacao' => $this->input->post('tributacao'),
-				'ramoAtividade' => $this->input->post('ramoAtividade'),
-				'statusEmpresa' => $this->input->post('statusEmpresa'),
-				'nContmatic' => $this->input->post('nContmatic'),
-				'cnpj' => $this->input->post('cnpj'),
-				'razaoSocial' => $this->input->post('razaoSocial'),
-				'nomeFantasia' => $this->input->post('nomeFantasia'),
-				'matrizFilial' => $this->input->post('matrizFilial'),
-				'inscricaoMunicipal' => $this->input->post('inscricaoMunicipal'),
-				'inscricaoEstadual' => $this->input->post('inscricaoEstadual'),
-				'telefone' => $this->input->post('telefone'),
-				'telefoneResidencial' => $this->input->post('telefoneResidencial'),
-				'celular' => $this->input->post('celular'),
-				'email' => $this->input->post('email'),
-				'cep' => $this->input->post('cep'),
-				'tipoLogradouro' => $this->input->post('tipoLogradouro'),
-				'logradouroComercial' => $this->input->post('logradouroComercial'),
-				'numero' => $this->input->post('numero'),
-				'complemento' => $this->input->post('complemento'),
-				'bairro' => $this->input->post('bairro'),
-				'municipio' => $this->input->post('municipio'),
-				'uf' => $this->input->post('uf'),
-				'atividade' => $this->input->post('atividade'),
-				'inicioAtividade' => $this->input->post('inicioAtividade'),
-				'dataAbertura' => $this->input->post('dataAbertura'),
-				'cnae' => $this->input->post('cnae'),
-				'remessaCetesb' => $this->input->post('remessaCetesb'),
-				'retornoCetesb' => $this->input->post('retornoCetesb'),
-				'statusCetesb' => $this->input->post('statusCetesb'),
-				'remessaVigilancia' => $this->input->post('remessaVigilancia'),
-				'retornoVigilancia' => $this->input->post('retornoVigilancia'),
-				'statusVigilancia' => $this->input->post('statusVigilancia'),
-				'remessaConselhoRegional' => $this->input->post('remessaConselhoRegional'),
-				'retornoConselhoRegional' => $this->input->post('retornoConselhoRegional'),
-				'statusConselhoRegional' => $this->input->post('statusConselhoRegional'),
-				'remessaJucesp' => $this->input->post('remessaJucesp'),
-				'retornoJucesp' => $this->input->post('retornoJucesp'),
-				'statusJucesp' => $this->input->post('statusJucesp'),
-				'remessaAlvaraBombeiro' => $this->input->post('remessaAlvaraBombeiro'),
-				'retornoAlvaraBombeiro' => $this->input->post('retornoAlvaraBombeiro'),
-				'statusAlvaraBombeiro' => $this->input->post('statusAlvaraBombeiro')
-				);
-				$this->empresa_model->salvar($empresa);
-				$this->session->set_flashdata('success',"Empresa Salva com Sucesso");
-				redirect('empresa/listar');
-		} else{
-			$this->load->template("empresa/form");
-		}
+		// $this->form_validation->set_rules("nome", "nome", "required");
+		// $sucesso = $this->form_validation->run();
+		// if($sucesso){
+		$this->load->model("empresa_model");
+		$empresa=array(
+			'idEmpresa' => $this->input->post('idEmpresa'),
+			'tipoEmpresa' => $this->input->post('tipoEmpresa'),
+			'enquadramento' => $this->input->post('enquadramento'),
+			'tributacao' => $this->input->post('tributacao'),
+			'ramoAtividade' => $this->input->post('ramoAtividade'),
+			'statusEmpresa' => $this->input->post('statusEmpresa'),
+			'nContmatic' => $this->input->post('nContmatic'),
+			'cnpj' => $this->input->post('cnpj'),
+			'razaoSocial' => $this->input->post('razaoSocial'),
+			'nomeFantasia' => $this->input->post('nomeFantasia'),
+			'matrizFilial' => $this->input->post('matrizFilial'),
+			'inscricaoMunicipal' => $this->input->post('inscricaoMunicipal'),
+			'inscricaoEstadual' => $this->input->post('inscricaoEstadual'),
+			'telefone' => $this->input->post('telefone'),
+			'telefoneResidencial' => $this->input->post('telefoneResidencial'),
+			'celular' => $this->input->post('celular'),
+			'email' => $this->input->post('email'),
+			'cep' => $this->input->post('cep'),
+			'tipoLogradouro' => $this->input->post('tipoLogradouro'),
+			'logradouroComercial' => $this->input->post('logradouroComercial'),
+			'numero' => $this->input->post('numero'),
+			'complemento' => $this->input->post('complemento'),
+			'bairro' => $this->input->post('bairro'),
+			'municipio' => $this->input->post('municipio'),
+			'uf' => $this->input->post('uf'),
+			'atividade' => $this->input->post('atividade'),
+			'inicioAtividade' => $this->input->post('inicioAtividade'),
+			'dataAbertura' => $this->input->post('dataAbertura'),
+			'cnae' => $this->input->post('cnae'),
+			'remessaCetesb' => $this->input->post('remessaCetesb'),
+			'retornoCetesb' => $this->input->post('retornoCetesb'),
+			'statusCetesb' => $this->input->post('statusCetesb'),
+			'remessaVigilancia' => $this->input->post('remessaVigilancia'),
+			'retornoVigilancia' => $this->input->post('retornoVigilancia'),
+			'statusVigilancia' => $this->input->post('statusVigilancia'),
+			'remessaConselhoRegional' => $this->input->post('remessaConselhoRegional'),
+			'retornoConselhoRegional' => $this->input->post('retornoConselhoRegional'),
+			'statusConselhoRegional' => $this->input->post('statusConselhoRegional'),
+			'remessaJucesp' => $this->input->post('remessaJucesp'),
+			'retornoJucesp' => $this->input->post('retornoJucesp'),
+			'statusJucesp' => $this->input->post('statusJucesp'),
+			'remessaAlvaraBombeiro' => $this->input->post('remessaAlvaraBombeiro'),
+			'retornoAlvaraBombeiro' => $this->input->post('retornoAlvaraBombeiro'),
+			'statusAlvaraBombeiro' => $this->input->post('statusAlvaraBombeiro')
+			);
+$this->empresa_model->salvar($empresa);
+$this->session->set_flashdata('success',"Empresa Salva com Sucesso");
+redirect('empresa/listar');
+		// } else{
+			// $this->load->template("empresa/form");
+		// }
 
-		}
+}
 
 public function atividade($id_empresa,$id_atividade=0){
 	$this->load->model("empresa_model");

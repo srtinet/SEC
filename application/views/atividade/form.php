@@ -1,14 +1,13 @@
-	<?php echo validation_errors("<p class='alert alert-danger'>","</p>");?>
 	<?php 
 	if (isset($atividades)){
 		foreach ($atividades as $atividade ) {
 			
 
 
-			$descricao=$atividade['descricao'];;
-			$anexo=$atividade['anexo'];;
-			$nivel=$atividade['nivel'];;
-			$idAtividade=$atividade['idAtividade'];;
+			$descricao=$atividade['descricao'];
+			$anexo=$atividade['anexo'];
+			$nivel=$atividade['nivel'];
+			$idAtividade=$atividade['idAtividade'];
 
 		}
 	}
@@ -25,6 +24,7 @@
 
 	echo form_open("atividade/cadastrar");
 	echo inputText("descricao", "Descrição", $descricao);
+	echo form_error("descricao");
 
 
 	$options = array(
@@ -33,7 +33,7 @@
 		'3'   => 'Cliente',
 	);
 	echo inputList("nivel","Nivel",$options, $nivel);
-	
+	echo form_error("anexo");
 	
 
 
@@ -47,6 +47,7 @@
 		'checked'     => $anexo,
 		
 		));
+
 	echo '</div><div class="radio">';
 	echo form_label("Não","chtipo2");
 	echo form_radio(array(
@@ -57,6 +58,7 @@
 		
 		));
 	echo '</div>';
+	echo form_error("anexo");
 
 
 	echo form_hidden('idAtividade', $idAtividade);

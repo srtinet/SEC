@@ -16,7 +16,7 @@
 		<?php foreach($lista as $lig): ?>
 		<?php if($lig['estado'] == 0 || $lig['estado'] == 2){?>
 		<tr>
-			<td><?php echo $lig['login']?></td>
+			<td><?php echo $lig['nome']?></td>
 			<td><?php echo $lig['razaoSocial']?></td>
 			<td><?php echo $lig['observacao']?></td>
 			<td><?php echo ""?></td>
@@ -28,7 +28,6 @@
 				echo form_hidden('idTelefonema', $lig['idTelefonema']);
 				echo form_button(array("class"=>"btn btn-success","content"=>"Feita","type"=>"submit"));
 				echo form_close();
-				echo"<br/>";
 				echo form_open("ligacao/alteraEstado");
 				echo form_hidden('estado', 2);
 				echo form_hidden('idTelefonema', $lig['idTelefonema']);

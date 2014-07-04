@@ -27,6 +27,7 @@ function inputPass($name, $label='', $value=''){
 	$input= '';
 	$input.= form_label($label,$name);
 	$input.= form_password(array("name"=>$name,"class"=>"form-control","id"=>$name ,"value"=>$value,  "maxlength"=>"255"));
+	
 	return $input;
 }
 

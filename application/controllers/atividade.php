@@ -20,6 +20,9 @@ class Atividade extends CI_Controller{
 
 	public function cadastrar(){
 		$this->form_validation->set_rules("descricao", "descricao", "required");
+		$this->form_validation->set_rules("nivel", "nivel", "required");
+		$this->form_validation->set_rules("anexo", "anexo", "required");
+		$this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
 		$sucesso = $this->form_validation->run();
 		if($sucesso){
 			$this->load->model("atividade_model");
