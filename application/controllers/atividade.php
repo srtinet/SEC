@@ -18,8 +18,8 @@ class Atividade extends CI_Controller{
 		$this->load->template("atividade/form",$dados);
 	}
 
-	public function cadastrar(){
-		$this->form_validation->set_rules("descricao", "descricao", "required");
+	public function cadastrar($id=0){
+		$this->form_validation->set_rules("descricao", "Descrição", "required");
 		$this->form_validation->set_rules("nivel", "nivel", "required");
 		$this->form_validation->set_rules("anexo", "anexo", "required");
 		$this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
@@ -35,7 +35,10 @@ class Atividade extends CI_Controller{
 			$this->session->set_flashdata('success',"Atividade salvo com sucesso");
 			redirect('atividade/listar');
 		}else{
-			$this->load->template("atividade/form");
+			$this->load->model("atividade_model");
+			$atividade=$this->atividade_model->listar(array("idAtividade"=>$id));
+			$dados=array("atividades"=>$atividade);
+			$this->load->template("atividade/form",$dados);
 		}
 	}
 

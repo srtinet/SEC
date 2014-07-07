@@ -39,12 +39,57 @@ class Documento extends CI_Controller{
 	}
 
 	public function novo(){
-		// $this->form_validation->set_rules("TipoDocumento_idTipoDocumento", "TipoDocumento_idTipoDocumento", "required");
-		// $this->form_validation->set_rules("Usuario_idUsuario", "Usuario_idUsuario", "required");
-		// $this->form_validation->set_rules("descricao", "descricao", "required");
-		// $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
-		// $sucesso = $this->form_validation->run();
-		// if($sucesso){
+		$this->load->model("documento_model");
+		$this->load->model("empresa_model");
+		$this->load->model("usuarios_model");
+		$empresa=$this->empresa_model->listar();
+		$usuario=$this->usuarios_model->listar();
+		$tipo=$this->documento_model->listarTipo();
+		$dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
+		$this->load->template("documento/novo",$dados);
+	}
+
+	public function salvarDoc(){
+		$this->form_validation->set_rules("TipoDocumento_idTipoDocumento", "TipoDocumento_idTipoDocumento", "required");
+		$this->form_validation->set_rules("Usuario_idUsuario", "Usuario_idUsuario", "required");
+		$this->form_validation->set_rules("descricao", "Descrição", "required");
+		$this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
+		$sucesso = $this->form_validation->run();
+		if($sucesso){
+			$this->load->model("documento_model");
+			$usuario=$this->session->userdata('usuario_logado');
+			$documento=array(
+				"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
+				"Usuario_idUsuario" =>$usuario['idUsuario'],
+				"TipoDocumento_idTipoDocumento" => $this->input->post("TipoDocumento_idTipoDocumento"),
+				"descricao" => $this->input->post("descricao"),
+				"dataAbertura"=>date("Y-m-d"));
+			$doc=$this->documento_model->salvarDoc($documento);
+			$aceite=array(
+				"Usuario_idUsuarioDest"=> $this->input->post("Usuario_idUsuario"),
+				"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
+				"Documento_idDocumento"=>$doc,
+				"situacao"=>0,
+				"dataRegistro"=>date('Y-m-d'),
+				"estadoAnterior"=>0
+				);
+
+			$acc=$this->documento_model->salvarAceiteDoc($aceite);
+			$aceite=array(
+				"Usuario_idUsuarioDest"=> $this->input->post("Usuario_idUsuario"),
+				"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
+				"Documento_idDocumento"=>$doc,
+				"situacao"=>1,
+
+				);
+
+			$acc=$this->documento_model->salvarAceiteDoc($aceite);
+
+
+
+			$this->session->set_flashdata('success',"Documento enviado com sucesso");
+			redirect('documento/novo');
+		} else {
 			$this->load->model("documento_model");
 			$this->load->model("empresa_model");
 			$this->load->model("usuarios_model");
@@ -53,46 +98,7 @@ class Documento extends CI_Controller{
 			$tipo=$this->documento_model->listarTipo();
 			$dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
 			$this->load->template("documento/novo",$dados);
-		// } else {
-			// $this->load->template("documento/novo");
-		// }
-	}
-
-	public function salvarDoc(){
-		$this->load->model("documento_model");
-		$usuario=$this->session->userdata('usuario_logado');
-		$documento=array(
-			"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
-			"Usuario_idUsuario" =>$usuario['idUsuario'],
-			"TipoDocumento_idTipoDocumento" => $this->input->post("TipoDocumento_idTipoDocumento"),
-			"descricao" => $this->input->post("descricao"),
-			"dataAbertura"=>date("Y-m-d"));
-		$doc=$this->documento_model->salvarDoc($documento);
-		$aceite=array(
-			"Usuario_idUsuarioDest"=> $this->input->post("Usuario_idUsuario"),
-			"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
-			"Documento_idDocumento"=>$doc,
-			"situacao"=>0,
-			"dataRegistro"=>date('Y-m-d'),
-			"estadoAnterior"=>0
-			);
-
-		$acc=$this->documento_model->salvarAceiteDoc($aceite);
-		$aceite=array(
-			"Usuario_idUsuarioDest"=> $this->input->post("Usuario_idUsuario"),
-			"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
-			"Documento_idDocumento"=>$doc,
-			"situacao"=>1,
-
-			);
-
-		$acc=$this->documento_model->salvarAceiteDoc($aceite);
-
-
-
-		$this->session->set_flashdata('success',"Documento enviado com sucesso");
-		redirect('documento/novo');
-
+		}
 
 	}
 

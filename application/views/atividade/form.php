@@ -1,5 +1,5 @@
 	<?php 
-	if (isset($atividades)){
+	if ($atividades){
 		foreach ($atividades as $atividade ) {
 			
 

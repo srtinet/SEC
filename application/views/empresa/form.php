@@ -163,9 +163,13 @@ if($empresas){
 
 		<?php
 		echo inputText("nContmatic","Nº Contmatic",$nContmatic);
+		echo form_error("descricao");
 		echo inputText("cnpj","CNPJ",$cnpj);
+		echo form_error("cnpj");
 		echo inputText("razaoSocial","Razão Social",$razaoSocial);
+		echo form_error("razaoSocial");
 		echo inputText("nomeFantasia","Nome Fantasia",$nomeFantasia);
+		echo form_error("nomeFantasia");
 
 		$options = array(
 			'1'  => 'FILIAL',
@@ -174,23 +178,36 @@ if($empresas){
 		echo inputList("matrizFilial","Matriz Filial",$options, $matrizFilial);
 
 		echo inputText("inscricaoMunicipal","Inscrição Municipal",$inscricaoMunicipal);
+		echo form_error("inscricaoMunicipal");
 		echo inputText("inscricaoEstadual","Inscrição Estadual",$inscricaoEstadual);
+		echo form_error("inscricaoEstadual");
 		echo inputText("telefone","Telefone",$telefone);
+		echo form_error("telefone");
 		echo inputText("telefoneResidencial","Telefone Residencial",$telefoneResidencial);
-		echo inputText("Celular","Celular",$celular);
+		echo form_error("telefoneResidencial");
+		echo inputText("celular","Celular",$celular);
+		echo form_error("celular");
 		echo inputText("email","Email",$email);
+		echo form_error("email");
 		?>
 
 		<h3>Endereço</h3>
 
 		<?php
 		echo inputText("cep","Cep",$cep);
+		echo form_error("email");
 		echo inputText("tipoLogradouro","Tipo Logradouro",$tipoLogradouro);
+		echo form_error("tipoLogradouro");
 		echo inputText("logradouroComercial","Logradouro Comercial",$logradouroComercial);
+		echo form_error("logradouroComercial");
 		echo inputText("numero","Número",$numero);
+		echo form_error("numero");
 		echo inputText("complemento","Complemento",$complemento);
+		echo form_error("complemento");
 		echo inputText("bairro","Bairro",$bairro);
+		echo form_error("bairro");
 		echo inputText("municipio","Municipio",$municipio);
+		echo form_error("municipio");
 
 		$options = array(
 			'1'  => 'Acre - AC',
@@ -226,16 +243,22 @@ if($empresas){
 
 		<?php
 		echo inputText("atividade","Atividade",$atividade);
+		echo form_error("atividade");
 		echo DataPicker("inicioAtividade","Inicio Atividade",$inicioAtividade);
+		echo form_error("inicioAtividade");
 		echo DataPicker("dataAbertura","Data Abertura",$dataAbertura);
+		echo form_error("dataAbertura");
 		echo inputText("cnae","CNAE",$cnae);
+		echo form_error("cnae");
 		?>
 
 		<h3>Orgãos</h3>
 
 		<?php
 		echo DataPicker("remessaCetesb","Remessa Cetesb",$remessaCetesb);
+		echo form_error("remessaCetesb");
 		echo DataPicker("retornoCetesb","Retorno Cetesb",$retornoCetesb);
+		echo form_error("retornoCetesb");
 
 		$options = array(
 			'1'  => 'APROVADO',
@@ -246,7 +269,9 @@ if($empresas){
 		echo inputList("statusCetesb","Status Cetesb",$options, $statusCetesb);
 
 		echo DataPicker("remessaVigilancia","Remessa Vigilancia",$remessaVigilancia);
+		echo form_error("remessaVigilancia");
 		echo DataPicker("retornoVigilancia","Retorno Vigilancia",$retornoVigilancia);
+		echo form_error("retornoVigilancia");
 
 		$options = array(
 			'1'  => 'APROVADO',
@@ -257,7 +282,9 @@ if($empresas){
 		echo inputList("statusVigilancia","Status Vigilância",$options, $statusVigilancia);
 
 		echo DataPicker("remessaConselhoRegional","Remessa ConselhoRegional",$remessaConselhoRegional);
+		echo form_error("remessaConselhoRegional");
 		echo DataPicker("retornoConselhoRegional","Retorno ConselhoRegional",$retornoConselhoRegional);
+		echo form_error("retornoConselhoRegional");
 
 		$options = array(
 			'1'  => 'APROVADO',
@@ -268,7 +295,9 @@ if($empresas){
 		echo inputList("statusConselhoRegional","Status Conselho Regional",$options, $statusConselhoRegional);
 
 		echo DataPicker("remessaJucesp","Remessa Jucesp",$remessaJucesp);
+		echo form_error("remessaJucesp");
 		echo DataPicker("retornoJucesp","Retorno Jucesp",$retornoJucesp);
+		echo form_error("retornoJucesp");
 
 		$options = array(
 			'1'  => 'APROVADO',
@@ -279,7 +308,9 @@ if($empresas){
 		echo inputList("statusJucesp","Status Jucesp",$options, $statusJucesp);
 
 		echo DataPicker("remessaAlvaraBombeiro","Remessa AlvaraBombeiro",$remessaAlvaraBombeiro);
+		echo form_error("remessaAlvaraBombeiro");
 		echo DataPicker("retornoAlvaraBombeiro","Retorno AlvaraBombeiro",$retornoAlvaraBombeiro);
+		echo form_error("retornoAlvaraBombeiro");
 
 		$options = array(
 			'1'  => 'APROVADO',

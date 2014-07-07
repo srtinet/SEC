@@ -112,28 +112,51 @@
 		echo form_hidden('idEmpresa', $Empresa_idEmpresa);
 
 		echo inputText("nome","Nome",$nome);
+		echo form_error("nome");
 		echo inputText("estadoCivil","Estado Civil",$estadoCivil);
+		echo form_error("estadoCivil");
 		echo inputText("cpf","CPF",$cpf);
+		echo form_error("cpf");
 		echo inputText("tituloEleitor","Título Eleitor",$tituloEleitor);
+		echo form_error("tituloEleitor");
 		echo inputText("rg","RG",$rg);
+		echo form_error("rg");
 		echo inputText("orgaoEmissorRg","Orgão Emissor Rg",$orgaoEmissorRg);
+		echo form_error("orgaoEmissorRg");
 		echo inputText("dataExpedicao","Data Expedição",$dataExpedicao);
+		echo form_error("dataExpedicao");
 		echo inputText("dataNascimento","Data Nascimento",$dataNascimento);
+		echo form_error("dataNascimento");
 		echo inputText("uf","UF",$uf);
+		echo form_error("uf");
 		echo inputText("naturalidade","Naturalidade",$naturalidade);
+		echo form_error("naturalidade");
 		echo inputText("tipoLogradouro","Tipo Logradouro",$tipoLogradouro);
+		echo form_error("tipoLogradouro");
 		echo inputText("logradouro","Logradouro",$logradouro);
+		echo form_error("logradouro");
 		echo inputText("numero","Número",$numero);
+		echo form_error("numero");
 		echo inputText("bairro","Bairro",$bairro);
+		echo form_error("bairro");
 		echo inputText("municipio","Municipio",$municipio);
+		echo form_error("municipio");
 		echo inputText("complemento","Complemento",$complemento);
+		echo form_error("complemento");
 		echo inputText("cep","CEP",$cep);
+		echo form_error("cep");
 		echo inputText("nReciboIr","Número Recibo IR",$nReciboIr);
+		echo form_error("nReciboIr");
 		echo inputText("capitalSocial","Capital Social",$capitalSocial);
+		echo form_error("capitalSocial");
 		echo inputText("tipoParticipacao","Tipo Participação",$tipoParticipacao);
+		echo form_error("tipoParticipacao");
 		echo inputText("porcentagemSocio","Porcentagem Sócio",$porcentagemSocio);
+		echo form_error("porcentagemSocio");
 		echo inputText("capitalSocioalDoSocio","Capital Social Do Sócio",$capitalSocioalDoSocio);
+		echo form_error("capitalSocioalDoSocio");
 		echo DataPicker("inicioContribuicao","Início Contribuição INSS",$inicioContribuicao);
+		echo form_error("inicioContribuicao");
 
 		$options = array(
 			'1'  => 'Sim',
@@ -142,6 +165,7 @@
 		echo inputList("proLabore","Pró-Labore",$options, $proLabore);
 
 		echo inputText("valorProLabore","Valor Pró-Labore",$valorProLabore);
+		echo form_error("valorProLabore");
 
 		$options = array(
 			'1'  => 'Sim',
@@ -150,7 +174,9 @@
 		echo inputList("aposentado","Aposentado",$options, $aposentado);
 
 		echo DataPicker("dataAposentadoriaIdade","Data Aposentadoria por Idade",$dataAposentadoriaIdade);
+		echo form_error("dataAposentadoriaIdade");
 		echo DataPicker("dataAposentadoriaContribuicao","Data Aposentadoria por Contribuição",$dataAposentadoriaContribuicao);
+		echo form_error("dataAposentadoriaContribuicao");
 
 		$options = array(
 			'1'  => 'Sim',
@@ -159,7 +185,9 @@
 		echo inputList("dependente","Dependentes",$options, $dependente);
 
 		echo inputText("nomeDependente","Nome Dependente",$nomeDependente);
+		echo form_error("nomeDependente");
 		echo DataPicker("dataNascimentoDependente","Data Nascimento Dependente",$dataNascimentoDependente);
+		echo form_error("dataNascimentoDependente");
 
 		$options = array(
 			'1'  => 'Sim',
@@ -174,9 +202,12 @@
 		echo inputList("rotinaTrabalhista","Deseja que o escritório faça o serviço de registro e demais rotinas trabalhistas?",$options, $rotinaTrabalhista);
 
 		echo inputText("nomeEmpregadaDomestica","Nome Empregada Doméstica",$nomeEmpregadaDomestica);
+		echo form_error("nomeEmpregadaDomestica");
 		
 		echo inputText("cpfDomestica","CPF da Empregada Doméstica",$cpfDomestica);
+		echo form_error("cpfDomestica");
 		echo inputText("nitDomestica","NIT da Empregada Doméstica",$nitDomestica);
+		echo form_error("nitDomestica");
 
 		$options = array(
 			'1'  => 'Sim',
@@ -197,6 +228,7 @@
 		echo inputList("titularOutraEmpresa","É sócio ou titular de outra empresa?",$options, $titularOutraEmpresa);
 
 		echo inputText("nomeOutraEmpresa","Nome Outra Empresa",$nomeOutraEmpresa);
+		echo form_error("nomeOutraEmpresa");
 
 		$options = array(
 			'1'  => 'Sim',
@@ -211,7 +243,9 @@
 		echo inputList("empregadoAutonomo","Exerce outra ativida como empregado ou autônomo?",$options, $empregadoAutonomo);
 
 		echo inputText("nomeAtividadeAutonomo","Nome atividade autônomo",$nomeAtividadeAutonomo);
+		echo form_error("nomeAtividadeAutonomo");
 		echo inputText("valorRemuneracao","Valor remuneração",$valorRemuneracao);
+		echo form_error("valorRemuneracao");
 
 		echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 		echo form_close();

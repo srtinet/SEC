@@ -29,10 +29,15 @@
 
 	echo form_open("usuarios/cadastrar");
 	echo inputText("nome", "Nome", $nome);
+	echo form_error("nome");
 	echo inputText("login", "Login", $login);
+	echo form_error("login");
 	echo inputPass("senha", "Senha", $senha);
+	echo form_error("senha");
 	echo inputPass("consenha", "Confirme a senha", $senha);
+	echo form_error("consenha");
 	echo inputText("Email","email", $email);
+	echo form_error("email");
 	
 	$options = array(
 		'1'  => 'Operacional',

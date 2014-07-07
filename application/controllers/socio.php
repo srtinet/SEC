@@ -7,7 +7,7 @@ class Socio extends CI_Controller{
 		$socio = $this->socio_model->listarSocioEmpresa(array('idEmpresa' => $idEmpresa));
 		$dados = array('socios' => $socio, 'idEmpresa' => $idEmpresa);
 		$this->load->template("socio/lista", $dados);
-		}
+	}
 	public function form($idEmpresa, $id=0){
 		$this->load->model("socio_model");
 		$socio = $this->socio_model->listar(array("idSocio"=>$id));
@@ -15,61 +15,91 @@ class Socio extends CI_Controller{
 		$this->load->template("socio/form", $dados);
 	}
 
-	public function cadastrar(){
-		$this->load->model("socio_model");
-		$socio = array(
-			'idSocio' => $this->input->post('idSocio'),
-			'Empresa_idEmpresa' => $this->input->post('idEmpresa'),
-			'nome' => $this->input->post('nome'),
-			'estadoCivil' => $this->input->post('estadoCivil'),
-			'cpf' => $this->input->post('cpf'),
-			'rg' => $this->input->post('rg'),
-			'tituloEleitor' => $this->input->post('tituloEleitor'),
-			'orgaoEmissorRg' => $this->input->post('orgaoEmissorRg'),
-			'dataExpedicao' => $this->input->post('dataExpedicao'),
-			'dataNascimento' => $this->input->post('dataNascimento'),
-			'uf' => $this->input->post('uf'),
-			'naturalidade' => $this->input->post('naturalidade'),
-			'tipoLogradouro' => $this->input->post('tipoLogradouro'),
-			'logradouro' => $this->input->post('logradouro'),
-			'numero' => $this->input->post('numero'),
-			'bairro' => $this->input->post('bairro'),
-			'numero' => $this->input->post('numero'),
-			'municipio' => $this->input->post('municipio'),
-			'complemento' => $this->input->post('complemento'),
-			'cep' => $this->input->post('cep'),
-			'numero' => $this->input->post('numero'),
-			'nReciboIr' => $this->input->post('nReciboIr'),
-			'capitalSocial'=> $this->input->post('capitalSocial'),
-			'tipoParticipacao' => $this->input->post('tipoParticipacao'),
-			'porcentagemSocio' => $this->input->post('porcentagemSocio'),
-			'capitalSocioalDoSocio' => $this->input->post('capitalSocioalDoSocio'),
-			'inicioContribuicao' => $this->input->post('inicioContribuicao'),
-			'proLabore' => $this->input->post('proLabore'),
-			'valorProLabore' => $this->input->post('valorProLabore'),
-			'aposentado' => $this->input->post('aposentado'),
-			'dataAposentadoriaIdade' => $this->input->post('dataAposentadoriaIdade'),
-			'dataAposentadoriaContribuicao' => $this->input->post('dataAposentadoriaContribuicao'),
-			'dependente' => $this->input->post('dependente'),
-			'nomeDependente' => $this->input->post('nomeDependente'),
-			'dataNascimentoDependente' => $this->input->post('dataNascimentoDependente'),
-			'empregadaDomestica' => $this->input->post('empregadaDomestica'),
-			'rotinaTrabalhista' => $this->input->post('rotinaTrabalhista'),
-			'nomeEmpregadaDomestica' => $this->input->post('nomeEmpregadaDomestica'),
-			'cpfDomestica' => $this->input->post('cpfDomestica'),
-			'nitDomestica' => $this->input->post('nitDomestica'),
-			'obrigadoImpostoRenda' => $this->input->post('obrigadoImpostoRenda'),
-			'declaracaoEscritorio' => $this->input->post('declaracaoEscritorio'),
-			'titularOutraEmpresa' => $this->input->post('titularOutraEmpresa'),
-			'nomeOutraEmpresa' => $this->input->post('nomeOutraEmpresa'),
-			'clienteEscritorio' => $this->input->post('clienteEscritorio'),
-			'empregadoAutonomo' => $this->input->post('empregadoAutonomo'),
-			'nomeAtividadeAutonomo' => $this->input->post('nomeAtividadeAutonomo'),
-			'valorRemuneracao' => $this->input->post('valorRemuneracao')
-		);
-		$this->socio_model->salvar($socio);
-		$this->session->set_flashdata('success',"Sócio Salvo com Sucesso");
-		redirect('socio/listar/'.$this->input->post("idEmpresa"));
+	public function cadastrar($idEmpresa=0, $id=0){
+		$this->form_validation->set_rules('nome', "Nome", "required");
+		$this->form_validation->set_rules('estadoCivil', "Estado Civil", "required");
+		$this->form_validation->set_rules('cpf', 'CPF', "required");
+		$this->form_validation->set_rules('rg', 'RG', "required");
+		$this->form_validation->set_rules('tituloEleitor', 'Titulo Eleitor', "required");
+		$this->form_validation->set_rules('orgaoEmissorRg', 'Orgão Emissor RG', "required");
+		$this->form_validation->set_rules('dataExpedicao', 'Data Expedição', "required");
+		$this->form_validation->set_rules('dataNascimento', 'Data Nascimento', "required");
+		$this->form_validation->set_rules('uf', 'UF', "required");
+		$this->form_validation->set_rules('naturalindade', 'Naturalidade', "required");
+		$this->form_validation->set_rules('tipoLogradouro', 'Tipo Logradouro', "required");
+		$this->form_validation->set_rules('cep', 'CEP', "required");
+		$this->form_validation->set_rules('nReciboIr', 'Número Recibo IR', "required");
+		$this->form_validation->set_rules('capitalSocial', 'Capital Social', "required");
+		$this->form_validation->set_rules('tipoParticipacao', 'Tipo Participação', "required");
+		$this->form_validation->set_rules('porcentagemSocio', 'Porcentagem Sócio', "required");
+		$this->form_validation->set_rules('capitalSocioalDoSocio', 'Capital Socioal Do Sócio', "required");
+		$this->form_validation->set_rules('proLabore', 'Pró Labore', "required");
+		$this->form_validation->set_rules('valorProLabore', 'Valor Pró Labore', "required");
+		$this->form_validation->set_rules('aposentado', 'Aposentado', "required");
+		$this->form_validation->set_rules('dataAposentadoriaIdade', 'Data da Aposentadoria por Idade', "required");
+		$this->form_validation->set_rules('dataAposentadoriaContribuicao', 'Data da Aposentadoria por Contribuição', "required");
+		$this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
+		$sucesso = $this->form_validation->run();
+		if($sucesso){
+			$this->load->model("socio_model");
+			$socio = array(
+				'idSocio' => $this->input->post('idSocio'),
+				'Empresa_idEmpresa' => $this->input->post('idEmpresa'),
+				'nome' => $this->input->post('nome'),
+				'estadoCivil' => $this->input->post('estadoCivil'),
+				'cpf' => $this->input->post('cpf'),
+				'rg' => $this->input->post('rg'),
+				'tituloEleitor' => $this->input->post('tituloEleitor'),
+				'orgaoEmissorRg' => $this->input->post('orgaoEmissorRg'),
+				'dataExpedicao' => $this->input->post('dataExpedicao'),
+				'dataNascimento' => $this->input->post('dataNascimento'),
+				'uf' => $this->input->post('uf'),
+				'naturalidade' => $this->input->post('naturalidade'),
+				'tipoLogradouro' => $this->input->post('tipoLogradouro'),
+				'logradouro' => $this->input->post('logradouro'),
+				'numero' => $this->input->post('numero'),
+				'bairro' => $this->input->post('bairro'),
+				'numero' => $this->input->post('numero'),
+				'municipio' => $this->input->post('municipio'),
+				'complemento' => $this->input->post('complemento'),
+				'cep' => $this->input->post('cep'),
+				'nReciboIr' => $this->input->post('nReciboIr'),
+				'capitalSocial'=> $this->input->post('capitalSocial'),
+				'tipoParticipacao' => $this->input->post('tipoParticipacao'),
+				'porcentagemSocio' => $this->input->post('porcentagemSocio'),
+				'capitalSocioalDoSocio' => $this->input->post('capitalSocioalDoSocio'),
+				'inicioContribuicao' => $this->input->post('inicioContribuicao'),
+				'proLabore' => $this->input->post('proLabore'),
+				'valorProLabore' => $this->input->post('valorProLabore'),
+				'aposentado' => $this->input->post('aposentado'),
+				'dataAposentadoriaIdade' => $this->input->post('dataAposentadoriaIdade'),
+				'dataAposentadoriaContribuicao' => $this->input->post('dataAposentadoriaContribuicao'),
+				'dependente' => $this->input->post('dependente'),
+				'nomeDependente' => $this->input->post('nomeDependente'),
+				'dataNascimentoDependente' => $this->input->post('dataNascimentoDependente'),
+				'empregadaDomestica' => $this->input->post('empregadaDomestica'),
+				'rotinaTrabalhista' => $this->input->post('rotinaTrabalhista'),
+				'nomeEmpregadaDomestica' => $this->input->post('nomeEmpregadaDomestica'),
+				'cpfDomestica' => $this->input->post('cpfDomestica'),
+				'nitDomestica' => $this->input->post('nitDomestica'),
+				'obrigadoImpostoRenda' => $this->input->post('obrigadoImpostoRenda'),
+				'declaracaoEscritorio' => $this->input->post('declaracaoEscritorio'),
+				'titularOutraEmpresa' => $this->input->post('titularOutraEmpresa'),
+				'nomeOutraEmpresa' => $this->input->post('nomeOutraEmpresa'),
+				'clienteEscritorio' => $this->input->post('clienteEscritorio'),
+				'empregadoAutonomo' => $this->input->post('empregadoAutonomo'),
+				'nomeAtividadeAutonomo' => $this->input->post('nomeAtividadeAutonomo'),
+				'valorRemuneracao' => $this->input->post('valorRemuneracao')
+				);
+			$this->socio_model->salvar($socio);
+			$this->session->set_flashdata('success',"Sócio Salvo com Sucesso");
+			redirect('socio/listar/'.$this->input->post("idEmpresa"));
+		}else{
+			$this->load->model("socio_model");
+			$socio = $this->socio_model->listar(array("idSocio"=>$id));
+			$dados = array('socios' => $socio,"idEmpresa"=>$idEmpresa);
+			$this->load->template("socio/form", $dados);
+		}
 	}
 
 	public function excluir($idEmpresa, $id){
