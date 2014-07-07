@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Responsabilidade extends CI_Controller{
 
@@ -53,11 +53,10 @@ class Responsabilidade extends CI_Controller{
 		$idEmpresa=array();
 		$idAtividade=array();
 		$idUsuario=array();
-	$this->session->set_flashdata('success',"Filtrado com Sucesso");
+		$this->session->set_flashdata('success',"Filtrado com Sucesso");
 		if ($this->input->post("Empresa_idEmpresa")!=0){$idEmpresa=array("idEmpresa"=>$this->input->post("Empresa_idEmpresa"));}
 		if ($this->input->post("Atividade_idAtividade")!=0){$idAtividade=array("idAtividade"=>$this->input->post("Atividade_idAtividade"));}
 		if ($this->input->post("Usuario_idUsuario")!=0){$idUsuario=array("idUsuario"=>$this->input->post("Usuario_idUsuario"));}
-
 
 
 		$filtro=array_merge($idEmpresa, $idAtividade,$idUsuario);

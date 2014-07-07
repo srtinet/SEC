@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Responsabilidade_model extends CI_Model {
 
 
@@ -8,7 +8,7 @@ class Responsabilidade_model extends CI_Model {
 		return $this->db->get_where("Controle",$where)->row_array();
 
 
-	} 
+	}
 	public function salvarControle($data){
 
 			$this->db->insert('Controle',$data);
@@ -17,7 +17,7 @@ class Responsabilidade_model extends CI_Model {
 
 	public function periodoAtividade($data1,$data2){
 
-		$this->db->query("update AtividadeEmpresa set dataControle = concat(Year(now()),'-',Month(dataControle),'-',day(dataControle))"); 
+		$this->db->query("update AtividadeEmpresa set dataControle = concat(Year(now()),'-',Month(dataControle),'-',day(dataControle))");
 		$this->db->select("AtividadeEmpresa.*, Empresa.razaoSocial,Setor.descricao as setorDescricao , Atividade.descricao as atividadeDescricao");
 		$this->db->from("AtividadeEmpresa");
 		$this->db->join("Empresa", "Empresa.idEmpresa = AtividadeEmpresa.Empresa_idEmpresa");
@@ -63,7 +63,7 @@ return $this->db->get_where("EstadoResponsabilidade",$where)->row_array();
 		$this->db->where('estadoProximo is null');
 		$this->db->where('EstadoResponsabilidade.estado != 4');
 		$this->db->where($where);
-		
+
 		if($data1!='' and $data2!='')
 		$this->db->where("dataVencimento BETWEEN '" . $data1 . "' AND '" . $data2."'");
 		$this->db->order_by("dataVencimento", "desc"); 
@@ -85,7 +85,7 @@ return $this->db->get_where("EstadoResponsabilidade",$where)->row_array();
 		$this->db->where('estadoProximo is null');
 		$this->db->where($where);
 				$this->db->group_by($agrupar); 
-		
+
 
 		$this->db->order_by("dataVencimento", "desc"); 
 				return $this->db->get()->result_array();

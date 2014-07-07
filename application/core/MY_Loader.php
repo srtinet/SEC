@@ -29,9 +29,6 @@ class MY_loader extends CI_Loader{
 		$CI =& get_instance();
 		$usuario=$CI->session->userdata("usuario_logado");
 		if ($usuario){
-		
-
-
 			$this->view($nome,$dados);
 		}else {
 			$this->view("login/logar");

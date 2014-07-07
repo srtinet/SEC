@@ -4,7 +4,6 @@ class Documento extends CI_Controller{
 
 	public function listarTipo(){
 
-
 		$this->load->model("documento_model");
 		$Tipo=$this->documento_model->listarTipo();
 		$dados=array("documentos"=>$Tipo);
