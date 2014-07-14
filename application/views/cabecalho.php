@@ -25,7 +25,7 @@
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 login-box">
 			<?php
 			if(isset($this->session->userdata['usuario_logado'])){
-				$usuario = $this->session->userdata['usuario_logado']['nome'];
+				$usuario = $this->session->userdata['usuario_logado']['login'];
 				echo '<p class="login">Seja bem-vindo '.$usuario.'</p>';
 				echo anchor('login/logout', 'Logout', array("class" => "btn btn-danger"));
 			}

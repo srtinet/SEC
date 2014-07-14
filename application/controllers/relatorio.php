@@ -8,6 +8,9 @@ class Relatorio extends CI_Controller{
 		$this->load->model("empresa_model");
 		$this->load->model("usuarios_model");
 		$this->load->model("ligacao_model");
+		$controle=$this->responsabilidade_model->controle();
+		$ultimadata=$controle['data'];
+		$hoje=date("Y-m-d");
 		$empresa = $this->empresa_model->listar();
 		$usuario = $this->usuarios_model->listar();
 		$ligacao = $this->ligacao_model->listar();

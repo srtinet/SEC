@@ -39,7 +39,7 @@ if($empresas){
 		$remessaVigilancia = $empresa['remessaVigilancia'];
 		$retornoVigilancia = $empresa['retornoVigilancia'];
 		$statusVigilancia = $empresa['remessaVigilancia'];
-		$remessaConselhoRegional = $empresa['remessaVigremessaConselhoRegional'];
+		$remessaConselhoRegional = $empresa['remessaConselhoRegional'];
 		$retornoConselhoRegional = $empresa['retornoConselhoRegional'];
 		$statusConselhoRegional = $empresa['statusConselhoRegional'];
 		$remessaJucesp = $empresa['remessaJucesp'];

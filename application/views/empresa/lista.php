@@ -23,7 +23,7 @@
 			?>
 
 		<tr>
-			<td><?php  echo $empresa['razaoSocial']  ?> </td>
+			<td><?php  echo $empresa['razaoSocial'];  ?> </td>
 	<td><?php echo anchor("empresa/atividade/{$empresa['idEmpresa']}","Atividades", array("class" => "btn btn-success"));  ?> </td>
 			<td><?php echo anchor("empresa/responsaveis/{$empresa['idEmpresa']}","Responsaveis", array("class" => "btn btn-info"));  ?> </td>
 			<td><?php echo anchor("socio/listar/{$empresa['idEmpresa']}","Socios", array("class" => "btn btn-warning"));  ?> </td>

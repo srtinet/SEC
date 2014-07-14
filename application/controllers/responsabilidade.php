@@ -1,8 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Responsabilidade extends CI_Controller{
-
-
 	public function index(){
 		$this->output->enable_profiler(TRUE);
 		$this->load->model("responsabilidade_model");

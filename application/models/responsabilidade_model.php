@@ -6,8 +6,6 @@ class Responsabilidade_model extends CI_Model {
 		$this->db->order_by("data", "desc"); 
 		$this->db->limit(1);
 		return $this->db->get_where("Controle",$where)->row_array();
-
-
 	}
 	public function salvarControle($data){
 

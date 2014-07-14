@@ -9,7 +9,6 @@
 			</div>
 			<div class="modal-body">
 				<?php echo form_open("responsabilidade/filtrar");
-
 				echo inputList("Empresa_idEmpresa","Empresa",$empresa);
 				echo inputList("Atividade_idAtividade","Atividade",$atividade);
 				echo inputList("Usuario_idUsuario","Usuario",$usuario);
@@ -17,8 +16,6 @@
 				echo DataPicker("dataFim","á");
 				echo form_button(array("class"=>"btn btn-success","content"=>"Filtrar","type"=>"submit"));
 				echo form_close(); 
-
-
 				?>
 
 
@@ -73,19 +70,25 @@
 		<table class="table table-striped table-hover table-responsive">
 			<thead>
 				<tr>
-					<th>Reponsabilidade</th>
+					<th>Solicitante</th>
 					<th>Empresa</th>
-					<th>Data de Conclusão</th>
-					<th>Concluir</th>
 					<th>Observação</th>
-					<th>Anexo</th>
-
+					<th>Telefone Comercial</th>
+					<th>Telefone Residencial</th>
 				</tr>
 			</thead>
 			<tbody>
-
-
-
-			</tbody>
-		</table>
-	</div>
+				<?php foreach($ligacao as $lig): ?>
+				<?php if($lig['estado'] == 3){?>
+				<tr>
+					<td><?php echo $lig['nome']?></td>
+					<td><?php echo $lig['razaoSocial']?></td>
+					<td><?php echo $lig['observacao']?></td>
+					<td><?php echo ""?></td>
+					<td><?php echo ""?></td>
+				</tr>
+				<?php }?>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</div>

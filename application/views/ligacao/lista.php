@@ -1,7 +1,6 @@
 <h1>Ligações</h1>
 <br/>
 <br/>
-
 <table class="table table-striped table-hover table-responsive">
 	<thead>
 		<tr>
@@ -57,4 +56,3 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
-

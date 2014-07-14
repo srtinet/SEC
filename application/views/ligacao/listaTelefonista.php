@@ -1,3 +1,33 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var content = $('#content');
+
+//pre carregando o gif
+	loading = new Image(); loading.src = "<?php echo base_url('img/loading.gif') ?>";
+		$('.table').live('load', function( e ){
+			e.preventDefault();
+			content.html( '<img src="<?php echo base_url("img/loading.gif") ?>" />' );
+
+			var href = $( this ).attr('href');
+			$.ajax({
+				url: href,
+				success: function( response ){
+//forçando o parser
+					var data = $( '<div>'+response+'</div>' ).find('.table').html();
+
+//apenas atrasando a troca, para mostrarmos o loading
+					window.setTimeout( function(){
+						content.fadeOut('slow', function(){
+							content.html( data ).fadeIn();
+						});
+					}, 5 );
+				}
+			});
+
+		});
+});
+</script>
 <h1>Ligações</h1>
 <br/>
 <br/>

@@ -6,23 +6,23 @@
 $empresa=array();
 $atividade=array();
 $usuario=array()	;
-$empresa[0]=	"Todas";	
+$empresa[0]=	"Todas";
 foreach ($filtroEmpresa as $filtro) {
 	$empresa[$filtro['idEmpresa']]=	$filtro['razaoSocial'];
-	
+
 }
-$atividade[0]=	"Todas";	
+$atividade[0]=	"Todas";
 foreach ($filtroAtividade as $filtro) {
 	$atividade[$filtro['idAtividade']]=	$filtro['atividadedescricao'];
-	
+
 }
 $user=$this->session->userdata('usuario_logado');
 if ($user['tipo']==2){
 
-	$usuario[0]=	"Todos";	
+	$usuario[0]=	"Todos";
 	foreach ($filtroUsuario as $usuarios) {
 		$usuario[$usuarios['idUsuario']]=	$usuarios['usuarioNome'];
-		
+
 	}
 }else
 {
@@ -60,7 +60,6 @@ if ($user['tipo']==2){
 				echo DataPicker("dataFim","á");
 				echo form_button(array("class"=>"btn btn-success","content"=>"Filtrar","type"=>"submit"));
 				echo form_close(); 
-
 
 				?>
 
