@@ -19,11 +19,11 @@ class Usuarios_model extends CI_Model {
 	}
 	public function listar($where=array(),$tipo=0){
 		if ($tipo==0){
-			// $this->db->order_by("nome", "asc");
+			$this->db->order_by("nome", "asc");
 			return $this->db->get_where('Usuario',$where)->result_array();
 		}else{
 
-			// $this->db->order_by("nome", "asc");
+			$this->db->order_by("nome", "asc");
 			return $this->db->get_where('Usuario',$where)->row_array();
 
 		}

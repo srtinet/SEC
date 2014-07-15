@@ -3,6 +3,7 @@ class Empresa_model extends CI_Model {
 
 
 	public function listar($where=array()){
+		$this->db->order_by("razaoSocial", "asc");
 		return $this->db->get_where("Empresa", $where)->result_array();
 
 
