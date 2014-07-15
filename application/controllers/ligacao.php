@@ -22,6 +22,7 @@ class Ligacao extends CI_Controller{
 	}
 
 	public function listar(){
+
 		$usuario = $this->session->userdata['usuario_logado'];
 		$this->load->model("ligacao_model");
 		$ligacao = $this->ligacao_model->listar(array("Usuario_idUsuario"=>$usuario['idUsuario']));
@@ -30,6 +31,7 @@ class Ligacao extends CI_Controller{
 	}
 
 	public function listarTelefonista(){
+				$this->output->enable_profiler(TRUE);
 		$this->load->model("ligacao_model");
 		$ligacao = $this->ligacao_model->listar();
 		$dados=array('lista' => $ligacao);
