@@ -2,6 +2,7 @@
 
 class Recado extends CI_Controller{
 	public function listarRecado(){
+		$this->output->enable_profiler(TRUE);
 		$usuario = $this->session->userdata['usuario_logado'];
 		$this->load->model("recado_model");
 		// $idUsuarioDestino = $this->recado_model->joinUsuarioDestino();
