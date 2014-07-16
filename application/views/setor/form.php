@@ -9,7 +9,9 @@ if($setor){
 	$descricao = '';
 	$idSetor = '';
 }
-
+?>
+<h1>Setor</h1>
+<?php
 	echo form_open("setor/cadastrar");
 	echo inputText("descricao","Descrição",$descricao);
 	echo form_error("descricao");

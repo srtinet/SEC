@@ -214,6 +214,10 @@ color:white;
 padding: 15px;
 
 }
+
+#titulo{
+	width: 100%;
+}
 /*.lista{
 	background-color: #428bca;
 	color:#fff !important;

@@ -20,8 +20,9 @@
 		
 	}
 
-
-
+?>
+<h1>Atividades</h1>
+<?php
 	echo form_open("atividade/cadastrar");
 	echo inputText("descricao", "Descrição", $descricao);
 	echo form_error("descricao");
@@ -32,7 +33,7 @@
 		'2'    => 'Gestor',
 		'3'   => 'Cliente',
 	);
-	echo inputList("nivel","Nivel",$options, $nivel);
+	echo inputList("nivel","Aprovação",$options, $nivel);
 	echo form_error("anexo");
 	
 

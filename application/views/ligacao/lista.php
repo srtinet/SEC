@@ -20,8 +20,8 @@
 			<td><?php echo $lig['nome']?></td>
 			<td><?php echo $lig['razaoSocial']?></td>
 			<td><?php echo $lig['observacao']?></td>
-			<td><?php echo ""?></td>
-			<td><?php echo ""?></td>
+			<td><?php echo $lig['telefone']?></td>
+			<td><?php echo $lig['telefoneResidencial']?></td>
 			<td>
 			<?php if($lig['estado'] == 1){
 				echo form_open("ligacao/alteraEstado");

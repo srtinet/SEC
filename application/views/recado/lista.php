@@ -1,3 +1,4 @@
+<h1>Recado</h1>
 <div class="bs-example bs-example-tabs">
 	<ul id="myTab" class="nav nav-tabs" role="tablist">
 		<li class="active"><a href="#visualizada" role="tab" data-toggle="tab">Enviadas</a></li>

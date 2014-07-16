@@ -5,7 +5,12 @@ class Home extends CI_Controller{
 
 	public function index(){
 		$usuario=$this->session->userdata("usuario_logado");
-		$this->load->template("index");
+		if($usuario["telefonista"] != 1){
+			redirect('responsabilidade/validar');
+		}else{
+			redirect('ligacao/listarTelefonista');
+		}
+		
 	}
 }
 

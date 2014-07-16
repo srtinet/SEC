@@ -1,5 +1,8 @@
-
-<!-- <h1 >Ligações</h1> -->
+<div id="titulo">
+	<h1 >Ligações</h1>
+	<br/>
+	<br/>
+</div>
 <div id="container">
 	<script type="text/javascript">
 	var controller = 'ligacao';
@@ -15,23 +18,18 @@ var container = $('.table'); //jquery selector (get element by id)
 if(data){
 	container.html(data);
 }
-// if($("#titulo").length){
-// 	// $("#titulo").css("display", "none");
-// }
+if($("#titulo").length){
+	$("#titulo").css("display", "none", "position", "absolute");
+}
 }
 });
 	}
 	setTimeout(load_data_ajax, 1000);
 	</script>
-<!-- <div id="titulo">
-	<h1 >Ligações</h1>
-	<!-- <br/>
-	<br/> -->
-<!-- </div> --> 
+
 
 	<!-- <button onclick="()">Load list (type 1)</button> -->
 	<table class="table table-striped table-hover table-responsive">
-		
 		<thead>
 			<tr>
 				<th>Solicitante</th>
@@ -49,8 +47,8 @@ if(data){
 				<td><?php echo $lig['nome']?></td>
 				<td><?php echo $lig['razaoSocial']?></td>
 				<td><?php echo $lig['observacao']?></td>
-				<td><?php echo ""?></td>
-				<td><?php echo ""?></td>
+				<td><?php echo $lig['telefone']?></td>
+				<td><?php echo $lig['telefoneResidencial']?></td>
 				<td>
 					<?php
 					echo form_open("ligacao/alteraEstado");

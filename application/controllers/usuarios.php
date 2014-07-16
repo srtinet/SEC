@@ -40,7 +40,7 @@ class Usuarios  extends CI_Controller{
 				"tipo" => $this->input->post("tipo")
 				);
 			$this->usuarios_model->salvar($usuarios);
-			$this->session->set_flashdata('success',"Produto Salvo com Sucesso");
+			$this->session->set_flashdata('success',"Usuario Salvo com Sucesso");
 			redirect('usuarios/listar');
 
 		// }else {
@@ -83,7 +83,7 @@ class Usuarios  extends CI_Controller{
 		public function excluirGestor($id_Gestor,$id_Usuario){
 			$this->load->model("usuarios_model");
 			$empresa=$this->usuarios_model->excluirgestor($id_Gestor);
-			$this->session->set_flashdata('success',"Gestor Excluida com Sucesso");
+			$this->session->set_flashdata('success',"Gestor Excluido com Sucesso");
 			redirect('usuarios/gestor/'.$id_Usuario);
 
 

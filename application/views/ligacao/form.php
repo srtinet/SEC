@@ -1,14 +1,16 @@
+<h1>Ligações</h1>
 <?php
 
 echo form_open("ligacao/cadastrar");
 
 $options = array();
+$options[0] = "Contato";
 foreach($empresa as $e) {
 	$options[$e["idEmpresa"]] = $e["razaoSocial"];
 
 }
-echo inputList("Empresa_idEmpresa","Empresa",$options);
 
+echo inputList("Empresa_idEmpresa","Empresa",$options);
 
 echo inputTextArea("observacao", "Observação");
 

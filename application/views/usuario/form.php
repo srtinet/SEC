@@ -25,7 +25,9 @@
 		
 	}
 
-
+?>
+<h1>Usuários</h1>
+<?php
 
 	echo form_open("usuarios/cadastrar");
 	echo inputText("nome", "Nome", $nome);
@@ -47,7 +49,7 @@
 		);
 	echo inputList("tipo","Tipo",$options, $tipo);
 	echo form_hidden('idUsuario', $idUsuario);
-	echo form_button(array("class"=>"btn btn-primary","content"=>"Login","type"=>"submit"));
+	echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 	echo form_close();
 
 
