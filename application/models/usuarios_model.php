@@ -2,13 +2,13 @@
 class Usuarios_model extends CI_Model {
 
 
-	public function salvar ($usuario){
-		if ($usuario['idUsuario']>0){
-			$this->db->where("idUsuario",$usuario['idUsuario']);
-			$this->db->update("Usuario",$usuario);
+	public function salvar ($usuarios){
+		if ($usuarios['idUsuario']>0){
+			$this->db->where("idUsuario",$usuarios['idUsuario']);
+			$this->db->update("Usuario",$usuarios);
 
 		}else{
-			$this->db->insert("Usuario",$usuario);
+			$this->db->insert("Usuario",$usuarios);
 		}
 
 	}
@@ -40,7 +40,7 @@ class Usuarios_model extends CI_Model {
 
 		$this->db->select(" GestorSetor.*,Setor.descricao as setorDescricao , Usuario.nome");
 		$this->db->from(" GestorSetor");
-		
+
 		$this->db->join("Setor", "Setor.idSetor =  GestorSetor.Setor_idSetor");
 		$this->db->join("Usuario", "Usuario.idUsuario =  GestorSetor.Usuario_idUsuario");
 		$this->db->where($where);
@@ -63,11 +63,7 @@ class Usuarios_model extends CI_Model {
 	}
 	public function excluirgestor($id){
 		$this->db->where("idGestorSetor",$id);
-		$this->db->delete('GestorSetor'); 
+		$this->db->delete('GestorSetor');
 
 	}
-
-
-
 }
-

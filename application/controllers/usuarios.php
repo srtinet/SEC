@@ -22,14 +22,14 @@ class Usuarios  extends CI_Controller{
 	}
 
 	public function cadastrar($id=0){
-		$this->form_validation->set_rules("nome", "nome", "required");
-		$this->form_validation->set_rules("login", "login", "required");
-		$this->form_validation->set_rules("senha", "senha", "required");
-		$this->form_validation->set_rules("consenha", "confirmar senha", "required");
-		$this->form_validation->set_rules("email", "email", "required");
-		$this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
-		$sucesso = $this->form_validation->run();
-		if($sucesso){
+		// $this->form_validation->set_rules("nome", "nome", "required");
+		// $this->form_validation->set_rules("login", "login", "required");
+		// $this->form_validation->set_rules("senha", "senha", "required");
+		// $this->form_validation->set_rules("consenha", "confirmar senha", "required");
+		// $this->form_validation->set_rules("email", "email", "required");
+		// $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
+		// $sucesso = $this->form_validation->run();
+		// if($sucesso){
 			$this->load->model("usuarios_model");
 			$usuarios=array(
 				"idUsuario" => $this->input->post("idUsuario"),
@@ -43,12 +43,12 @@ class Usuarios  extends CI_Controller{
 			$this->session->set_flashdata('success',"Produto Salvo com Sucesso");
 			redirect('usuarios/listar');
 
-		}else {
-			$this->load->model("usuarios_model");
-			$usuario=$this->usuarios_model->listar(array("idUsuario"=>$id));
-			$dados=array("usuarios"=>$usuario);
-			$this->load->template("usuario/form",$dados);
-		}
+		// }else {
+		// 	$this->load->model("usuarios_model");
+		// 	$usuario=$this->usuarios_model->listar(array("idUsuario"=>$id));
+		// 	$dados=array("usuarios"=>$usuario);
+		// 	$this->load->template("usuario/form",$dados);
+		// }
 	}
 
 		public function  gestor($id_Usuario,$id_Gestor=0){
