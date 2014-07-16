@@ -26,10 +26,10 @@ class Empresa  extends CI_Controller{
 
 
 	public function cadastrar($id=0){
-		$this->form_validation->set_rules('nContmatic', "Nº Contmatic", "required");
-		$this->form_validation->set_rules('cnpj', "Nº Contmatic", "required");
+		// $this->form_validation->set_rules('nContmatic', "Nº Contmatic", "required");
+		$this->form_validation->set_rules('cnpj', "CNPJ", "required");
 		$this->form_validation->set_rules('razaoSocial', 'Razão Social', "required");
-		$this->form_validation->set_rules('nomeFantasia', 'Nome Fantasia', "required");
+		// $this->form_validation->set_rules('nomeFantasia', 'Nome Fantasia', "required");
 		$this->form_validation->set_rules('matrizFilial', 'Matriz Filial', "required");
 		$this->form_validation->set_rules('inscricaoMunicipal', 'Inscrição Municipal', "required");
 		$this->form_validation->set_rules('inscricaoEstadual', 'Inscrição Estadual', "required");

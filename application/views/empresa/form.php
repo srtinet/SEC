@@ -163,13 +163,13 @@ if($empresas){
 
 		<?php
 		echo inputText("nContmatic","Nº Contmatic",$nContmatic);
-		echo form_error("descricao");
+		// echo form_error("descricao");
 		echo inputText("cnpj","CNPJ",$cnpj);
 		echo form_error("cnpj");
 		echo inputText("razaoSocial","Razão Social",$razaoSocial);
 		echo form_error("razaoSocial");
 		echo inputText("nomeFantasia","Nome Fantasia",$nomeFantasia);
-		echo form_error("nomeFantasia");
+		// echo form_error("nomeFantasia");
 
 		$options = array(
 			'1'  => 'FILIAL',
@@ -195,7 +195,7 @@ if($empresas){
 
 		<?php
 		echo inputText("cep","Cep",$cep);
-		echo form_error("email");
+		echo form_error("cep");
 		echo inputText("tipoLogradouro","Tipo Logradouro",$tipoLogradouro);
 		echo form_error("tipoLogradouro");
 		echo inputText("logradouroComercial","Logradouro Comercial",$logradouroComercial);

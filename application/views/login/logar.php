@@ -5,7 +5,7 @@
 	<div class="col-lg-5 col-lg-offset-4">
 		<?php
 		echo form_open("login/autenticar");
-		echo inputText("usuario", "Email");
+		echo inputText("usuario", "Login");
 		echo inputPass("senha", "Senha");
 		echo form_button(array("class"=>"btn btn-primary","content"=>"Login","type"=>"submit"));
 		echo form_close();

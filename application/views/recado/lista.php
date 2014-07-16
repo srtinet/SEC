@@ -15,7 +15,7 @@
 						<th>Destinatário</th>
 						<th>Data Abertura</th>
 						<th>Responder</th>
-						<th>Finalizar</th>
+						<!-- <th>Finalizar</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -25,7 +25,7 @@
 						<td><?php echo $enviado['nomeDestinatario']?></td>
 						<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura'])?></td>
 						<td><?php echo anchor("mensagem/listar/{$enviado['idRecado']}","Responder", array("class" => "btn btn-primary"));  ?> </td>
-						<td><?php echo anchor("#","Finalizar", array("class" => "btn btn-danger"));  ?> </td>
+						<!-- <td><?php echo anchor("#","Finalizar", array("class" => "btn btn-danger"));  ?> </td> -->
 					</tr>
 				<?php endforeach;?>
 			</tbody>
@@ -42,7 +42,7 @@
 						<th>Remetente</th>
 						<th>Data Abertura</th>
 						<th>Responder</th>
-						<th>Finalizar</th>
+						<!-- <th>Finalizar</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -52,7 +52,7 @@
 						<td><?php echo $recebido['nomeRemetente']?></td>
 						<td><?php echo dataMysqlParaPtBr($recebido['dataAbertura'])?></td>
 						<td><?php echo anchor("mensagem/listar/{$recebido['idRecado']}","Responder", array("class" => "btn btn-primary"));  ?> </td>
-						<td><?php echo anchor("#","Finalizar", array("class" => "btn btn-danger"));  ?> </td>
+						<!-- <td><?php echo anchor("#","Finalizar", array("class" => "btn btn-danger"));  ?> </td> -->
 					</tr>
 				<?php endforeach;?>
 			</tbody>

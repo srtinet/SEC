@@ -29,22 +29,22 @@ endforeach;
 <?php if($mensagem['idDestinatario'] == $usuarioLogado){
 	echo anchor("mensagem/finalizarConversa/{$idRecado}", 'Finalizar Conversa', array("class" => "btn btn-primary")); ?>
 
-<h2>Enviar Mensagem</h2>
+	<h2>Enviar Mensagem</h2>
 
-<?php
-echo form_open("mensagem/cadastrarMensagem/{$idRecado}");
+	<?php
+	echo form_open("mensagem/cadastrarMensagem/{$idRecado}");
 
 
-$options = array();
-foreach($usuarios as $usuario) {
-	$options[$usuario["idUsuario"]] = $usuario["nome"];
+	$options = array();
+	foreach($usuarios as $usuario) {
+		$options[$usuario["idUsuario"]] = $usuario["nome"];
 
-}
-echo inputList("Usuario_idUsuario","Usuário",$options);
-echo inputTextArea("recado","Recado");
+	}
+	echo inputList("Usuario_idUsuario","Usuário",$options);
+	echo inputTextArea("recado","Recado");
 
-echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
-echo form_close();
+	echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
+	echo form_close();
 
 }?>
 
