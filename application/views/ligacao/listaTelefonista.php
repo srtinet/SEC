@@ -24,7 +24,11 @@ if($("#titulo").length){
 }
 });
 	}
-	setTimeout(load_data_ajax, 1000);
+
+
+	
+	  setInterval(function() { load_data_ajax(); }, 15000);
+
 	</script>
 
 

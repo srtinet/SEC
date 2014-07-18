@@ -218,6 +218,14 @@ padding: 15px;
 #titulo{
 	width: 100%;
 }
+
+.numerador{
+	background-color: #BF3131;
+	border-radius:5px;
+}
+
+
+
 /*.lista{
 	background-color: #428bca;
 	color:#fff !important;

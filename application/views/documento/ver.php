@@ -1,22 +1,21 @@
 
 
-
 <div class="bs-example bs-example-tabs">
 	<ul id="myTab" class="nav nav-tabs" role="tablist">
-		<li class="active"><a href="#visualizada" role="tab" data-toggle="tab">Enviadas</a></li>
-		<li class=""><a href="#recebidas" role="tab" data-toggle="tab">Recebidas</a></li>
-			<li class=""><a href="#rejeitadas" role="tab" data-toggle="tab">Rejeitadas</a></li>
+		<li class="active"><a href="#visualizada" role="tab" data-toggle="tab">Enviados</a></li>
+		<li class=""><a href="#recebidas" role="tab" data-toggle="tab">Recebidos</a></li>
+			<li class=""><a href="#rejeitadas" role="tab" data-toggle="tab">Rejeitados</a></li>
 		<li class="dropdown">
 			<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Consultar <span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-				<li><a href="#hisEnviado" tabindex="-1" role="tab" data-toggle="tab">Enviadas</a></li>
-				<li><a href="#hisDest" tabindex="-1" role="tab" data-toggle="tab">Recebidas</a></li>
+				<li><a href="#hisEnviado" tabindex="-1" role="tab" data-toggle="tab">Enviados</a></li>
+				<li><a href="#hisDest" tabindex="-1" role="tab" data-toggle="tab">Recebidos</a></li>
 			</ul>
 		</li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade active in taber" id="visualizada">
-
+		<h1>Documentos Enviados</h1>
 
 			<table class="table table-striped table-hover table-responsive">
 				<thead>
@@ -54,7 +53,7 @@
 
 			</div>
 			<div class="tab-pane fade taber" id="recebidas">
-
+			<h1>Documentos Recebidos</h1>
 				<table class="table table-striped table-hover table-responsive">
 					<thead>
 						<tr>
@@ -92,7 +91,7 @@
 					</table> </div>
 
 								<div class="tab-pane fade taber" id="rejeitadas">
-
+					<h1>Documentos Rejeitados</h1>
 				<table class="table table-striped table-hover table-responsive">
 					<thead>
 						<tr>

@@ -30,10 +30,15 @@ class Recado_model extends CI_Model{
 		}
 	}
 
-
 	public function salvarRecado($recado){
 		$this->db->insert("Recado", $recado);
 		return $this->db->insert_id();
+	}
+
+	public function contRecado($where=array()){
+
+		$this->db->where($where);
+		return $this->db->count_all_results("Recado");
 	}
 
 }

@@ -44,4 +44,5 @@ class Recado extends CI_Controller{
 		$this->session->set_flashdata('success',"Recado Salvo com Sucesso");
 		redirect('recado/listarRecado');
 	}
+
 }
