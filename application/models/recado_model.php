@@ -36,9 +36,8 @@ class Recado_model extends CI_Model{
 	}
 
 	public function contRecado($where=array()){
-
 		$this->db->where($where);
-		return $this->db->count_all_results("Recado");
+		return $this->db->count_all_results("Mensagem");
 	}
 
 }

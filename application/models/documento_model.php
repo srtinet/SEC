@@ -73,6 +73,15 @@ class Documento_model extends CI_Model {
 
 		}
 
+		public function contDocumento($where=array()){
+			// $this->db->select("Usuario.idUsuario, AceiteDocumento.Usuario_idUsuarioDest, AceiteDocumento.situacao");
+			// $this->db->from("AceiteDocumento");
+			// $this->db->join("Usuario", "Usuario.idUsuario = AceiteDocumento.Usuario_idUsuarioDest");
+			// $this->db->where("estadoAnterior is null");
+			$this->db->where($where);
+			return $this->db->count_all_results("AceiteDocumento");
+	}
+
 
 		
 	
