@@ -49,22 +49,11 @@ class Empresa  extends CI_Controller{
 		// $this->form_validation->set_rules('inicioAtividade', 'Início Atividade', "required");
 		// $this->form_validation->set_rules('dataAbertura', 'Data Abertura', "required");
 		// $this->form_validation->set_rules('cnae', 'CNAE', "required");
-		// $this->form_validation->set_rules('remessaCetesb', 'Remessa Cetesb', "required");
-		// $this->form_validation->set_rules('retornoCetesb', 'Retorno Cetesb', "required");
-		// $this->form_validation->set_rules('statusCetesb', 'Status Cetesb', "required");
-		// $this->form_validation->set_rules('remessaVigilancia', 'Remessa Vigilância', "required");
-		// $this->form_validation->set_rules('retornoVigilancia', 'Retorno Vigilância', "required");
-		// $this->form_validation->set_rules('statusVigilancia', 'Status Vigilância', "required");
-		// $this->form_validation->set_rules('remessaConselhoRegional', 'Remessa Conselho Regional', "required");
-		// $this->form_validation->set_rules('retornoConselhoRegional', 'Retorno Conselho Regional', "required");
-		// $this->form_validation->set_rules('statusConselhoRegional', 'Status Conselho Regional', "required");
-		// $this->form_validation->set_rules('remessaJucesp', 'Remessa Jucesp', "required");
-		// $this->form_validation->set_rules('retornoJucesp', 'Retorno Jucesp', "required");
-		// $this->form_validation->set_rules('statusJucesp', 'Status Jucesp', "required");
-		// $this->form_validation->set_rules('remessaAlvaraBombeiro', 'Remessa Alvará Bombeiro', "required");
-		// $this->form_validation->set_rules('remessaAlvaraBombeiro', 'Remessa Alvará Bombeiro', "required");
-		// $this->form_validation->set_rules('retornoAlvaraBombeiro', 'Retorno Alvará Bombeiro', "required");
-		// $this->form_validation->set_rules('statusAlvaraBombeiro', 'Status Alvará Bombeiro', "required");
+		// $this->form_validation->set_rules('codCetesb', 'Código Cetesb', "required");
+		// $this->form_validation->set_rules('codVigilancia', 'Código Vigilância', "required");
+		// $this->form_validation->set_rules('codConselhoRegional', 'Código Conselho Regional', "required");
+		// $this->form_validation->set_rules('codJucesp', 'Código Jucesp', "required");
+		// $this->form_validation->set_rules('codAlvaraBombeiro', 'Código Alvará Bombeiro', "required");
 		// $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
 		// $sucesso = $this->form_validation->run();
 		// if($sucesso){
@@ -177,21 +166,11 @@ class Empresa  extends CI_Controller{
 			'inicioAtividade' => $this->input->post('inicioAtividade'),
 			'dataAbertura' => $this->input->post('dataAbertura'),
 			'cnae' => $this->input->post('cnae'),
-			'remessaCetesb' => $this->input->post('remessaCetesb'),
-			'retornoCetesb' => $this->input->post('retornoCetesb'),
-			'statusCetesb' => $this->input->post('statusCetesb'),
-			'remessaVigilancia' => $this->input->post('remessaVigilancia'),
-			'retornoVigilancia' => $this->input->post('retornoVigilancia'),
-			'statusVigilancia' => $this->input->post('statusVigilancia'),
-			'remessaConselhoRegional' => $this->input->post('remessaConselhoRegional'),
-			'retornoConselhoRegional' => $this->input->post('retornoConselhoRegional'),
-			'statusConselhoRegional' => $this->input->post('statusConselhoRegional'),
-			'remessaJucesp' => $this->input->post('remessaJucesp'),
-			'retornoJucesp' => $this->input->post('retornoJucesp'),
-			'statusJucesp' => $this->input->post('statusJucesp'),
-			'remessaAlvaraBombeiro' => $this->input->post('remessaAlvaraBombeiro'),
-			'retornoAlvaraBombeiro' => $this->input->post('retornoAlvaraBombeiro'),
-			'statusAlvaraBombeiro' => $this->input->post('statusAlvaraBombeiro')
+			'codCetesb' => $this->input->post('codCetesb'),
+			'codVigilancia' => $this->input->post('codVigilancia'),
+			'codConselhoRegional' => $this->input->post('codConselhoRegional'),
+			'codJucesp' => $this->input->post('codJucesp'),
+			'codAlvaraBombeiro' => $this->input->post('codAlvaraBombeiro')
 			);
 $this->empresa_model->salvar($empresa);
 $this->session->set_flashdata('success',"Empresa Salva com Sucesso");
