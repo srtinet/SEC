@@ -1,105 +1,3 @@
-<script>
-function consultacep(cep){
-	cep = cep.replace(/\D/g,"")
-	url="http://cep.correiocontrol.com.br/"+cep+".js"
-	s=document.createElement('script')
-	s.setAttribute('charset','utf-8')
-	s.src=url
-	document.querySelector('head').appendChild(s)
-}
-
-function correiocontrolcep(valor){
-	if (valor.erro) {
-		alert('Cep não encontrado');
-		return;
-	};
-	// '1'  => 'Acre - AC',
-	// '2'  => 'Alagoas - ',
-	// '3'  => 'Amapá - AP',
-	// '4'  => 'Amazonas - AM',
-	// '5'  => 'Bahia  - BA',
-	// '6'  => 'Ceará - CE',
-	// '7'  => 'Distrito Federal  - DF',
-	// '8'  => 'Espírito Santo - ES',
-	// '9'  => 'Goiás - GO',
-	// '10' => 'Maranhão - MA',
-	// '11' => 'Mato Grosso - MT',
-	// '12' => 'Mato Grosso do Sul - MS',
-	// '13' => 'Minas Gerais - MG',
-	// '14' => 'Paraíba - PB',
-	// '15' => 'Paraná - PR',
-	// '16' => 'Piauí - PI',
-	// '17' => 'Rio de Janeiro - RJ',
-	// '18' => 'Rio Grande do Norte - RN',
-	// '19' => 'Rio Grande do Sul - RS',
-	// '20' => 'Rondônia - RO',
-	// '21' => 'Roraima - RR',
-	// '22' => 'Santa Catarina - SC',
-	// '23' => 'São Paulo - SP',
-	// '24' => 'Sergipe - SE',
-	// '25' => 'Tocantins - TO'
-	// document.getElementById('rua').value=valor.rua
-	
-	document.getElementById('bairro').value=valor.bairro
-	document.getElementById('logradouro').value=valor.logradouro
-	document.getElementById('municipio').value=valor.localidade
-	document.getElementById('uf').value=valor.uf
-
-	switch(valor.uf){
-		case 'AC':
-		valor.uf = 1;
-		case 'AL':
-		valor.uf = 2;
-		case 'AP':
-		valor.uf = 3;
-		case 'AM':
-		valor.uf = 4;
-		case 'BA':
-		valor.uf = 5;
-		case 'CE':
-		valor.uf = 6;
-		case 'DF':
-		valor.uf = 7;
-		case 'ES':
-		valor.uf = 8;
-		case 'GO':
-		valor.uf = 9;
-		case 'MA':
-		valor.uf = 10;
-		case 'MT':
-		valor.uf = 11;
-		case 'MS':
-		valor.uf = 12;
-		case 'MG':
-		valor.uf = 13;
-		case 'PB':
-		valor.uf = 14;
-		case 'PR':
-		valor.uf = 15;
-		case 'PI':
-		valor.uf = 16;
-		case 'RJ':
-		valor.uf = 17;
-		case 'RN':
-		valor.uf = 18;
-		case 'RS':
-		valor.uf = 19;
-		case 'RO':
-		valor.uf = 20;
-		case 'RR':
-		valor.uf = 21;
-		case 'SC':
-		valor.uf = 22;
-		case 'SP':
-		valor.uf = 23;
-		case 'SE':
-		valor.uf = 24;
-		case 'TO':
-		valor.uf = 25;
-	}
-}
-</script>
-
 <?php
 if($socios){
 	foreach($socios as $socio){
@@ -192,7 +90,6 @@ if($socios){
 		}
 		$uf = $socio['uf'];
 		$naturalidade = $socio['naturalidade'];
-		$tipoLogradouro = $socio['tipoLogradouro'];
 		$logradouro = $socio['logradouro'];
 		$numero = $socio['numero'];
 		$bairro = $socio['bairro'];
@@ -243,7 +140,6 @@ if($socios){
 	$dataNascimento = '';
 	$uf = '';
 	$naturalidade = '';
-	$tipoLogradouro = '';
 	$logradouro = '';
 	$numero = '';
 	$bairro = '';
@@ -291,7 +187,14 @@ echo form_hidden('idEmpresa', $Empresa_idEmpresa);
 
 echo inputText("nome","Nome",$nome);
 echo form_error("nome");
-echo inputText("estadoCivil","Estado Civil",$estadoCivil);
+$options = array(
+	'0'  => 'Selecione',
+	'1'  => 'Solteiro',
+	'2'  => 'Casado',
+	'3'  => 'Divorciado',
+	'4' => 'Viúvo'
+	);
+echo inputList("estadoCivil","Estado Civil",$options, $estadoCivil);
 echo form_error("estadoCivil");
 echo inputText("cpf","CPF",$cpf);
 echo form_error("cpf");
@@ -301,16 +204,14 @@ echo inputText("rg","RG",$rg);
 echo form_error("rg");
 echo inputText("orgaoEmissorRg","Orgão Emissor Rg",$orgaoEmissorRg);
 echo form_error("orgaoEmissorRg");
-echo inputText("dataExpedicao","Data Expedição",$dataExpedicao);
+echo DataPicker("dataExpedicao","Data Expedição",$dataExpedicao);
 echo form_error("dataExpedicao");
-echo inputText("dataNascimento","Data Nascimento",$dataNascimento);
+echo DataPicker("dataNascimento","Data Nascimento",$dataNascimento);
 echo form_error("dataNascimento");
 echo inputText("naturalidade","Naturalidade",$naturalidade);
 echo form_error("naturalidade");
 echo inputTextCep("cep","CEP",$cep);
 echo form_error("cep");
-echo inputText("tipoLogradouro","Tipo Logradouro",$tipoLogradouro);
-echo form_error("tipoLogradouro");
 echo inputText("logradouro","Logradouro",$logradouro);
 echo form_error("logradouro");
 echo inputText("numero","Número",$numero);
@@ -336,44 +237,70 @@ echo form_error("capitalSocioalDoSocio");
 echo DataPicker("inicioContribuicao","Início Contribuição INSS",$inicioContribuicao);
 echo form_error("inicioContribuicao");
 
+echo '<h1>Pró-Labore</h1>';
+
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
-echo inputList("proLabore","Pró-Labore",$options, $proLabore);
-
+echo inputListSumir("proLabore","Pró-Labore",$options, $proLabore, "proLabore", "caixaLista");
+echo '<div id="caixaLista">';
 echo inputText("valorProLabore","Valor Pró-Labore",$valorProLabore);
 echo form_error("valorProLabore");
+echo '</div>';
+
+echo '<h1>Aposentado</h1>';
 
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
-echo inputList("aposentado","Aposentado",$options, $aposentado);
-
+echo inputListSumir("aposentado","Aposentado",$options, $aposentado, "aposentado", "caixaLista2");
+echo '<div id="caixaLista2">';
 echo DataPicker("dataAposentadoriaIdade","Data Aposentadoria por Idade",$dataAposentadoriaIdade);
 echo form_error("dataAposentadoriaIdade");
 echo DataPicker("dataAposentadoriaContribuicao","Data Aposentadoria por Contribuição",$dataAposentadoriaContribuicao);
 echo form_error("dataAposentadoriaContribuicao");
+echo '</div>';
+
+echo '<h1>Dependentes</h1>';
 
 $options = array(
-	'1'  => 'Sim',
-	'2'  => 'Não'
+	'0'  => 'Selecione',
+	'1' => 'Sim',
+	'2' => 'Não'
 	);
-echo inputList("dependente","Dependentes",$options, $dependente);
+
+
+echo inputListSumir("dependente","Possui Dependentes",$options, $dependente, "dependente", "caixaLista3");
+
+echo '<div id="caixaLista3">';
 
 echo inputText("nomeDependente","Nome Dependente",$nomeDependente);
 echo form_error("nomeDependente");
 echo DataPicker("dataNascimentoDependente","Data Nascimento Dependente",$dataNascimentoDependente);
 echo form_error("dataNascimentoDependente");
 
+echo '</div>';
+
+//////////////////////////////////////////////////
+
+
+echo '<h1>Empregada Doméstica</h1>';
+
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
-echo inputList("empregadaDomestica","Possui Empregada Domestica?",$options, $empregadaDomestica);
+echo inputListSumir("empregadaDomestica","Possui Empregada Domestica?",$options, $empregadaDomestica, "empregadaDomestica", "caixaLista4");
 
+
+echo '<div id="caixaLista4">';
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
@@ -386,44 +313,63 @@ echo inputText("cpfDomestica","CPF da Empregada Doméstica",$cpfDomestica);
 echo form_error("cpfDomestica");
 echo inputText("nitDomestica","NIT da Empregada Doméstica",$nitDomestica);
 echo form_error("nitDomestica");
+echo '</div>';
+
+//////////////////////////////////////////////////
+
+echo '<h1>Imposto Renda</h1>';
 
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
-echo inputList("obrigadoImpostoRenda","Obrigado a declarar Imposto de Renda?",$options, $obrigadoImpostoRenda);
-
+echo inputListSumir("obrigadoImpostoRenda","Obrigado a declarar Imposto de Renda?",$options, $obrigadoImpostoRenda, "obrigadoImpostoRenda", "caixaLista5");
+echo '<div id="caixaLista5">';
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
 echo inputList("declaracaoEscritorio","Deseja fazer a Declaração no escritório?",$options, $declaracaoEscritorio);
-
+echo '</div>';
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
-echo inputList("titularOutraEmpresa","É sócio ou titular de outra empresa?",$options, $titularOutraEmpresa);
+echo '<h1>Outra Empresa</h1>';
 
+echo inputListSumir("titularOutraEmpresa","É sócio ou titular de outra empresa?",$options, $titularOutraEmpresa, "titularOutraEmpresa", "caixaLista6");
+echo '<div id="caixaLista6">';
 echo inputText("nomeOutraEmpresa","Nome Outra Empresa",$nomeOutraEmpresa);
 echo form_error("nomeOutraEmpresa");
+echo '</div>';
 
+echo '<h1>Cliente em Outro Escritório</h1>';
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
 echo inputList("clienteEscritorio","É cliente em outro escritório?",$options, $clienteEscritorio);
 
+echo '<h1>Empregado Autônomo</h1>';
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Sim',
 	'2'  => 'Não'
 	);
-echo inputList("empregadoAutonomo","Exerce outra ativida como empregado ou autônomo?",$options, $empregadoAutonomo);
+echo inputListSumir("empregadoAutonomo","Exerce outra ativida como empregado ou autônomo?",$options, $empregadoAutonomo, "empregadoAutonomo", "caixaLista7");
+
+echo '<div id="caixaLista7">';
 
 echo inputText("nomeAtividadeAutonomo","Nome atividade autônomo",$nomeAtividadeAutonomo);
 echo form_error("nomeAtividadeAutonomo");
 echo inputText("valorRemuneracao","Valor remuneração",$valorRemuneracao);
 echo form_error("valorRemuneracao");
+echo '</div>';
+
 
 echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 echo form_close();

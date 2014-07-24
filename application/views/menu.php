@@ -25,7 +25,7 @@
   window.onload = function(){
     load_data_ajax();
   }
-  setInterval(function() { load_data_ajax(); }, 300000);
+  setInterval(function() { load_data_ajax() }, 300000);
 
   </script>
 

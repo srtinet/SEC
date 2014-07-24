@@ -224,6 +224,10 @@ padding: 15px;
 	border-radius:5px;
 }
 
+#caixaLista, #caixaLista2, #caixaLista3, #caixaLista4, #caixaLista5, #caixaLista6, #caixaLista7{
+	display: none;
+}
+
 
 
 /*.lista{

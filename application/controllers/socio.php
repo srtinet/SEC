@@ -26,7 +26,6 @@ class Socio extends CI_Controller{
 		// $this->form_validation->set_rules('dataNascimento', 'Data Nascimento', "required");
 		// $this->form_validation->set_rules('uf', 'UF', "required");
 		// $this->form_validation->set_rules('naturalindade', 'Naturalidade', "required");
-		// $this->form_validation->set_rules('tipoLogradouro', 'Tipo Logradouro', "required");
 		// $this->form_validation->set_rules('cep', 'CEP', "required");
 		// $this->form_validation->set_rules('nReciboIr', 'Número Recibo IR', "required");
 		// $this->form_validation->set_rules('capitalSocial', 'Capital Social', "required");
@@ -134,7 +133,6 @@ class Socio extends CI_Controller{
 				'dataNascimento' => $this->input->post('dataNascimento'),
 				'uf' => $valor,
 				'naturalidade' => $this->input->post('naturalidade'),
-				'tipoLogradouro' => $this->input->post('tipoLogradouro'),
 				'logradouro' => $this->input->post('logradouro'),
 				'numero' => $this->input->post('numero'),
 				'bairro' => $this->input->post('bairro'),
