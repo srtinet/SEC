@@ -16,7 +16,6 @@
 <script type="text/javascript" src="<?php echo base_url("js/dataTables.bootstrap.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap-datetimepicker.min.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap-datetimepicker.pt-BR.js")?>"></script>
-</script>
 <script>
 $(document).ready(function() {
 	$('.table-hover').dataTable( {

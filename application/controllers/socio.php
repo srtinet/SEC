@@ -16,32 +16,111 @@ class Socio extends CI_Controller{
 	}
 
 	public function cadastrar($idEmpresa=0, $id=0){
-		$this->form_validation->set_rules('nome', "Nome", "required");
-		$this->form_validation->set_rules('estadoCivil', "Estado Civil", "required");
-		$this->form_validation->set_rules('cpf', 'CPF', "required");
-		$this->form_validation->set_rules('rg', 'RG', "required");
-		$this->form_validation->set_rules('tituloEleitor', 'Titulo Eleitor', "required");
-		$this->form_validation->set_rules('orgaoEmissorRg', 'Orgão Emissor RG', "required");
-		$this->form_validation->set_rules('dataExpedicao', 'Data Expedição', "required");
-		$this->form_validation->set_rules('dataNascimento', 'Data Nascimento', "required");
-		$this->form_validation->set_rules('uf', 'UF', "required");
-		$this->form_validation->set_rules('naturalindade', 'Naturalidade', "required");
-		$this->form_validation->set_rules('tipoLogradouro', 'Tipo Logradouro', "required");
-		$this->form_validation->set_rules('cep', 'CEP', "required");
-		$this->form_validation->set_rules('nReciboIr', 'Número Recibo IR', "required");
-		$this->form_validation->set_rules('capitalSocial', 'Capital Social', "required");
-		$this->form_validation->set_rules('tipoParticipacao', 'Tipo Participação', "required");
-		$this->form_validation->set_rules('porcentagemSocio', 'Porcentagem Sócio', "required");
-		$this->form_validation->set_rules('capitalSocioalDoSocio', 'Capital Socioal Do Sócio', "required");
-		$this->form_validation->set_rules('proLabore', 'Pró Labore', "required");
-		$this->form_validation->set_rules('valorProLabore', 'Valor Pró Labore', "required");
-		$this->form_validation->set_rules('aposentado', 'Aposentado', "required");
-		$this->form_validation->set_rules('dataAposentadoriaIdade', 'Data da Aposentadoria por Idade', "required");
-		$this->form_validation->set_rules('dataAposentadoriaContribuicao', 'Data da Aposentadoria por Contribuição', "required");
-		$this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
-		$sucesso = $this->form_validation->run();
-		if($sucesso){
+		// $this->form_validation->set_rules('nome', "Nome", "required");
+		// $this->form_validation->set_rules('estadoCivil', "Estado Civil", "required");
+		// $this->form_validation->set_rules('cpf', 'CPF', "required");
+		// $this->form_validation->set_rules('rg', 'RG', "required");
+		// $this->form_validation->set_rules('tituloEleitor', 'Titulo Eleitor', "required");
+		// $this->form_validation->set_rules('orgaoEmissorRg', 'Orgão Emissor RG', "required");
+		// $this->form_validation->set_rules('dataExpedicao', 'Data Expedição', "required");
+		// $this->form_validation->set_rules('dataNascimento', 'Data Nascimento', "required");
+		// $this->form_validation->set_rules('uf', 'UF', "required");
+		// $this->form_validation->set_rules('naturalindade', 'Naturalidade', "required");
+		// $this->form_validation->set_rules('tipoLogradouro', 'Tipo Logradouro', "required");
+		// $this->form_validation->set_rules('cep', 'CEP', "required");
+		// $this->form_validation->set_rules('nReciboIr', 'Número Recibo IR', "required");
+		// $this->form_validation->set_rules('capitalSocial', 'Capital Social', "required");
+		// $this->form_validation->set_rules('tipoParticipacao', 'Tipo Participação', "required");
+		// $this->form_validation->set_rules('porcentagemSocio', 'Porcentagem Sócio', "required");
+		// $this->form_validation->set_rules('capitalSocioalDoSocio', 'Capital Socioal Do Sócio', "required");
+		// $this->form_validation->set_rules('proLabore', 'Pró Labore', "required");
+		// $this->form_validation->set_rules('valorProLabore', 'Valor Pró Labore', "required");
+		// $this->form_validation->set_rules('aposentado', 'Aposentado', "required");
+		// $this->form_validation->set_rules('dataAposentadoriaIdade', 'Data da Aposentadoria por Idade', "required");
+		// $this->form_validation->set_rules('dataAposentadoriaContribuicao', 'Data da Aposentadoria por Contribuição', "required");
+		// $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
+		// $sucesso = $this->form_validation->run();
+		// if($sucesso){
 			$this->load->model("socio_model");
+			$valor = $this->input->post('uf');
+			switch($valor){
+				case 'AC':
+				$valor = 1;
+				break;
+				case 'AL':
+				$valor = 2;
+				break;
+				case 'AP':
+				$valor = 3;
+				break;
+				case 'AM':
+				$valor = 4;
+				break;
+				case 'BA':
+				$valor = 5;
+				break;
+				case 'CE':
+				$valor = 6;
+				break;
+				case 'DF':
+				$valor = 7;
+				break;
+				case 'ES':
+				$valor = 8;
+				break;
+				case 'GO':
+				$valor = 9;
+				break;
+				case 'MA':
+				$valor = 10;
+				break;
+				case 'MT':
+				$valor = 11;
+				break;
+				case 'MS':
+				$valor = 12;
+				break;
+				case 'MG':
+				$valor = 13;
+				break;
+				case 'PB':
+				$valor = 14;
+				break;
+				case 'PR':
+				$valor = 15;
+				break;
+				case 'PI':
+				$valor = 16;
+				break;
+				case 'RJ':
+				$valor = 17;
+				break;
+				case 'RN':
+				$valor = 18;
+				break;
+				case 'RS':
+				$valor = 19;
+				break;
+				case 'RO':
+				$valor = 20;
+				break;
+				case 'RR':
+				$valor = 21;
+				break;
+				case 'SC':
+				$valor = 22;
+				break;
+				case 'SP':
+				$valor = 23;
+				break;
+				case 'SE':
+				$valor = 24;
+				break;
+				case 'TO':
+				$valor = 25;
+				break;
+			}
+
 			$socio = array(
 				'idSocio' => $this->input->post('idSocio'),
 				'Empresa_idEmpresa' => $this->input->post('idEmpresa'),
@@ -53,7 +132,7 @@ class Socio extends CI_Controller{
 				'orgaoEmissorRg' => $this->input->post('orgaoEmissorRg'),
 				'dataExpedicao' => $this->input->post('dataExpedicao'),
 				'dataNascimento' => $this->input->post('dataNascimento'),
-				'uf' => $this->input->post('uf'),
+				'uf' => $valor,
 				'naturalidade' => $this->input->post('naturalidade'),
 				'tipoLogradouro' => $this->input->post('tipoLogradouro'),
 				'logradouro' => $this->input->post('logradouro'),
@@ -91,20 +170,20 @@ class Socio extends CI_Controller{
 				'nomeAtividadeAutonomo' => $this->input->post('nomeAtividadeAutonomo'),
 				'valorRemuneracao' => $this->input->post('valorRemuneracao')
 				);
-			$this->socio_model->salvar($socio);
-			$this->session->set_flashdata('success',"Sócio Salvo com Sucesso");
-			redirect('socio/listar/'.$this->input->post("idEmpresa"));
-		}else{
-			$this->load->model("socio_model");
-			$socio = $this->socio_model->listar(array("idSocio"=>$id));
-			$dados = array('socios' => $socio,"idEmpresa"=>$idEmpresa);
-			$this->load->template("socio/form", $dados);
-		}
-	}
+$this->socio_model->salvar($socio);
+$this->session->set_flashdata('success',"Sócio Salvo com Sucesso");
+redirect('socio/listar/'.$this->input->post("idEmpresa"));
+// }else{
+// 	$this->load->model("socio_model");
+// 	$socio = $this->socio_model->listar(array("idSocio"=>$id));
+// 	$dados = array('socios' => $socio,"idEmpresa"=>$idEmpresa);
+// 	$this->load->template("socio/form", $dados);
+// }
+}
 
-	public function excluir($idEmpresa, $id){
-		$this->load->model("socio_model");
-		$socio = $this->socio_model->excluir($id);
-		redirect('socio/listar/'.$idEmpresa);
-	}
+public function excluir($idEmpresa, $id){
+	$this->load->model("socio_model");
+	$socio = $this->socio_model->excluir($id);
+	redirect('socio/listar/'.$idEmpresa);
+}
 }

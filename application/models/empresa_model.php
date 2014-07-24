@@ -56,6 +56,22 @@ class Empresa_model extends CI_Model {
 			$this->db->insert("Empresa",$empresa);
 		}
 
+
+		// $config["protocol"] = "smtp";
+		// $config["smtp_host"] = "ssl://smtp.gmail.com";
+		// $config["smtp_user"] = "jrluiscarvalho@gmail.com";
+		// $config["smtp_pass"] = "LU15JUN10R";
+		// $config["charset"] = "utf-8";
+		// $config["mailtype"] = "html";
+		// $config["newline"] = "\r\n";
+		// $config["smtp_port"] = "465";
+		// $this->email->initialize($config);
+		// $this->email->from("jrluiscarvalho@gmail.com", "Mercado");
+		// $this->email->to("beatriz.alves6503@gmail.com");
+		// $this->email->subject("teste");
+		// $this->email->message("testando email codeigniter");
+		// $this->email->send();
+
 	}
 	public function excluir($id){
 		$this->db->where("idEmpresa",$id);

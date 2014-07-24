@@ -16,6 +16,13 @@ function inputText($name, $label='', $value=''){
 	return $input;
 }
 
+function inputTextCep($name, $label='', $value=''){
+	$input= '';
+	$input.= form_label($label,$name);
+	$input.= form_input(array("name"=>$name,"class"=>"form-control","id"=>$name ,"value"=>$value,  "onblur"=>"consultacep(this.value)", "maxlength"=>"255"));
+	return $input;
+}
+
 function inputTextArea($name, $label='', $value=''){
 	$input= '';
 	$input.= form_label($label,$name);
