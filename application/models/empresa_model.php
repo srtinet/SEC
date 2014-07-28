@@ -25,7 +25,7 @@ class Empresa_model extends CI_Model {
 
 	public function listarSetorJoin($where=array()){
 
-		$this->db->select(" SetorUsuario.*,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome");
+		$this->db->select("SetorUsuario.*,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome");
 		$this->db->from(" SetorUsuario");
 		$this->db->join("Empresa", "Empresa.idEmpresa =  SetorUsuario.Empresa_idEmpresa");
 		$this->db->join("Setor", "Setor.idSetor =  SetorUsuario.Setor_idSetor");
@@ -55,22 +55,6 @@ class Empresa_model extends CI_Model {
 		}else{
 			$this->db->insert("Empresa",$empresa);
 		}
-
-
-		// $config["protocol"] = "smtp";
-		// $config["smtp_host"] = "ssl://smtp.gmail.com";
-		// $config["smtp_user"] = "jrluiscarvalho@gmail.com";
-		// $config["smtp_pass"] = "LU15JUN10R";
-		// $config["charset"] = "utf-8";
-		// $config["mailtype"] = "html";
-		// $config["newline"] = "\r\n";
-		// $config["smtp_port"] = "465";
-		// $this->email->initialize($config);
-		// $this->email->from("jrluiscarvalho@gmail.com", "Mercado");
-		// $this->email->to("beatriz.alves6503@gmail.com");
-		// $this->email->subject("teste");
-		// $this->email->message("testando email codeigniter");
-		// $this->email->send();
 
 	}
 	public function excluir($id){

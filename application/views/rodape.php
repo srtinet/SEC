@@ -11,6 +11,8 @@
 <!-- jQuery -->
 
 <script type="text/javascript" src="<?php echo base_url("js/jquery.min.js")?>"></script>
+<script type="text/javascript" src="<?php echo base_url("uploadify/jquery.uploadify.js")?>"></script>
+
 <script type="text/javascript" src="<?php echo base_url("js/funcoes.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap.min.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap-datetimepicker.min.js")?>"></script>
@@ -19,7 +21,14 @@
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap-datetimepicker.min.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap-datetimepicker.pt-BR.js")?>"></script>
 <script>
+
+
+
+
 $(document).ready(function() {
+
+
+
 	$('.table-hover').dataTable( {
 		"language": {
 			"lengthMenu": "Exibir _MENU_",

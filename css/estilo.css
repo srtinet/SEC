@@ -228,7 +228,10 @@ padding: 15px;
 	display: none;
 }
 
-
+.he_email{
+	background: linear-gradient(#3055AB, #1D278F);
+	height: 200px;
+}
 
 /*.lista{
 	background-color: #428bca;

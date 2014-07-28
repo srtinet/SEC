@@ -100,58 +100,99 @@ if ($user['tipo']==2){
 				</div>
 			</div>
 		</div>
+
 	</div>
 
-	<table class="table table-striped table-hover table-responsive">
-		<thead>
+
+
+<table class="table table-striped table-hover table-responsive">
+	<thead>
+		<tr>
+			<th>Reponsabilidade</th>
+			<th>Empresa</th>
+			<th>Data de Conclusão</th>
+			<th>Concluir</th>
+			<th>Observação</th>
+			<th>Anexo</th>
+
+		</tr>
+	</thead>
+	<tbody>
+
+
+		<?php 
+		foreach ($responsabilidade as $respon) {
+			?>
 			<tr>
-				<th>Reponsabilidade</th>
-				<th>Empresa</th>
-				<th>Data de Conclusão</th>
-				<th>Concluir</th>
-				<th>Observação</th>
-				<th>Anexo</th>
+				<td><?php echo $respon['descricao'] ?></td>
+				<td><?php echo $respon['razaoSocial'] ?></td>
+				<td><?php echo dataMysqlParaPtBr($respon['dataVencimento']) ?></td>
+				<td><?php 	if ($respon['estadoResponsabilidade']==0){
+					echo form_open("responsabilidade/concluir");
+					echo form_hidden('idEstadoResponsabilidade', $respon['idEstadoResponsabilidade']);
+					echo form_hidden('nivel', $respon['nivel']);
+					echo form_hidden('local', 1);
+					echo form_hidden('estado', 1);
+					echo form_button(array("class"=>"btn btn-success","content"=>"Concluir","type"=>"submit"));
+					echo form_close();
+				}
+				if ($respon['estadoResponsabilidade']==1){ ?>
+				<button type="button" class="btn btn-warning">Aguardando Validação</button>
+				<?php }?>
 
-			</tr>
-		</thead>
-		<tbody>
-			
+				<?php if ($respon['estadoResponsabilidade']==2){ ?>
+				<button type="button" class="btn btn-warning">Aguardando Cliente</button>
+				<?php }?></td>
 
-			<?php 
-			foreach ($responsabilidade as $respon) {
-				?>
-				<tr>
-					<td><?php echo $respon['descricao'] ?></td>
-					<td><?php echo $respon['razaoSocial'] ?></td>
-					<td><?php echo dataMysqlParaPtBr($respon['dataVencimento']) ?></td>
-					<td><?php 	if ($respon['estadoResponsabilidade']==0){
-						echo form_open("responsabilidade/concluir");
-						echo form_hidden('idEstadoResponsabilidade', $respon['idEstadoResponsabilidade']);
-						echo form_hidden('nivel', $respon['nivel']);
-						echo form_hidden('local', 1);
-						echo form_hidden('estado', 1);
-						echo form_button(array("class"=>"btn btn-success","content"=>"Concluir","type"=>"submit"));
-						echo form_close();
-					}
-					if ($respon['estadoResponsabilidade']==1){ ?>
-					<button type="button" class="btn btn-warning">Aguardando Validação</button>
-					<?php }?>
-
-					<?php if ($respon['estadoResponsabilidade']==2){ ?>
-					<button type="button" class="btn btn-warning">Aguardando Cliente</button>
-					<?php }?></td>
-
-					<td><?php echo anchor('responsabilidade/observacao', 'Observação', array("class" => "btn btn-primary")); ?></td>
-					<td>
+				<td><?php echo anchor('responsabilidade/observacao', 'Observação', array("class" => "btn btn-primary")); ?></td>
+				<td>
 
 
-						<?php 
+					<!-- 	<?php 
 
 						echo anchor('responsabilidade/anexo', 'Anexos', array("class" => "btn btn-info")); 
 
-						?>
+						?> -->
 
 
+						<button class="btn btn-info" data-toggle="modal" data-target="#respon<?php echo $respon['idResponsabilidade'] ?>">
+							Anexos
+						</button>
+							<div class="modal fade" id="respon<?php echo $respon['idResponsabilidade'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="myModalLabel">Anexo</h4>
+				</div>
+				<div class="modal-body">
+					
+					<?php
+						
+						echo form_open_multipart('upload/do_upload');
+				 		echo form_upload('userfile','','id="userfile"');
+				 			echo form_hidden('Reponsabilidade_idReponsabilidade', $respon['idResponsabilidade']);
+				 			echo inputText("descricao","Descrição");
+						echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
+
+echo form_close();
+
+				
+
+				?>
+					
+				</form>
+			</div>
+			<div class="modal-footer">
+				<h4 class="modal-title" id="myModalLabel">Filtros ativos</h4>
+				<div class="row">
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
 					</td></td>
 					<?php  	}?>
 

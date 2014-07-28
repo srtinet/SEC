@@ -53,4 +53,3 @@ function inputListSumir($name, $label='', $options=array(), $value='', $valor1, 
 	return $input;
 
 }
-

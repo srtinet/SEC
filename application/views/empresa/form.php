@@ -110,7 +110,7 @@ if($empresas){
 		$dataAbertura = $empresa['dataAbertura'];
 		$cnae = $empresa['cnae'];
 		$codCetesb = $empresa['codCetesb'];
-		$codVigilancia = $empresa['remessaVigilancia'];
+		$codVigilancia = $empresa['codVigilancia'];
 		$codConselhoRegional = $empresa['codConselhoRegional'];
 		$codJucesp = $empresa['codJucesp'];
 		$codAlvaraBombeiro = $empresa['codAlvaraBombeiro'];
