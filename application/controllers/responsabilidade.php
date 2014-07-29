@@ -44,9 +44,16 @@ class Responsabilidade extends CI_Controller{
 
 			$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidade(array("idUsuario"=>$usuario['idUsuario']),$dataInicioFiltro,$dataFimFiltro);
 		}
+		// $anexo = 
+		if(!isset($usuario['idUsuario'])){
+			$filtroAtividade = 0;
+			$filtroUsuario = 0;
+			$filtroEmpresa = 0;
+		}
 		$dados=array("responsabilidade"=>$responsabilidadelst,"filtroEmpresa"=>$filtroEmpresa,"filtroAtividade"=>$filtroAtividade,"filtroUsuario"=>$filtroUsuario);
 		$this->load->template("responsabilidade/responsabilidade",$dados);
 	}
+
 	public function filtrar(){
 		$idEmpresa=array();
 		$idAtividade=array();
@@ -77,8 +84,8 @@ class Responsabilidade extends CI_Controller{
 
 	}
 	public function limparFiltro(){
-$this->session->unset_userdata("periodo");
-				$this->session->unset_userdata("filtro");
+		$this->session->unset_userdata("periodo");
+		$this->session->unset_userdata("filtro");
 		$this->session->set_flashdata('success',"Filtro limpo com Sucesso");
 
 		redirect('responsabilidade');

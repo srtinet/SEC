@@ -17,7 +17,7 @@ class Atividade extends CI_Controller{
 		$dados=array("atividades"=>$atividade);
 		$this->load->template("atividade/form",$dados);
 	}
-
+	
 	public function cadastrar($id=0){
 		$this->form_validation->set_rules("descricao", "Descrição", "required");
 		$this->form_validation->set_rules("nivel", "nivel", "required");

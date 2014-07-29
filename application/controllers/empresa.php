@@ -11,13 +11,13 @@ class Empresa  extends CI_Controller{
 
 	}
 
-
 	public function form($id=0){
 		$this->load->model("empresa_model");
 		$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id));
 		$dados=array("empresas"=>$empresa);
 		$this->load->template("empresa/form",$dados);
 	}
+
 	public function excluir($id){
 		$this->load->model("empresa_model");
 		$empresa=$this->empresa_model->excluir($id);

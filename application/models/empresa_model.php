@@ -1,7 +1,5 @@
 <?php 
 class Empresa_model extends CI_Model {
-
-
 	public function listar($where=array()){
 		$this->db->order_by("razaoSocial", "asc");
 		return $this->db->get_where("Empresa", $where)->result_array();
@@ -66,10 +64,8 @@ class Empresa_model extends CI_Model {
 		$this->db->delete('AtividadeEmpresa'); 
 
 	}
-	
 
 	public function cadAtividade($atividade){
-
 		if ($atividade['idAtividadeEmpresa']>0){
 			$this->db->where("idAtividadeEmpresa",$atividade['idAtividadeEmpresa']);
 			$this->db->update("AtividadeEmpresa",$atividade);
@@ -78,27 +74,19 @@ class Empresa_model extends CI_Model {
 			$this->db->insert("AtividadeEmpresa",$atividade);
 
 		}
-
-
 	}
 
 	public function cadResponsavel($reponsavel){
-
 		if ($reponsavel['idSetorUsuario']>0){
 			$this->db->where("idSetorUsuario",$reponsavel['idSetorUsuario']);
 			$this->db->update("SetorUsuario",$reponsavel);
 
 		}else{
 			$this->db->insert("SetorUsuario",$reponsavel);
-
 		}
 	}
 	public function excluirResponsavel($id){
 		$this->db->where("idSetorUsuario",$id);
-		$this->db->delete('SetorUsuario'); 
-
+		$this->db->delete('SetorUsuario');
 	}
-
-
-
 }

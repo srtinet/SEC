@@ -7,8 +7,6 @@ class Upload extends CI_Controller{
 
 	public function do_upload()
     {
-
-
         $responsabilidades = FCPATH . '/uploads';
         $this->load->model('anexo_model');
         if (!file_exists($responsabilidades)) {
@@ -21,25 +19,25 @@ class Upload extends CI_Controller{
             'max_size'      => 2048,
             'remove_space'  => TRUE,
             'encrypt_name'  => TRUE,
-        );
+            );
 
         $this->upload->initialize($this->upload_config);
 
         if (!$this->upload->do_upload()) {
         	$this->session->set_flashdata('danger', $this->upload->display_errors());
-redirect("responsabilidade");
+            redirect("responsabilidade");
 
         } else {
 
         	$data=$this->upload->data();
         	$arquivo=array(
-'Responsabilidade_idResponsabilidade'=>$this->input->post("Responsabilidade_idResponsabilidade"),
-'caminho'=>$data['file_name'],
-'descricao'=>$this->input->post("descricao")
-);
-         $this->anexo_model->salvar($arquivo);
-        	$this->session->set_flashdata('success', "Upload realizado com  Sucesso");
-redirect("responsabilidade");
-        }
-    }
+                'Responsabilidade_idResponsabilidade'=>$this->input->post("Responsabilidade_idResponsabilidade"),
+                'caminho'=>$data['file_name'],
+                'descricao'=>$this->input->post("descricao")
+                );
+           $this->anexo_model->salvar($arquivo);
+           $this->session->set_flashdata('success', "Upload realizado com  Sucesso");
+           redirect("responsabilidade");
+       }
+   }
 }
