@@ -1,5 +1,6 @@
 <h1>Usuarios</h1>
 <?= anchor('usuarios/form', 'Novo', array("class" => "btn btn-primary")); ?>
+
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -35,7 +36,9 @@
 				
 		<?php } ?>
 			<td><?php echo anchor("usuarios/form/{$usuario['idUsuario']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
-			<td><?php echo anchor("usuarios/excluir/{$usuario['idUsuario']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
+			<td>
+				<button class="btn btn-danger " id="conf<?php echo $usuario['idUsuario']; ?>" onclick="confirmar('conf<?php echo $usuario['idUsuario'];?>')" value="<?php echo base_url("/index.php/usuarios/excluir/".$usuario['idUsuario'].""); ?>">Excluir</button>
+			</td>
 
 		</tr>
 

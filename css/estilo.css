@@ -98,9 +98,9 @@ ul{
 	color:#fff !important;
 }
 
-.btn{
+/*.btn{
 	margin: 10px 0;
-}
+}*/
 
 a button:hover{
 	color:#fff;
@@ -231,6 +231,10 @@ padding: 15px;
 .he_email{
 	background: linear-gradient(#3055AB, #1D278F);
 	height: 200px;
+}
+
+.table{
+	margin: 10px 0 !important;
 }
 
 /*.lista{

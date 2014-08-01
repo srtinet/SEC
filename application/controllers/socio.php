@@ -40,134 +40,132 @@ class Socio extends CI_Controller{
 		// $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
 		// $sucesso = $this->form_validation->run();
 		// if($sucesso){
-			$this->load->model("socio_model");
-			$valor = $this->input->post('uf');
-			switch($valor){
-				case 'AC':
-				$valor = 1;
-				break;
-				case 'AL':
-				$valor = 2;
-				break;
-				case 'AP':
-				$valor = 3;
-				break;
-				case 'AM':
-				$valor = 4;
-				break;
-				case 'BA':
-				$valor = 5;
-				break;
-				case 'CE':
-				$valor = 6;
-				break;
-				case 'DF':
-				$valor = 7;
-				break;
-				case 'ES':
-				$valor = 8;
-				break;
-				case 'GO':
-				$valor = 9;
-				break;
-				case 'MA':
-				$valor = 10;
-				break;
-				case 'MT':
-				$valor = 11;
-				break;
-				case 'MS':
-				$valor = 12;
-				break;
-				case 'MG':
-				$valor = 13;
-				break;
-				case 'PB':
-				$valor = 14;
-				break;
-				case 'PR':
-				$valor = 15;
-				break;
-				case 'PI':
-				$valor = 16;
-				break;
-				case 'RJ':
-				$valor = 17;
-				break;
-				case 'RN':
-				$valor = 18;
-				break;
-				case 'RS':
-				$valor = 19;
-				break;
-				case 'RO':
-				$valor = 20;
-				break;
-				case 'RR':
-				$valor = 21;
-				break;
-				case 'SC':
-				$valor = 22;
-				break;
-				case 'SP':
-				$valor = 23;
-				break;
-				case 'SE':
-				$valor = 24;
-				break;
-				case 'TO':
-				$valor = 25;
-				break;
-			}
+		$this->load->model("socio_model");
+		$valor = $this->input->post('uf');
+		switch($valor){
+			case 'AC':
+			$valor = 1;
+			break;
+			case 'AL':
+			$valor = 2;
+			break;
+			case 'AP':
+			$valor = 3;
+			break;
+			case 'AM':
+			$valor = 4;
+			break;
+			case 'BA':
+			$valor = 5;
+			break;
+			case 'CE':
+			$valor = 6;
+			break;
+			case 'DF':
+			$valor = 7;
+			break;
+			case 'ES':
+			$valor = 8;
+			break;
+			case 'GO':
+			$valor = 9;
+			break;
+			case 'MA':
+			$valor = 10;
+			break;
+			case 'MT':
+			$valor = 11;
+			break;
+			case 'MS':
+			$valor = 12;
+			break;
+			case 'MG':
+			$valor = 13;
+			break;
+			case 'PB':
+			$valor = 14;
+			break;
+			case 'PR':
+			$valor = 15;
+			break;
+			case 'PI':
+			$valor = 16;
+			break;
+			case 'RJ':
+			$valor = 17;
+			break;
+			case 'RN':
+			$valor = 18;
+			break;
+			case 'RS':
+			$valor = 19;
+			break;
+			case 'RO':
+			$valor = 20;
+			break;
+			case 'RR':
+			$valor = 21;
+			break;
+			case 'SC':
+			$valor = 22;
+			break;
+			case 'SP':
+			$valor = 23;
+			break;
+			case 'SE':
+			$valor = 24;
+			break;
+			case 'TO':
+			$valor = 25;
+			break;
+		}
 
-			$socio = array(
-				'idSocio' => $this->input->post('idSocio'),
-				'Empresa_idEmpresa' => $this->input->post('idEmpresa'),
-				'nome' => $this->input->post('nome'),
-				'estadoCivil' => $this->input->post('estadoCivil'),
-				'cpf' => $this->input->post('cpf'),
-				'rg' => $this->input->post('rg'),
-				'tituloEleitor' => $this->input->post('tituloEleitor'),
-				'orgaoEmissorRg' => $this->input->post('orgaoEmissorRg'),
-				'dataExpedicao' => $this->input->post('dataExpedicao'),
-				'dataNascimento' => $this->input->post('dataNascimento'),
-				'uf' => $valor,
-				'naturalidade' => $this->input->post('naturalidade'),
-				'logradouro' => $this->input->post('logradouro'),
-				'numero' => $this->input->post('numero'),
-				'bairro' => $this->input->post('bairro'),
-				'numero' => $this->input->post('numero'),
-				'municipio' => $this->input->post('municipio'),
-				'complemento' => $this->input->post('complemento'),
-				'cep' => $this->input->post('cep'),
-				'nReciboIr' => $this->input->post('nReciboIr'),
-				'capitalSocial'=> $this->input->post('capitalSocial'),
-				'tipoParticipacao' => $this->input->post('tipoParticipacao'),
-				'porcentagemSocio' => $this->input->post('porcentagemSocio'),
-				'capitalSocioalDoSocio' => $this->input->post('capitalSocioalDoSocio'),
-				'inicioContribuicao' => $this->input->post('inicioContribuicao'),
-				'proLabore' => $this->input->post('proLabore'),
-				'valorProLabore' => $this->input->post('valorProLabore'),
-				'aposentado' => $this->input->post('aposentado'),
-				'dataAposentadoriaIdade' => $this->input->post('dataAposentadoriaIdade'),
-				'dataAposentadoriaContribuicao' => $this->input->post('dataAposentadoriaContribuicao'),
-				'dependente' => $this->input->post('dependente'),
-				'nomeDependente' => $this->input->post('nomeDependente'),
-				'dataNascimentoDependente' => $this->input->post('dataNascimentoDependente'),
-				'empregadaDomestica' => $this->input->post('empregadaDomestica'),
-				'rotinaTrabalhista' => $this->input->post('rotinaTrabalhista'),
-				'nomeEmpregadaDomestica' => $this->input->post('nomeEmpregadaDomestica'),
-				'cpfDomestica' => $this->input->post('cpfDomestica'),
-				'nitDomestica' => $this->input->post('nitDomestica'),
-				'obrigadoImpostoRenda' => $this->input->post('obrigadoImpostoRenda'),
-				'declaracaoEscritorio' => $this->input->post('declaracaoEscritorio'),
-				'titularOutraEmpresa' => $this->input->post('titularOutraEmpresa'),
-				'nomeOutraEmpresa' => $this->input->post('nomeOutraEmpresa'),
-				'clienteEscritorio' => $this->input->post('clienteEscritorio'),
-				'empregadoAutonomo' => $this->input->post('empregadoAutonomo'),
-				'nomeAtividadeAutonomo' => $this->input->post('nomeAtividadeAutonomo'),
-				'valorRemuneracao' => $this->input->post('valorRemuneracao')
-				);
+		$socio = array(
+			'idSocio' => $this->input->post('idSocio'),
+			'Empresa_idEmpresa' => $this->input->post('idEmpresa'),
+			'nome' => $this->input->post('nome'),
+			'estadoCivil' => $this->input->post('estadoCivil'),
+			'cpf' => $this->input->post('cpf'),
+			'rg' => $this->input->post('rg'),
+			'tituloEleitor' => $this->input->post('tituloEleitor'),
+			'orgaoEmissorRg' => $this->input->post('orgaoEmissorRg'),
+			'dataExpedicao' => dataPtBrParaMysql($this->input->post('dataExpedicao')),
+			'dataNascimento' => dataPtBrParaMysql($this->input->post('dataNascimento')),
+			'uf' => $valor,
+			'naturalidade' => $this->input->post('naturalidade'),
+			'logradouro' => $this->input->post('logradouro'),
+			'numero' => $this->input->post('numero'),
+			'bairro' => $this->input->post('bairro'),
+			'numero' => $this->input->post('numero'),
+			'municipio' => $this->input->post('municipio'),
+			'complemento' => $this->input->post('complemento'),
+			'cep' => $this->input->post('cep'),
+			'nReciboIr' => $this->input->post('nReciboIr'),
+			'capitalSocial'=> $this->input->post('capitalSocial'),
+			'tipoParticipacao' => $this->input->post('tipoParticipacao'),
+			'porcentagemSocio' => $this->input->post('porcentagemSocio'),
+			'capitalSocioalDoSocio' => $this->input->post('capitalSocioalDoSocio'),
+			'inicioContribuicao' => $this->input->post('inicioContribuicao'),
+			'proLabore' => $this->input->post('proLabore'),
+			'valorProLabore' => $this->input->post('valorProLabore'),
+			'aposentado' => $this->input->post('aposentado'),
+			'dataAposentadoriaIdade' => dataPtBrParaMysql($this->input->post('dataAposentadoriaIdade')),
+			'dataAposentadoriaContribuicao' => dataPtBrParaMysql($this->input->post('dataAposentadoriaContribuicao')),
+			'dependente' => $this->input->post('dependente'),
+			'empregadaDomestica' => $this->input->post('empregadaDomestica'),
+			'rotinaTrabalhista' => $this->input->post('rotinaTrabalhista'),
+			'nomeEmpregadaDomestica' => $this->input->post('nomeEmpregadaDomestica'),
+			'cpfDomestica' => $this->input->post('cpfDomestica'),
+			'nitDomestica' => $this->input->post('nitDomestica'),
+			'obrigadoImpostoRenda' => $this->input->post('obrigadoImpostoRenda'),
+			'declaracaoEscritorio' => $this->input->post('declaracaoEscritorio'),
+			'titularOutraEmpresa' => $this->input->post('titularOutraEmpresa'),
+			'nomeOutraEmpresa' => $this->input->post('nomeOutraEmpresa'),
+			'clienteEscritorio' => $this->input->post('clienteEscritorio'),
+			'empregadoAutonomo' => $this->input->post('empregadoAutonomo'),
+			'nomeAtividadeAutonomo' => $this->input->post('nomeAtividadeAutonomo'),
+			'valorRemuneracao' => $this->input->post('valorRemuneracao')
+			);
 $this->socio_model->salvar($socio);
 $this->session->set_flashdata('success',"Sócio Salvo com Sucesso");
 redirect('socio/listar/'.$this->input->post("idEmpresa"));

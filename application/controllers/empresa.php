@@ -164,13 +164,14 @@ class Empresa  extends CI_Controller{
 			'uf' => $valor,
 			'atividade' => $this->input->post('atividade'),
 			'inicioAtividade' => $this->input->post('inicioAtividade'),
-			'dataAbertura' => $this->input->post('dataAbertura'),
+			'dataAbertura' => dataPtBrParaMysql($this->input->post('dataAbertura')),
 			'cnae' => $this->input->post('cnae'),
 			'codCetesb' => $this->input->post('codCetesb'),
 			'codVigilancia' => $this->input->post('codVigilancia'),
 			'codConselhoRegional' => $this->input->post('codConselhoRegional'),
 			'codJucesp' => $this->input->post('codJucesp'),
-			'codAlvaraBombeiro' => $this->input->post('codAlvaraBombeiro')
+			'codAlvaraBombeiro' => $this->input->post('codAlvaraBombeiro'),
+			'avisoEmail' => $this->input->post('avisoEmail')
 			);
 $this->empresa_model->salvar($empresa);
 $this->session->set_flashdata('success',"Empresa Salva com Sucesso");

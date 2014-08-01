@@ -24,7 +24,10 @@
 			<td><?php  echo $atividade['descricao']  ?> </td>
 
 			<td><?php echo anchor("atividade/form/{$atividade['idAtividade']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
-			<td><?php echo anchor("atividade/excluir/{$atividade['idAtividade']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
+			<td>
+				<button class="btn btn-danger " id="conf<?php echo $atividade['idAtividade']; ?>" onclick="confirmar('conf<?php echo $atividade['idAtividade'];?>')" value="<?php echo base_url("/index.php/atividade/excluir/".$atividade['idAtividade'].""); ?>">Excluir</button>
+			</td>
+
 
 		</tr>
 

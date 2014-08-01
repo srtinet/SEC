@@ -3,7 +3,6 @@
 
 if($empresas){
 	foreach($empresas as $empresa){
-
 		$idEmpresa = $empresa['idEmpresa'];
 		$tipoEmpresa = $empresa['tipoEmpresa'];
 		$enquadramento = $empresa['enquadramento'];
@@ -114,10 +113,10 @@ if($empresas){
 		$codConselhoRegional = $empresa['codConselhoRegional'];
 		$codJucesp = $empresa['codJucesp'];
 		$codAlvaraBombeiro = $empresa['codAlvaraBombeiro'];
+		$avisoEmail = $empresa['avisoEmail'];
 
 	}
 }else{
-
 	$idEmpresa = '';
 	$tipoEmpresa = '';
 	$enquadramento = '';
@@ -152,13 +151,12 @@ if($empresas){
 	$codConselhoRegional = '';
 	$codJucesp = '';
 	$codAlvaraBombeiro = '';
+	$avisoEmail = '';
 }?>
 <h3>Abertura de Empresa</h3>
 <?php
 echo form_open("empresa/cadastrar");
-
 echo form_hidden('idEmpresa', $idEmpresa);
-
 $options = array(
 	'1'  => 'Empresário Individual',
 	'2'    => 'Sociedade Empresária Limitada',
@@ -291,6 +289,14 @@ echo inputText("codVigilancia","Código Vigilância", $codVigilancia);
 echo inputText("codConselhoRegional","Código Conselho Regional", $codConselhoRegional);
 echo inputText("codJucesp","Código Jucesp", $codJucesp);
 echo inputText("codAlvaraBombeiro","Código Alvará Bombeiro", $codAlvaraBombeiro);
+echo '<h1>Aviso por Email</h1>';
+
+$options = array(
+	'0'  => 'Selecione',
+	'1'  => 'Sim',
+	'2'  => 'Não'
+	);
+echo inputListSumir("avisoEmail","Deseja ser avisado por E-mail?",$options, $avisoEmail, "avisoEmail", "caixaLista");
 
 echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 echo form_close();

@@ -14,7 +14,9 @@
 			<tr>
 			<td><?php echo $s['descricao']?></td>
 			<td><?php echo anchor("setor/form/{$s['idSetor']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
-			<td><?php echo anchor("setor/excluir/{$s['idSetor']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
+			<td>
+				<button class="btn btn-danger " id="conf<?php echo $s['idSetor']; ?>" onclick="confirmar('conf<?php echo $s['idSetor'];?>')" value="<?php echo base_url("/index.php/setor/excluir/".$s['idSetor'].""); ?>">Excluir</button>
+			</td>
 			</tr>
 			<?php } ?>
 		

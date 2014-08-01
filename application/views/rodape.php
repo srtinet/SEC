@@ -1,9 +1,9 @@
 </div>
 </div>
 
-	<footer class="jumbotron">
-		<h5>© 2014 SEC - Todos os direitos reservados | Design by SRTI |</h5>
-	</footer>
+<footer class="jumbotron">
+	<h5>© 2014 SEC - Todos os direitos reservados | Design by SRTI |</h5>
+</footer>
 </div>
 
 
@@ -12,7 +12,7 @@
 
 <script type="text/javascript" src="<?php echo base_url("js/jquery.min.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("uploadify/jquery.uploadify.js")?>"></script>
-
+<script type="text/javascript" src="<?php echo base_url("js/jquery.confirm.min.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/funcoes.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap.min.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap-datetimepicker.min.js")?>"></script>
@@ -20,15 +20,10 @@
 <script type="text/javascript" src="<?php echo base_url("js/dataTables.bootstrap.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap-datetimepicker.min.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/bootstrap-datetimepicker.pt-BR.js")?>"></script>
+
 <script>
 
-
-
-
 $(document).ready(function() {
-
-
-
 	$('.table-hover').dataTable( {
 		"language": {
 			"lengthMenu": "Exibir _MENU_",
@@ -55,9 +50,26 @@ $(function() {
 	});
 });
 </script>
-<script type="text/javascript">
+
+<script>
+function confirmar(acao){
+$(this).confirm({
+	text: "Tem certeza que deseja excluir?",
+	title: "Excluir",
+	confirm: function(button) {
+		//alert();
+		window.location.href =$('#'+acao).val();
+	},
+	cancel: function(button) {
+        // do something
+    },
+    confirmButton: "Sim",
+    cancelButton: "Não",
+    post: true
+});}
 
 
 </script>
+
 </body>
 </html>

@@ -4,7 +4,6 @@ if($socios){
 		$idSocio = $socio['idSocio'];
 		$Empresa_idEmpresa = $socio['Empresa_idEmpresa'];
 		$nome = $socio['nome'];
-		$idSocio = $socio['idSocio'];
 		$estadoCivil = $socio['estadoCivil'];
 		$cpf = $socio['cpf'];
 		$rg = $socio['rg'];
@@ -110,8 +109,6 @@ if($socios){
 		$dataAposentadoriaIdade = $socio['dataAposentadoriaIdade'];
 		$dataAposentadoriaContribuicao = $socio['dataAposentadoriaContribuicao'];
 		$dependente = $socio['dependente'];
-		$nomeDependente = $socio['nomeDependente'];
-		$dataNascimentoDependente = $socio['dataNascimentoDependente'];
 		$empregadaDomestica = $socio['empregadaDomestica'];
 		$rotinaTrabalhista = $socio['rotinaTrabalhista'];
 		$nomeEmpregadaDomestica = $socio['nomeEmpregadaDomestica'];
@@ -130,7 +127,6 @@ if($socios){
 	$idSocio = '';
 	$Empresa_idEmpresa = $idEmpresa;
 	$nome = '';
-	$idSocio = '';
 	$estadoCivil = '';
 	$cpf = '';
 	$rg = '';
@@ -159,9 +155,8 @@ if($socios){
 	$aposentado = '';
 	$dataAposentadoriaIdade = '';
 	$dataAposentadoriaContribuicao = '';
-	$dependente = '';
-	$nomeDependente = '';
 	$dataNascimentoDependente = '';
+	$dependente = '';
 	$empregadaDomestica = '';
 	$rotinaTrabalhista = '';
 	$nomeEmpregadaDomestica = '';
@@ -184,7 +179,6 @@ if($socios){
 echo form_open("socio/cadastrar");
 echo form_hidden('idSocio', $idSocio);
 echo form_hidden('idEmpresa', $Empresa_idEmpresa);
-
 echo inputText("nome","Nome",$nome);
 echo form_error("nome");
 $options = array(
@@ -274,18 +268,8 @@ $options = array(
 	);
 
 
-echo inputListSumir("dependente","Possui Dependentes",$options, $dependente, "dependente", "caixaLista3");
-
-echo '<div id="caixaLista3">';
-
-echo inputText("nomeDependente","Nome Dependente",$nomeDependente);
-echo form_error("nomeDependente");
-echo DataPicker("dataNascimentoDependente","Data Nascimento Dependente",$dataNascimentoDependente);
-echo form_error("dataNascimentoDependente");
-
-echo '</div>';
-
-//////////////////////////////////////////////////
+echo inputList("dependente","Possui Dependentes",$options, $dependente);
+///////////////////////////////////
 
 
 echo '<h1>Empregada Doméstica</h1>';
