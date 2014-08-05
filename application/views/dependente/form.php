@@ -21,8 +21,6 @@ echo form_hidden('idDependente', $idDependente);
 echo form_hidden('idSocio', $Socio_idSocio);
 echo inputText("nome","Nome",$nome);
 echo DataPicker("dataNascimento","Data de Nascimento",$dataNascimento);
-// $dataAtual = ;
-echo $dataAtual;
 echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 echo form_close();
 ?>

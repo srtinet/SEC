@@ -1,6 +1,8 @@
 <h1>Responsabilidade</h1>
 <?php
 
+$usuario=$this->session->userdata('usuario_logado');
+
 $empresa=array();
 $atividade=array();
 $usuario=array()	;
@@ -71,6 +73,7 @@ if ($user['tipo']==2){
 					$periodo=$this->session->userdata('periodo');
 					if(isset($filtro['idEmpresa'])){
 						
+
 						echo '<span class="bg-primary">Empresa |</span>';
 
 
@@ -118,6 +121,8 @@ if ($user['tipo']==2){
 		<tbody>
 			<?php
 			foreach ($responsabilidade as $respon) {
+				if($respon['estadoResponsabilidade'] != 4){
+
 				?>
 				<tr>
 					<td><?php echo $respon['descricao'] ?></td>
@@ -215,6 +220,7 @@ if ($user['tipo']==2){
 						</div>
 					</div>
 				</td></td>
+				<?php  	}?>
 				<?php  	}?>
 			</tbody>
 		</table>

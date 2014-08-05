@@ -15,10 +15,7 @@
 		<?php foreach($dependentes as $dependente) : ?>
 		<tr>
 			<td><?php echo $dependente['nome']?></td>
-			<?php
-				$ano = dataMysqlParaPtBr($dependente['dataNascimento']);
-			?>
-			<td><?php echo calc_idade($ano);?></td>
+			<td><?php echo dataMysqlParaPtBr($dependente['dataNascimento']);?></td>
 			<td><?php echo anchor("dependente/form/{$idSocio}/{$dependente['idDependente']}","Modificar", array("class" => "btn btn-primary"));?> </td>
 			<td>
 				<button class="btn btn-danger " id="conf<?php echo $dependente['idDependente']; ?>" onclick="confirmar('conf<?php echo $dependente['idDependente'];?>')" value="<?php echo base_url("/index.php/dependente/excluir/{$idSocio}/{$dependente['idDependente']}"); ?>">Excluir</button>

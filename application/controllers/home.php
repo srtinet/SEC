@@ -17,6 +17,7 @@ class Home extends CI_Controller{
 		$this->load->model("recado_model");
 		$this->load->model("documento_model");
 		$this->load->model("ligacao_model");
+		$data = date("Y-m-d");
 		$responsabilidade=$this->responsabilidade_model->contResponsabilidade(array("Usuario_idUsuario"=>$usuario['idUsuario']));
 		$recado=$this->recado_model->contRecado(array("Usuario_idUsuarioDes"=>$usuario['idUsuario'], "estado"=> 0));
 		$documento=$this->documento_model->contDocumento(array("Usuario_idUsuarioDest"=>$usuario['idUsuario'], "situacao" => 1));

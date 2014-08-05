@@ -53,3 +53,12 @@ function inputListSumir($name, $label='', $options=array(), $value='', $valor1, 
 	return $input;
 
 }
+
+function inputListSumir2($name, $label='', $options=array(), $value='', $valor1, $valor2){
+	$input='';
+	$input.= form_label($label,$name);
+	$var="someElementos('".$valor1."', '".$valor2."')";
+	$input.= form_dropdown($name, $options,$value,'class="form-control" onclick="'.$var.'" id="'.$name.'"');
+	return $input;
+
+}

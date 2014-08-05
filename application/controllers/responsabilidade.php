@@ -36,6 +36,13 @@ class Responsabilidade extends CI_Controller{
 
 		}
 
+		if($usuario['tipo']== 3){
+			$filtroEmpresa= 0;
+			$filtroAtividade= 0;
+			$filtroUsuario= 0;
+
+		}
+
 		if(is_array($this->session->userdata('filtro'))){
 			$filtrando=$this->session->userdata('filtro');
 			$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidade($filtrando,$dataInicioFiltro,$dataFimFiltro);
@@ -128,11 +135,6 @@ class Responsabilidade extends CI_Controller{
 	public function listar() {
 		$this->load->model("responsabilidade_model");
 		$responsabilidadeTp=$this->responsabilidade_model->listar();
-
-
-
-
-
 	}
 
 	public function gerarRespopnsabilidade($ultimadata,$hoje){
@@ -163,10 +165,6 @@ class Responsabilidade extends CI_Controller{
 			$this->responsabilidade_model->salvarEstado($estado);
 			$atividade=array('idAtividadeEmpresa'=>$con['idAtividadeEmpresa'],"dataControle"=>$vencimento);
 			$this->empresa_model->cadAtividade($atividade);
-
-
-
-
 		}	
 
 		$this->responsabilidade_model->salvarControle(array("data"=>$hoje));			

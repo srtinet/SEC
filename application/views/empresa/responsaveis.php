@@ -69,8 +69,6 @@ echo form_close();
 		<tr>
 			<td><?php  echo $setorUsuario['nome']  ?> </td>
 			<td><?php  echo $setorUsuario['setorDescricao']  ?> </td>
-			
-
 			<td><?php echo anchor("empresa/responsaveis/{$setorUsuario['Empresa_idEmpresa']}/{$setorUsuario['idSetorUsuario']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
 			<td><?php echo anchor("empresa/excluirResponsaveis/{$setorUsuario['idSetorUsuario']}/{$setorUsuario['Empresa_idEmpresa']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
 

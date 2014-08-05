@@ -5,14 +5,17 @@ class Usuarios  extends CI_Controller{
 	public function listar(){
 		$this->load->model("usuarios_model");
 		$usuario=$this->usuarios_model->listar();
+
 		$dados=array("usuarios"=>$usuario);
 		$this->load->template("usuario/lista",$dados);
 
 	}
 	public function form($id=0){
 		$this->load->model("usuarios_model");
+		$this->load->model("empresa_model");
 		$usuario=$this->usuarios_model->listar(array("idUsuario"=>$id));
-		$dados=array("usuarios"=>$usuario);
+		$empresa = $this->empresa_model->listar();
+		$dados=array("empresa" => $empresa, "usuarios"=>$usuario);
 		$this->load->template("usuario/form",$dados);
 	}
 	public function excluir($id){
@@ -33,6 +36,7 @@ class Usuarios  extends CI_Controller{
 			$this->load->model("usuarios_model");
 			$usuarios=array(
 				"idUsuario" => $this->input->post("idUsuario"),
+				"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
 				"nome" => $this->input->post("nome"),
 				"login" => $this->input->post("login"),
 				"senha" => $this->input->post("senha"),
