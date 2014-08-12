@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'mysql.clake.me';
-$db['default']['username'] = 'secbd';
+$db['default']['hostname'] = 'mysql.srtisec.net';
+$db['default']['username'] = 'sec_ras';
 $db['default']['password'] = 'r2d2@42';
-$db['default']['database'] = 'secbd';
+$db['default']['database'] = 'sec_ras';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

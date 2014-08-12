@@ -14,7 +14,7 @@ class Login  extends CI_Controller{
 			$this->session->set_userdata(array("usuario_logado"=> $usuario ));
 			$this->session->set_flashdata('success',"logado com Sucesso");
 			
-			redirect('home');
+			redirect('home/home');
 		}else{
 
 			$this->session->set_flashdata('danger',"Usuario ou senha inválido");

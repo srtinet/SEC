@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+// ob_start ();
 class Responsabilidade extends CI_Controller{
 	public function index(){
 		$this->output->enable_profiler(TRUE);
@@ -167,9 +167,26 @@ class Responsabilidade extends CI_Controller{
 			$this->empresa_model->cadAtividade($atividade);
 		}	
 
-		$this->responsabilidade_model->salvarControle(array("data"=>$hoje));			
+		$this->responsabilidade_model->salvarControle(array("data"=>$hoje));
+
 
 	}
+
+	public function puxarAnexo(){
+		$this->load->model("anexo_model");
+		$id = $this->input->post('type');
+
+		$lista = $this->anexo_model->listarAnexo(array("Responsabilidade_idResponsabilidade" => $id));
+
+
+		echo json_encode($lista);
+
+	}
+
+	// public function listarResponsabilidadeCliente(){
+	// 	$this->load->model("responsabilidade_model");
+	// 	$this->responsabilidade_model->listarResponsabilidadeCliente("idAtividadeEmpresa" => $idAtividadeEmpresa);
+	// }
 
 
 }

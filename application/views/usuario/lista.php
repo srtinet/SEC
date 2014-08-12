@@ -6,7 +6,7 @@
 		<tr>
 			<th>Nome</th>
 			<th>Login</th>
-			<th>Tipo</th>
+			<!-- <th>Tipo</th> -->
 
 		
 	
@@ -28,7 +28,7 @@
 		<tr>
 			<td><?php  echo $usuario['nome']  ?> </td>
 			<td><?=  $usuario['login'] ?> </td>
-			<td><?=  $usuario['tipo'] ?> </td>
+			<!-- <td><?=  $usuario['tipo'] ?> </td> -->
 					<?php if ($usuario['tipo']==2) { ?>
 			<td><?php echo anchor("usuarios/gestor/{$usuario['idUsuario']}","Gestor", array("class" => "btn btn-info"));  ?> </td>
 				<?php } else{?>

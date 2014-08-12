@@ -15,7 +15,7 @@ class Upload extends CI_Controller{
 
         $this->upload_config = array(
             'upload_path'   => $responsabilidades,
-            'allowed_types' => 'png|jpg|jpeg|bmp|tiff',
+        'allowed_types' => 'png|jpg|jpeg|bmp|tiff|pdf|PDF|doc|docx|xls|xlsx|ppt|pptx|txt|rec',
             'max_size'      => 2048,
             'remove_space'  => TRUE,
             'encrypt_name'  => TRUE,

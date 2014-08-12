@@ -3,12 +3,15 @@
 class Home extends CI_Controller{
 
 	public function index(){
-		$this->output->enable_profiler(TRUE);
-		$usuario = $this->session->userdata['usuario_logado'];
-		if($usuario["telefonista"] == 1){
-			redirect('ligacao/listarTelefonista');
+		if(isset($this->session->userdata['usuario_logado'])){
+			$usuario = $this->session->userdata['usuario_logado'];
+			if($usuario["telefonista"] == 1){
+				redirect('ligacao/listarTelefonista');
+			}else{
+				redirect('responsabilidade/responsabilidade');
+			}
 		}else{
-			redirect('responsabilidade/responsabilidade');
+			$this->load->template("home");
 		}
 	}
 	public function menus(){
