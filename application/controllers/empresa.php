@@ -192,7 +192,7 @@ public function atividade($id_empresa,$id_atividade=0){
 	$empresaAtividadeSl=$this->empresa_model->listarAtividade(array("idAtividadeEmpresa"=>$id_atividade));
 	$empresaAtividade=$this->empresa_model->listarAtividadeJoin(array("Empresa_idEmpresa"=>$id_empresa));
 	$Atividade=$this->atividade_model->listar();
-	$setor=$this->setor_model->listar();
+	$setor=$this->empresa_model->listarSetorDis(array("idEmpresa"=>$id_empresa));
 	$dados=array("empresas"=>$empresa,"empresaAtividades"=>$empresaAtividade,"atividades"=>$Atividade,"setores"=>$setor,"AtividadeSelecionada"=>$empresaAtividadeSl);
 	$this->load->template("empresa/atividade",$dados);		
 
@@ -224,17 +224,17 @@ public function excluirAtividade($id_atividade,$id_empresa){
 
 }
 
-public function  responsaveis($id_empresa,$id_atividade=0){
+public function responsaveis($id_empresa,$id_atividade=0){
 	$this->load->model("empresa_model");
 	$this->load->model("usuarios_model");
 	$this->load->model("setor_model");
-	$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id_empresa));	
+	$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id_empresa));
 	$setor=$this->setor_model->listar();
 	$usuario=$this->usuarios_model->listar();
 	$setorUsuarioSl=$this->empresa_model->listarSetorJoin(array("idSetorUsuario"=>$id_atividade));
 	$setorUsuario=$this->empresa_model->listarSetorJoin(array("idEmpresa"=>$id_empresa));
 	$dados=array("empresas"=>$empresa,"setorUsuarioEmpresa"=>$setorUsuario,"usuarios"=>$usuario,"setores"=>$setor,"responsaveis"=>$setorUsuarioSl);
-	$this->load->template("empresa/responsaveis",$dados);	
+	$this->load->template("empresa/responsaveis",$dados);
 
 
 }

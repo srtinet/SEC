@@ -32,6 +32,17 @@ class Empresa_model extends CI_Model {
 
 		return $this->db->get()->result_array();
 	}
+		public function listarSetorDis($where=array()){
+
+		$this->db->select("Setor.descricao,Setor.idSetor");
+		$this->db->from(" SetorUsuario");
+		$this->db->join("Empresa", "Empresa.idEmpresa =  SetorUsuario.Empresa_idEmpresa");
+		$this->db->join("Setor", "Setor.idSetor =  SetorUsuario.Setor_idSetor");
+		$this->db->join("Usuario", "Usuario.idUsuario =  SetorUsuario.Usuario_idUsuario");
+		$this->db->where($where);
+		$this->db->group_by("Setor.descricao"); 
+		return $this->db->get()->result_array();
+	}
 	public function listarAtividadeJoin($where=array()){
 
 		$this->db->select("AtividadeEmpresa.*, Empresa.razaoSocial,Setor.descricao as setorDescricao , Atividade.descricao as atividadeDescricao");
