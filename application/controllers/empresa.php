@@ -19,7 +19,18 @@ class Empresa  extends CI_Controller{
 
 	public function excluir($id){
 		$this->load->model("empresa_model");
+		$this->load->model("historico_model");
+		$usuario = $this->session->userdata['usuario_logado']['idUsuario'];
+		$hoje = date("Y/m/d");
+		$historico=array(
+			'Usuario_idUsuario' => $usuario,
+			'dataModificacao' => $hoje,
+			'Empresa_idEmpresa' => $id,
+			'acao' => 2
+			);
+		$this->historico_model->salvarHistorico($historico);
 		$empresa=$this->empresa_model->excluir($id);
+		$this->session->set_flashdata('success',"Empresa Excluída com Sucesso");
 		redirect('empresa/listar');
 	}
 
@@ -56,6 +67,9 @@ class Empresa  extends CI_Controller{
 		// $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
 		// $sucesso = $this->form_validation->run();
 		// if($sucesso){
+		$usuario = $this->session->userdata['usuario_logado']['idUsuario'];
+		$hoje = date("Y/m/d");
+		$this->load->model("historico_model");
 		$this->load->model("empresa_model");
 		$valor = $this->input->post('uf');
 		switch($valor){
@@ -172,7 +186,15 @@ class Empresa  extends CI_Controller{
 			'codAlvaraBombeiro' => $this->input->post('codAlvaraBombeiro'),
 			'avisoEmail' => $this->input->post('avisoEmail')
 			);
+
+$historico=array(
+			'Usuario_idUsuario' => $usuario,
+			'dataModificacao' => $hoje,
+			'Empresa_idEmpresa' => $empresa['idEmpresa'],
+			'acao' => 1
+			);
 $this->empresa_model->salvar($empresa);
+$this->historico_model->salvarHistorico($historico);
 $this->session->set_flashdata('success',"Empresa Salva com Sucesso");
 redirect('empresa/listar');
 	// 	} else{

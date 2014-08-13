@@ -80,11 +80,6 @@ if(data){
 	# code...
 
 	}
-
-
-
-
-
 	?>
 
 	<!-- Button trigger modal -->

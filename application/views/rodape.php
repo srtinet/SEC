@@ -61,7 +61,7 @@ $(this).confirm({
 		window.location.href =$('#'+acao).val();
 	},
 	cancel: function(button) {
-        // do something
+        window.location.reload();
     },
     confirmButton: "Sim",
     cancelButton: "Não",

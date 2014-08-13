@@ -8,7 +8,12 @@ class Home extends CI_Controller{
 			if($usuario["telefonista"] == 1){
 				redirect('ligacao/listarTelefonista');
 			}else{
-				redirect('responsabilidade/responsabilidade');
+				if($usuario['tipo'] != 4){
+					redirect('responsabilidade/responsabilidade');
+				}else{
+					$this->load->template("home");
+				}
+				
 			}
 		}else{
 			$this->load->template("home");

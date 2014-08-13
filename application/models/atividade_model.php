@@ -8,6 +8,7 @@ public function listar($where=array()){
 
 } 
 
+
 	public function salvar ($atividade){
 		if ($atividade['idAtividade']>0){
 			$this->db->where("idAtividade",$atividade['idAtividade']);
