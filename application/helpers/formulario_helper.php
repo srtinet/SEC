@@ -10,9 +10,12 @@ function DataPicker($name,$label='',$value=''){
 }
 
 function inputText($name, $label='', $value=''){
+	
+	echo '<div class="form-group">';
 	$input= '';
 	$input.= form_label($label,$name);
 	$input.= form_input(array("name"=>$name,"class"=>"form-control","id"=>$name ,"value"=>$value,  "maxlength"=>"255"));
+	echo '</div>';
 	return $input;
 }
 
@@ -57,7 +60,7 @@ function inputListSumir($name, $label='', $options=array(), $value='', $valor1, 
 function inputListSumir2($name, $label='', $options=array(), $value='', $valor1, $valor2){
 	$input='';
 	$input.= form_label($label,$name);
-	$var="someElementos('".$valor1."', '".$valor2."')";
+	$var="someElementos2('".$valor1."', '".$valor2."')";
 	$input.= form_dropdown($name, $options,$value,'class="form-control" onclick="'.$var.'" id="'.$name.'"');
 	return $input;
 

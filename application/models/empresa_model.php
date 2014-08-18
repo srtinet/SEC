@@ -60,15 +60,19 @@ class Empresa_model extends CI_Model {
 		if ($empresa['idEmpresa']>0){
 			$this->db->where("idEmpresa",$empresa['idEmpresa']);
 			$this->db->update("Empresa",$empresa);
+			return 0;
 
 		}else{
 			$this->db->insert("Empresa",$empresa);
+			return $this->db->insert_id();
 		}
 
+		
+
 	}
-	public function excluir($id){
+	public function excluir($id, $where=array()){
 		$this->db->where("idEmpresa",$id);
-		$this->db->delete('Empresa');
+		$this->db->update("Empresa",$where);
 	}
 	public function excluirAtividade($id){
 		$this->db->where("idAtividadeEmpresa",$id);
@@ -100,4 +104,5 @@ class Empresa_model extends CI_Model {
 		$this->db->where("idSetorUsuario",$id);
 		$this->db->delete('SetorUsuario');
 	}
+
 }

@@ -1,5 +1,6 @@
 
-<h3>Mensagem</h3>
+		<h3>Mensagem</h3>
+
 <?php
 echo form_open("recado/cadastrar");
 

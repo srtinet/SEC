@@ -5,7 +5,6 @@ class Usuarios  extends CI_Controller{
 	public function listar(){
 		$this->load->model("usuarios_model");
 		$usuario=$this->usuarios_model->listar();
-
 		$dados=array("usuarios"=>$usuario);
 		$this->load->template("usuario/lista",$dados);
 
@@ -14,7 +13,7 @@ class Usuarios  extends CI_Controller{
 		$this->load->model("usuarios_model");
 		$this->load->model("empresa_model");
 		$usuario=$this->usuarios_model->listar(array("idUsuario"=>$id));
-		$empresa = $this->empresa_model->listar();
+		$empresa = $this->empresa_model->listar(array("situacao"=>1));
 		$dados=array("empresa" => $empresa, "usuarios"=>$usuario);
 		$this->load->template("usuario/form",$dados);
 	}

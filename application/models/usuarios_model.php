@@ -22,7 +22,7 @@ class Usuarios_model extends CI_Model {
 			$this->db->order_by("nome", "asc");
 			return $this->db->get_where('Usuario',$where)->result_array();
 		}else{
-			$this->db->select("Usuario.*, Empresa.idEmpresa, Empresa.razaoSocial");
+			$this->db->select("Usuario.*, Empresa_idEmpresa.idEmpresa, Empresa.razaoSocial");
 			$this->db->from("Usuario");
 			$this->db->join("Usuario", "Usuario.Empresa_idEmpresa = Empresa.idEmpresa");
 			$this->db->order_by("nome", "asc");

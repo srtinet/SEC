@@ -11,6 +11,7 @@ if($TipoDocumento){
 }
 ?>
 <h1>Documentos</h1>
+
 <?php
 	echo form_open("documento/cadastrar");
 	echo inputText("descricao","Descrição",$descricao);

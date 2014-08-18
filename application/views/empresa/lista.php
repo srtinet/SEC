@@ -49,7 +49,7 @@
 					break;
 				}
 			// $string = $empresa['statusEmpresa'];
-			$string = character_limiter($empresa['statusEmpresa'], 10);
+			$string = character_limiter($empresa['statusEmpresa'], 7);
 			?>
 			
 			<td><button class="btn btn-primary"><?php  echo $string ?></button></td>
@@ -58,6 +58,7 @@
 			<td>
 				<button class="btn btn-danger " id="conf<?php echo $empresa['idEmpresa']; ?>" onclick="confirmar('conf<?php echo $empresa['idEmpresa'];?>')" value="<?php echo base_url("/index.php/empresa/excluir/".$empresa['idEmpresa'].""); ?>">Excluir</button>
 			</td>
+			
 		</tr>
 
 		<?php 

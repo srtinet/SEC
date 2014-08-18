@@ -1,3 +1,12 @@
+<div class="row">
+	<div class="col-lg-8">
+		<!-- <h3>Usuários</h3> -->
+	</div>
+	<div class="col-lg-4">
+		<br/>
+		<?php echo anchor("usuarios/listar/","Voltar", array("class" => "btn btn-danger"));  ?> 
+	</div>
+</div>
 	<?php 
 	if ($usuarios){
 		foreach ($usuarios as $usuario ) {

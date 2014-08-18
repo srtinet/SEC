@@ -237,6 +237,10 @@ padding: 15px;
 	margin: 10px 0 !important;
 }
 
+.form-group{
+	max-resolution: res;: 10px 0;
+}
+
 /*.lista{
 	background-color: #428bca;
 	color:#fff !important;

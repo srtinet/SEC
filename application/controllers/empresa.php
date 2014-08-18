@@ -4,7 +4,7 @@ class Empresa  extends CI_Controller{
 
 	public function listar(){
 		$this->load->model("empresa_model");
-		$empresa=$this->empresa_model->listar();
+		$empresa=$this->empresa_model->listar(array("situacao"=>1));
 		$dados=array('empresas'=>$empresa);
 		$this->load->template("empresa/lista",$dados);
 
@@ -26,10 +26,10 @@ class Empresa  extends CI_Controller{
 			'Usuario_idUsuario' => $usuario,
 			'dataModificacao' => $hoje,
 			'Empresa_idEmpresa' => $id,
-			'acao' => 2
+			'acao' => 3
 			);
 		$this->historico_model->salvarHistorico($historico);
-		$empresa=$this->empresa_model->excluir($id);
+		$empresa=$this->empresa_model->excluir($id, array("situacao" => 0));
 		$this->session->set_flashdata('success',"Empresa Excluída com Sucesso");
 		redirect('empresa/listar');
 	}
@@ -149,11 +149,15 @@ class Empresa  extends CI_Controller{
 			$valor = 25;
 			break;
 		}
+		$idEmpresa = $this->input->post('idEmpresa');
 		$empresa=array(
-			'idEmpresa' => $this->input->post('idEmpresa'),
+			'idEmpresa' => $idEmpresa,
 			'tipoEmpresa' => $this->input->post('tipoEmpresa'),
 			'enquadramento' => $this->input->post('enquadramento'),
 			'tributacao' => $this->input->post('tributacao'),
+			'dataTributacao' => $this->input->post('dataTributacao'),
+			'pagamentoImpostoRenda' => $this->input->post('pagamentoImpostoRenda'),
+			'formaPagamento' => $this->input->post('formaPagamento'),
 			'ramoAtividade' => $this->input->post('ramoAtividade'),
 			'statusEmpresa' => $this->input->post('statusEmpresa'),
 			'nContmatic' => $this->input->post('nContmatic'),
@@ -184,16 +188,21 @@ class Empresa  extends CI_Controller{
 			'codConselhoRegional' => $this->input->post('codConselhoRegional'),
 			'codJucesp' => $this->input->post('codJucesp'),
 			'codAlvaraBombeiro' => $this->input->post('codAlvaraBombeiro'),
-			'avisoEmail' => $this->input->post('avisoEmail')
+			'avisoEmail' => $this->input->post('avisoEmail'),
+			'situacao' => 1
 			);
-
+$ultimaEmpresa = $this->empresa_model->salvar($empresa);
+$acao = 1;
+if($ultimaEmpresa == 0){
+	$ultimaEmpresa = $idEmpresa;
+	$acao = 2;
+}
 $historico=array(
-			'Usuario_idUsuario' => $usuario,
-			'dataModificacao' => $hoje,
-			'Empresa_idEmpresa' => $empresa['idEmpresa'],
-			'acao' => 1
-			);
-$this->empresa_model->salvar($empresa);
+	'Usuario_idUsuario' => $usuario,
+	'dataModificacao' => $hoje,
+	'Empresa_idEmpresa' => $ultimaEmpresa,
+	'acao' => $acao
+	);
 $this->historico_model->salvarHistorico($historico);
 $this->session->set_flashdata('success',"Empresa Salva com Sucesso");
 redirect('empresa/listar');
@@ -205,7 +214,6 @@ redirect('empresa/listar');
 	// }
 
 }
-
 public function atividade($id_empresa,$id_atividade=0){
 	$this->load->model("empresa_model");
 	$this->load->model("atividade_model");

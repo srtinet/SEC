@@ -1,12 +1,14 @@
 <?php
-
-
 if($empresas){
 	foreach($empresas as $empresa){
 		$idEmpresa = $empresa['idEmpresa'];
 		$tipoEmpresa = $empresa['tipoEmpresa'];
 		$enquadramento = $empresa['enquadramento'];
 		$tributacao = $empresa['tributacao'];
+		$dataTributacao = $empresa['dataTributacao'];
+		$pagamentoImpostoRenda = $empresa['pagamentoImpostoRenda'];
+		$formaPagamento = $empresa['formaPagamento'];
+		$pagadorImposto = $empresa['pagadorImposto'];
 		$ramoAtividade = $empresa['ramoAtividade'];
 		$statusEmpresa = $empresa['statusEmpresa'];
 		$nContmatic = $empresa['nContmatic'];
@@ -121,6 +123,10 @@ if($empresas){
 	$tipoEmpresa = '';
 	$enquadramento = '';
 	$tributacao = '';
+	$dataTributacao = '0000/00/00';
+	$pagamentoImpostoRenda = '';
+	$formaPagamento = '';
+	$pagadorImposto = '';
 	$ramoAtividade = '';
 	$statusEmpresa = '';
 	$nContmatic = '';
@@ -144,7 +150,7 @@ if($empresas){
 	$uf = '';
 	$atividade = '';
 	$inicioAtividade = '';
-	$dataAbertura = '';
+	$dataAbertura = '0000/00/00';
 	$cnae = '';
 	$codCetesb = '';
 	$codVigilancia = '';
@@ -153,7 +159,15 @@ if($empresas){
 	$codAlvaraBombeiro = '';
 	$avisoEmail = '';
 }?>
-<h3>Abertura de Empresa</h3>
+<div class="row">
+	<div class="col-lg-8">
+		<h3>Abertura de Empresa</h3>
+	</div>
+	<div class="col-lg-4">
+		<br/>
+		<?php echo anchor("empresa/listar/","Voltar", array("class" => "btn btn-danger"));  ?> 
+	</div>
+</div>
 <?php
 echo form_open("empresa/cadastrar");
 echo form_hidden('idEmpresa', $idEmpresa);
@@ -184,13 +198,34 @@ $options = array(
 echo inputList("enquadramento","Enquadramento",$options, $enquadramento);
 
 $options = array(
+	'0'  => 'Selecione',
 	'1'  => 'Lucro Presumido',
 	'2'    => 'Lucro Real',
 	'3'   => 'Simples Nacional',
 	'4'   => 'Outros'
 	);
 echo inputList("tributacao","Tributação",$options, $tributacao);
-
+echo DataPicker("dataTributacao","Data da Tributação",$dataTributacao);
+$options = array(
+	'0'  => 'Selecione',
+	'1'  => 'Trimestral',
+	'2'  => 'Mensal'
+	);
+echo inputListSumir("pagamentoImpostoRenda","Pagamento do Imposto de Renda",$options, $pagamentoImpostoRenda, "pagamentoImpostoRenda", "caixaLista");
+echo '<div id="caixaLista">';
+$options = array(
+	'0'  => 'Selecione',
+	'1'  => 'Cota única',
+	'2'  => 'Três Parcelas'
+	);
+echo inputList("formaPagamento","Forma de Pagamento",$options, $formaPagamento);
+echo '</div>';
+$options = array(
+	'0'  => 'Selecione',
+	'1'  => 'Escritório',
+	'2'    => 'Cliente'
+	);
+echo inputList("pagadorImposto","Quem paga o Imposto?",$options, $pagadorImposto);
 $options = array(
 	'1'  => 'Indústria/Comércio',
 	'2'    => 'Indústria/Comércio/Servicos',
