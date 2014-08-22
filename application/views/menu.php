@@ -76,7 +76,20 @@ if($usuario['tipo'] != 3){
         <?php } else{ ?>
         <li ><?php echo anchor("ligacao/listarTelefonista", "Sol. Chamada");?></li>
         <?php } ?>
-
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Módulo Compra <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <?php ?>
+            <li ><?php echo anchor("produto/listar", "Produtos" ); ?></li>
+            <li ><?php echo anchor("fornecedor/listar", "Fornecedores" ); ?></li>
+            <li ><?php echo anchor("avaliacao/listar", "Avaliação do Fornecedor" ); ?></li>
+            <li ><?php echo anchor("empresa/listar", "Cotações" ); ?></li>
+            <li ><?php echo anchor("atividade/listar", "Pedido" ); ?></li>
+            <li ><?php echo anchor("documento/listarTipo", "Compra" ); ?></li>
+          </ul>
+        </li>
       </ul>
       <?php } ?>
       <div class="container-fluid">
