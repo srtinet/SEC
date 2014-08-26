@@ -3,6 +3,7 @@
 class Socio extends CI_Controller{
 
 	public function listar($idEmpresa){
+		$this->output->enable_profiler(TRUE);
 		$this->load->model("socio_model");
 		$socio = $this->socio_model->listarSocioEmpresa(array('idEmpresa' => $idEmpresa));
 		$dados = array('socios' => $socio, 'idEmpresa' => $idEmpresa);

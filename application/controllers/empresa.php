@@ -3,6 +3,7 @@
 class Empresa  extends CI_Controller{
 
 	public function listar(){
+		$this->output->enable_profiler(TRUE);
 		$this->load->model("empresa_model");
 		$empresa=$this->empresa_model->listar(array("situacao"=>1));
 		$dados=array('empresas'=>$empresa);
