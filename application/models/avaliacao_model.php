@@ -10,15 +10,6 @@ class Avaliacao_model extends CI_Model {
 		// return $this->db->get_where("Avaliacao", $where)->result_array();
 	}
 
-	public function listarSocioEmpresa($where=array()){
-		$this->db->select("Socio.nome,Socio.idSocio,Socio.inicioContribuicao,Socio.dependente, Socio.Empresa_idEmpresa,  Empresa.idEmpresa, Empresa.razaoSocial");
-		$this->db->from("Socio");
-		$this->db->join("Empresa", "Socio.Empresa_idEmpresa = Empresa.idEmpresa");
-		$this->db->where($where);
-		$this->db->order_by("nome", "asc");
-		return $this->db->get()->result_array();
-	}
-
 	// public function listar($where=array()){
 	// 	$this->db->select("Telefonema.*, Empresa.razaoSocial, Empresa.telefone, Empresa.telefoneResidencial, Usuario.nome");
 	// 	$this->db->from("Telefonema");

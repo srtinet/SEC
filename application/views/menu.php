@@ -76,6 +76,7 @@ if($usuario['tipo'] != 3){
         <?php } else{ ?>
         <li ><?php echo anchor("ligacao/listarTelefonista", "Sol. Chamada");?></li>
         <?php } ?>
+        <?php if($usuario['tipo'] == 4){?>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             Compra de Produtos <span class="caret"></span>
@@ -89,6 +90,7 @@ if($usuario['tipo'] != 3){
             <li ><?php echo anchor("documento/listarTipo", "Compra" ); ?></li>
           </ul>
         </li>
+        <?php } ?>
       </ul>
       <?php } ?>
       <div class="container-fluid">

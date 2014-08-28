@@ -19,15 +19,15 @@ class Documento_model extends CI_Model {
 		
 	}
 
-		public function salvarDoc($documento){
-	if($documento['idDocumento'] > 0){
+public function salvarDoc($documento){
+	// if($documento['idDocumento'] > 0){
 
-			$this->db->where('idDocumento', $documento['idDocumento']);
-			$this->db->update('Documento', $documento);
-	}
-		else{
+	// 		$this->db->where('idDocumento', $documento['idDocumento']);
+	// 		$this->db->update('Documento', $documento);
+	// }
+	// 	else{
 			$this->db->insert('Documento', $documento);
-		}
+		// }
 			return $this->db->insert_id();
 		}
 		public function salvarAceiteDoc($salvarAceiteDoc){

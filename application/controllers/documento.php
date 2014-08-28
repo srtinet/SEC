@@ -1,5 +1,4 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Documento extends CI_Controller{
 
 	public function listarTipo(){
@@ -105,12 +104,12 @@ class Documento extends CI_Controller{
 		$this->output->enable_profiler(TRUE);
 		$this->load->model("documento_model");
 		$usuario=$this->session->userdata('usuario_logado');
-		$enviadas=$this->documento_model->listarDoc(array("situacao"=>1,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
-		$rejeitadas=$this->documento_model->listarDoc(array("situacao"=>2,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
+		$enviadas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>1,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
+		$rejeitadas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>2,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
 
-		$recebidas=$this->documento_model->listarDoc(array("situacao"=>1,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
-		$histEnviadas=$this->documento_model->listarDoc(array("situacao"=>3,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
-		$histRecebidas=$this->documento_model->listarDoc(array("situacao"=>3,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
+		$recebidas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>1,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
+		$histEnviadas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>3,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
+		$histRecebidas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>3,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
 
 		$dados=array("enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeitadas,"hisEnviadas"=>$histEnviadas,"hisRecebidas"=>$histRecebidas);
 		$this->load->template("documento/ver",$dados);

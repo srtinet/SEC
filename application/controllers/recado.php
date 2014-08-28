@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Recado extends CI_Controller{
 	public function listarRecado(){
 		// $this->output->enable_profiler(TRUE);
@@ -34,6 +33,7 @@ class Recado extends CI_Controller{
 			);
 		$idRecado = $this->recado_model->salvarRecado($recado);
 		$mensagem = array(
+			"idMensagem" => $this->input->post("idMensagem"),
 			"Usuario_idUsuarioDes" => $this->input->post("idUsuarioDestino"),
 			"Usuario_idUsuarioRem" => $usuario['idUsuario'] ,
 			"Recado_idRecado" => $idRecado,

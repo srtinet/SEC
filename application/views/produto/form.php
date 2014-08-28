@@ -10,11 +10,11 @@ if($produtos){
 	}
 }else{
 	$idProduto = "";
-	$descricao = "";
-	$tipo = "";
+	$descricaoProduto = "";
+	$tipoProduto = "";
 	$estoqueMinimo = "";
 	$estoqueMaximo = "";
-	$unidade = "";
+	$unidadeProduto = "";
 }?>
 <div class="row">
 	<div class="col-lg-8">

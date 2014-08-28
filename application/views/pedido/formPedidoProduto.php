@@ -1,14 +1,14 @@
 <?php
 if($pedidosP){
-	foreach($pedidosP as $pedidoS){
+	foreach($pedidosP as $pedidoP){
 		$Produto_idProduto = $pedidoP['Produto_idProduto'];
-		$Pedido_idPedido = $pedidoP['Pedido_idPedido'];
-		$quantidade = $pedidoP['quantidade'];
+		$idPedido = $pedidoP['idPedido'];
+		$quantidadeProduto = $pedidoP['quantidadeProduto'];
 	}
 }else{
 	$Produto_idProduto = "";
-	$Pedido_idPedido = "";
-	$quantidade = "";
+	$idPedido = "";
+	$quantidadeProduto = "";
 }?>
 <div class="row">
 	<div class="col-lg-8">
@@ -21,16 +21,16 @@ if($pedidosP){
 </div>
 <?php
 echo form_open("pedido/cadastrarPedidoProduto");
-
+echo form_hidden('idPedido', $idPedido);
 $options = array();
 $options[0] = "Contato";
 foreach($produtos as $p) {
-	$options[$p["Produto_idProduto"]] = $p["descricao"];
+	$options[$p["idProduto"]] = $p["descricaoProduto"];
 
 }
 echo inputList("Produto_idProduto","Produto", $options);
 // echo form_hidden('Fornecedor_idFornecedor', $Fornecedor_idFornecedor);
-echo inputText("quantidade","Quantidade",$quantidade);
+echo inputText("quantidadeProduto","Quantidade",$quantidadeProduto);
 
 echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 echo form_close();

@@ -3,7 +3,7 @@
 
 <?php
 echo form_open("recado/cadastrar");
-
+// echo form_hidden('idMensagem', $idMensagem);
 $options = array();
 foreach($empresas as $empresa) {
 	$options[$empresa["idEmpresa"]] = $empresa["razaoSocial"];

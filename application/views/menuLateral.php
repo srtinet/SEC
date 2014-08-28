@@ -6,6 +6,7 @@
       if($usuario['tipo'] != 3){
 	?>
 		<li ><?php echo anchor("/", "Home" ); ?></li>
+		<li ><?php echo anchor("agenda/listar", "Agenda" ); ?></li>
 		<li ><?php echo anchor("ligacao/form", "Solicitar Ligação" ); ?></li>
 		<li ><?php echo anchor("recado/form", "Enviar Recado" ); ?></li>
 		<li ><?php echo anchor("documento/novo", "Enviar documento" ); ?></li>
