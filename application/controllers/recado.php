@@ -27,15 +27,16 @@ class Recado extends CI_Controller{
 		$this->load->model("recado_model");
 		$usuario = $this->session->userdata('usuario_logado');
 		$recado = array(
+			
 			"Usuario_idUsuario" => $usuario['idUsuario'],
 			"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
 			"dataAbertura" => date("Y-m-d")
 			);
 		$idRecado = $this->recado_model->salvarRecado($recado);
 		$mensagem = array(
-			"idMensagem" => $this->input->post("idMensagem"),
+			"idMensagem" => 0,
 			"Usuario_idUsuarioDes" => $this->input->post("idUsuarioDestino"),
-			"Usuario_idUsuarioRem" => $usuario['idUsuario'] ,
+			"Usuario_idUsuarioRem" => $usuario['idUsuario'],
 			"Recado_idRecado" => $idRecado,
 			"recado" => $this->input->post("recado"),
 			"estado" => 0

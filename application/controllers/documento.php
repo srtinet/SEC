@@ -21,6 +21,7 @@ class Documento extends CI_Controller{
 	public function cadastrar(){
 		$this->load->model("documento_model");
 		$documento=array(
+			"idDocumento"=>0,
 			"idTipoDocumento" => $this->input->post("idTipoDocumento"),
 			"descricao" => $this->input->post("descricao"));
 		$this->documento_model->salvarTipo($documento);
@@ -48,15 +49,13 @@ class Documento extends CI_Controller{
 	}
 
 	public function salvarDoc(){
-		$this->form_validation->set_rules("TipoDocumento_idTipoDocumento", "TipoDocumento_idTipoDocumento", "required");
-		$this->form_validation->set_rules("Usuario_idUsuario", "Usuario_idUsuario", "required");
-		$this->form_validation->set_rules("descricao", "Descrição", "required");
-		$this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
-		$sucesso = $this->form_validation->run();
-		if($sucesso){
+
+
+	
 			$this->load->model("documento_model");
 			$usuario=$this->session->userdata('usuario_logado');
 			$documento=array(
+				"idDocumento"=>0,
 				"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
 				"Usuario_idUsuario" =>$usuario['idUsuario'],
 				"TipoDocumento_idTipoDocumento" => $this->input->post("TipoDocumento_idTipoDocumento"),
@@ -87,16 +86,16 @@ class Documento extends CI_Controller{
 
 			$this->session->set_flashdata('success',"Documento enviado com sucesso");
 			redirect('documento/novo');
-		} else {
-			$this->load->model("documento_model");
-			$this->load->model("empresa_model");
-			$this->load->model("usuarios_model");
-			$empresa=$this->empresa_model->listar();
-			$usuario=$this->usuarios_model->listar();
-			$tipo=$this->documento_model->listarTipo();
-			$dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
-			$this->load->template("documento/novo",$dados);
-		}
+	
+			// $this->load->model("documento_model");
+			// $this->load->model("empresa_model");
+			// $this->load->model("usuarios_model");
+			// $empresa=$this->empresa_model->listar();
+			// $usuario=$this->usuarios_model->listar();
+			// $tipo=$this->documento_model->listarTipo();
+			// $dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
+			// $this->load->template("documento/novo",$dados);
+	
 
 	}
 
