@@ -22,8 +22,9 @@
 					<tr>
 						<th>Documento</th>
 						<th>Destinatario</th>
-
+						<th>Empresa</th>
 						<th>Descrição</th>
+						<th>Modificar</th>
 						<th>Enviar</th>
 					</tr>
 				</thead>
@@ -37,18 +38,17 @@
 						?>
 
 					<tr>
-						<td><?php  echo $enviado['descricaoTipoDocumento']  ?> </td>
-						<td><?php  echo $enviado['destinatario']  ?> </td>
-						<td><?php  echo character_limiter($enviado['descricaoDocumento'], 90);   ?> </td>
-
+						<td><?php echo $enviado['descricaoTipoDocumento'] ?> </td>
+						<td><?php echo $enviado['destinatario'] ?> </td>
+						<td><?php echo $enviado['razaoSocial'] ?> </td>
+						<td><?php ?></td>
+						<td><?php echo anchor("documento/formDescricaoComentario/".$enviado['Documento_idDocumento'],"Modificar", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("documento/cliente/".$enviado['Documento_idDocumento'],"Cliente", array("class" => "btn btn-info",'target'=>'_blank'));  ?> </td>
 
 					</tr>
 
 					<?php 
-					endforeach;
-
-					?> </tbody>
+					endforeach;?> </tbody>
 				</table>
 
 			</div>
@@ -59,7 +59,7 @@
 						<tr>
 							<th>Documento</th>
 							<th>Remetente</th>
-
+							<th>Empresa</th>
 							<th>Descrição</th>
 							<th>Aceitar</th>
 							<th>Rejeitar</th>
@@ -77,8 +77,8 @@
 						<tr>
 							<td><?php  echo $recebida['descricaoTipoDocumento']  ?> </td>
 							<td><?php  echo $recebida['remetente']  ?> </td>
+							<td><?php  echo $recebida['razaoSocial']   ?> </td>
 							<td><?php  echo character_limiter($recebida['descricaoDocumento'], 90);   ?> </td>
-
 							<td><?php echo anchor("documento/aceite/".$recebida['idAceiteDocumento'],"Aceitar", array("class" => "btn btn-success"));  ?> </td>
 								<td><?php echo anchor("documento/rejeite/".$recebida['idAceiteDocumento'],"Rejeitar", array("class" => "btn btn-danger"));  ?> </td>
 

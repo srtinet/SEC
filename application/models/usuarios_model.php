@@ -22,12 +22,11 @@ class Usuarios_model extends CI_Model {
 			$this->db->order_by("nome", "asc");
 			return $this->db->get_where('Usuario',$where)->result_array();
 		}else{
-			$this->db->select("Usuario.*, Empresa_idEmpresa.idEmpresa, Empresa.razaoSocial");
+			$this->db->select("Usuario.*, Empresa.idEmpresa, Empresa.razaoSocial");
 			$this->db->from("Usuario");
-			$this->db->join("Usuario", "Usuario.Empresa_idEmpresa = Empresa.idEmpresa");
+			$this->db->join("Empresa", "Usuario.Empresa_idEmpresa = Empresa.idEmpresa");
 			$this->db->order_by("nome", "asc");
 			$this->db->where($where);
-
 			return $this->db->get()->result_array();
 
 		}
@@ -44,11 +43,9 @@ class Usuarios_model extends CI_Model {
 
 		$this->db->select(" GestorSetor.*,Setor.descricao as setorDescricao , Usuario.nome");
 		$this->db->from(" GestorSetor");
-
 		$this->db->join("Setor", "Setor.idSetor =  GestorSetor.Setor_idSetor");
 		$this->db->join("Usuario", "Usuario.idUsuario =  GestorSetor.Usuario_idUsuario");
 		$this->db->where($where);
-
 		return $this->db->get()->result_array();
 	}
 

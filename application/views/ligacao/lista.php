@@ -1,4 +1,6 @@
-<?php echo "<meta HTTP-EQUIV='refresh' CONTENT='10;URL=http://srtisec.net/index.php/ligacao/listar'>"; ?>
+<?php
+echo "<meta HTTP-EQUIV='refresh' CONTENT='5;URL=http://srtisec.net/index.php/ligacao/listar'>";
+?>
 <h1>Ligações</h1>
 <br/>
 <br/>

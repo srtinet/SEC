@@ -1,7 +1,19 @@
 <?php 
 class Documento_model extends CI_Model {
+	public function listarDocumento($where=array()){
+		return $this->db->get_where("Documento", $where)->result_array();
+	}
+
+	public function salvarDescricao($comentario){
+		$this->db->insert("descricaoDocumento", $comentario);
+	}
+
 	public function listarTipo($where=array()){
 		return $this->db->get_where("TipoDocumento", $where)->result_array();
+	}
+
+	public function listarComentarios($where=array()){
+		return $this->db->get_where("descricaoDocumento", $where)->result_array();
 	}
 
 	public function excluirTipo($id){
@@ -34,7 +46,7 @@ class Documento_model extends CI_Model {
 	}
 
 	public function listarDoc($where=array()){
-		$this->db->select("AceiteDocumento.*,Documento.descricao as descricaoDocumento , Empresa.razaoSocial,TipoDocumento.descricao as descricaoTipoDocumento, desUse.nome as destinatario,envUse.nome as remetente");
+		$this->db->select("AceiteDocumento.*,Documento.descricao as descricaoDocumento , Empresa.razaoSocial,TipoDocumento_idTipoDocumento, TipoDocumento.descricao as descricaoTipoDocumento, desUse.nome as destinatario,envUse.nome as remetente");
 		$this->db->from("Documento");
 		$this->db->join("AceiteDocumento", "AceiteDocumento.Documento_idDocumento = Documento.idDocumento");
 		$this->db->join("Empresa", "Empresa.idEmpresa = Documento.Empresa_idEmpresa");

@@ -53,22 +53,17 @@ class Usuarios  extends CI_Controller{
 		// 	$this->load->template("usuario/form",$dados);
 		// }
 	}
-
 		public function  gestor($id_Usuario,$id_Gestor=0){
 			$this->load->model("empresa_model");
 			$this->load->model("usuarios_model");
 			$this->load->model("setor_model");
 			$usuario=$this->usuarios_model->listar(array("idUsuario"=>$id_Usuario),1);
 			$setor=$this->setor_model->listar();
-
 			$gestorSetorSl=$this->usuarios_model->listarGestorJoin(array("idGestorSetor"=>$id_Gestor));
 			$gestorSetor=$this->usuarios_model->listarGestorJoin(array("Usuario_idUsuario"=>$id_Usuario));
-			$dados=array("gestorSetorUsuario"=>$gestorSetor,"usuarios"=>$usuario,"setores"=>$setor,"gestorSl"=>$gestorSetorSl);
-			$this->load->template("usuario/gestor",$dados);	
-
-
+			$dados=array("gestorSetorUsuario"=>$gestorSetor,"usuarios"=>$usuario,"setores"=>$setor,"gestorSl"=>$gestorSetorSl, "id" => $id_Usuario);
+			$this->load->template("usuario/gestor",$dados);
 		}
-
 		public function cadGestor(){
 			$this->load->model("usuarios_model");
 

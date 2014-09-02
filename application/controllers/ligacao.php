@@ -9,8 +9,12 @@ class Ligacao extends CI_Controller{
 
 	public function cadastrar(){
 		$this->load->model("ligacao_model");
+		$empresa = $this->input->post('Empresa_idEmpresa');
+		if($empresa == 0){
+			$empresa = 367;
+		};
 		$ligacao = array(
-			"Empresa_IdEmpresa" => $this->input->post('Empresa_idEmpresa'),
+			"Empresa_IdEmpresa" => $empresa,
 			"Usuario_idUsuario" => $this->input->post('Usuario_idUsuario'),
 			"estado" => $this->input->post('estado'),
 			"observacao" => $this->input->post('observacao')
@@ -21,6 +25,7 @@ class Ligacao extends CI_Controller{
 	}
 
 	public function listar(){
+		$this->output->enable_profiler(TRUE);
 		$usuario = $this->session->userdata['usuario_logado'];
 		$this->load->model("ligacao_model");
 		$ligacao = $this->ligacao_model->listar(array("Usuario_idUsuario"=>$usuario['idUsuario']));

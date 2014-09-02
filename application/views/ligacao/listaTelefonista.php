@@ -7,7 +7,6 @@
 	<script type="text/javascript">
 	var controller = 'ligacao';
 	var base_url = '<?php echo site_url(); //you have to load the "url_helper" to use this function ?>';
-	
 	function load_data_ajax(type){
 		$.ajax({
 			'url' : base_url + '/' + controller + '/listarTelefonista2',

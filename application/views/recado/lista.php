@@ -14,7 +14,6 @@
 						<th>Empresa</th>
 						<th>Destinatário</th>
 						<th>Data Abertura</th>
-						<th>Responder</th>
 						<!-- <th>Finalizar</th> -->
 					</tr>
 				</thead>
@@ -24,7 +23,7 @@
 						<td><?php echo $enviado['razaoSocial']?></td>
 						<td><?php echo $enviado['nomeDestinatario']?></td>
 						<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura'])?></td>
-						<td><?php echo anchor("mensagem/listar/{$enviado['idRecado']}","Responder", array("class" => "btn btn-primary"));  ?> </td>
+						<!-- <td><?php echo anchor("mensagem/listar/{$enviado['idRecado']}","Responder", array("class" => "btn btn-primary"));  ?> </td> -->
 						<!-- <td><?php echo anchor("#","Finalizar", array("class" => "btn btn-danger"));  ?> </td> -->
 					</tr>
 				<?php endforeach;?>
