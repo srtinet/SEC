@@ -25,9 +25,6 @@ class Documento extends CI_Controller{
 		redirect('documento/listarTipo');
 	}
 
-
-
-
 	public function excluir($id){
 		$this->load->model("documento_model");
 		$this->documento_model->excluirTipo($id);
@@ -39,18 +36,19 @@ class Documento extends CI_Controller{
 		$this->load->model("documento_model");
 		$this->load->model("empresa_model");
 		$this->load->model("usuarios_model");
+		$usuario_logado = $this->session->userdata['usuario_logado']['idUsuario'];
 		$empresa=$this->empresa_model->listar();
 		$usuario=$this->usuarios_model->listar();
 		$tipo=$this->documento_model->listarTipo();
-		$dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
+		$dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario, "usuario_logado"=>$usuario_logado);
 		$this->load->template("documento/novo",$dados);
 	}
 
-	public function formDescricaoComentario($idDocumento=0){
-		// $this->load->model("documento_model");
-		$usuario=$this->session->userdata['usuario_logado']['nome'];
-		// $documento=$this->documento_model->listarDocumento(array("idDocumento"=>$id));
-		$dados = array("usuario"=>$usuario, "documento"=>$idDocumento);
+	public function formDescricaoComentario($id=0){
+		$this->load->model("documento_model");
+		$usuario=$this->session->userdata['usuario_logado']['idUsuario'];
+		$comentario=$this->documento_model->listarComentarios(array("descricaoDocumento.Documento_idDocumento"=>$id));
+		$dados = array("usuario"=>$usuario, "comentarios"=>$comentario, "idDocumento"=>$id);
 		$this->load->template("documento/formDescricaoComentario",$dados);
 	}
 
@@ -60,47 +58,43 @@ class Documento extends CI_Controller{
 			"Usuario_idUsuario"=>$this->input->post("Usuario_idUsuario"),
 			"Documento_idDocumento" => $this->input->post("Documento_idDocumento"),
 			"comentario" => $this->input->post("comentario")
-		);
+			);
 		$this->documento_model->salvarDescricao($comentario);
 		$this->session->set_flashdata('success',"Comentário salvo com sucesso");
 		redirect('documento/ver');
 	}
 
 	public function salvarDoc(){
-			$this->load->model("documento_model");
-			$usuario=$this->session->userdata('usuario_logado');
-			$documento=array(
-				"idDocumento"=>0,
-				"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
-				"Usuario_idUsuario" =>$usuario['idUsuario'],
-				"TipoDocumento_idTipoDocumento" => $this->input->post("TipoDocumento_idTipoDocumento"),
-				"descricao" => $this->input->post("descricao"),
-				"dataAbertura"=>date("Y-m-d"));
-			$doc=$this->documento_model->salvarDoc($documento);
-			$aceite=array(
-				"Usuario_idUsuarioDest"=> $this->input->post("Usuario_idUsuario"),
-				"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
-				"Documento_idDocumento"=>$doc,
-				"situacao"=>0,
-				"dataRegistro"=>date('Y-m-d'),
-				"estadoAnterior"=>0
-				);
+		$this->load->model("documento_model");
+		$usuario=$this->session->userdata('usuario_logado');
+		$documento=array(
+			"idDocumento"=>0,
+			"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
+			"Usuario_idUsuario" =>$usuario['idUsuario'],
+			"TipoDocumento_idTipoDocumento" => $this->input->post("TipoDocumento_idTipoDocumento"),
+				// "descricao" => $this->input->post("descricao"),
+			"dataAbertura"=>date("Y-m-d"));
+		$doc=$this->documento_model->salvarDoc($documento);
+		$aceite=array(
+			"Usuario_idUsuarioDest"=> $this->input->post("Usuario_idUsuario"),
+			"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
+			"Documento_idDocumento"=>$doc,
+			"situacao"=>0,
+			"dataRegistro"=>date('Y-m-d'),
+			"estadoAnterior"=>0
+			);
+		$acc=$this->documento_model->salvarAceiteDoc($aceite);
+		$aceite=array(
+			"Usuario_idUsuarioDest"=> $this->input->post("Usuario_idUsuario"),
+			"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
+			"Documento_idDocumento"=>$doc,
+			"situacao"=>1,
+			);
+		$acc=$this->documento_model->salvarAceiteDoc($aceite);
+		$this->session->set_flashdata('success',"Documento enviado com sucesso");
+		$this->load->model("documento_model");
 
-			$acc=$this->documento_model->salvarAceiteDoc($aceite);
-			$aceite=array(
-				"Usuario_idUsuarioDest"=> $this->input->post("Usuario_idUsuario"),
-				"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
-				"Documento_idDocumento"=>$doc,
-				"situacao"=>1,
-
-				);
-
-			$acc=$this->documento_model->salvarAceiteDoc($aceite);
-
-
-
-			$this->session->set_flashdata('success',"Documento enviado com sucesso");
-			redirect('documento/ver');
+		redirect('documento/ver');
 
 			// $this->load->model("documento_model");
 			// $this->load->model("empresa_model");
@@ -119,12 +113,13 @@ class Documento extends CI_Controller{
 		$this->load->model("documento_model");
 		$usuario=$this->session->userdata('usuario_logado');
 		$comentario = $this->documento_model->listarComentarios();
+		$comentarioLimit = $this->documento_model->listarComentariosLimit();
 		$enviadas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>1,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
 		$rejeitadas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>2,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
 		$recebidas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>1,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
 		$histEnviadas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>3,"Usuario_idUsuarioEnv"=>$usuario['idUsuario']));
 		$histRecebidas=$this->documento_model->listarDoc(array("AceiteDocumento.situacao"=>3,"Usuario_idUsuarioDest"=>$usuario['idUsuario']));
-		$dados=array("comentarios"=>$comentario, "enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeitadas,"hisEnviadas"=>$histEnviadas,"hisRecebidas"=>$histRecebidas);
+		$dados=array("comentarios"=>$comentario, "enviadas"=>$enviadas,"recebidas"=>$recebidas,"rejeitadas"=>$rejeitadas,"hisEnviadas"=>$histEnviadas,"hisRecebidas"=>$histRecebidas, "comentarioLimits"=>$comentarioLimit);
 		$this->load->template("documento/ver",$dados);
 	}
 	public function aceite($id){
@@ -166,30 +161,18 @@ class Documento extends CI_Controller{
 			"Documento_idDocumento"=>$anterior['Documento_idDocumento'],
 			"situacao"=>1,
 			"dataRegistro"=>date('Y-m-d')
-
-
 			);
 		$doc=$this->documento_model->salvarAceiteDoc($aceite);
 		redirect("documento/ver");
-
-
-
-
-
 	}
 
 	public function cliente($id){
 		$this->load->model('documento_model');
+		$comentarioLimit = $this->documento_model->listarComentariosLimit();
 		$enviadas=$this->documento_model->listarDoc(array("Documento_idDocumento"=>$id));
-
-
 		$this->documento_model->salvarDoc(array("idDocumento"=>$id,"cliente"=>1));
-		$dados=array('documentos'=>$enviadas);
-
-
+		$dados=array('documentos'=>$enviadas, "comentarioLimits"=>$comentarioLimit);
 		$this->load->relatorio("documento/cliente",$dados);
-
-
 	}
 
 	public function baixa(){

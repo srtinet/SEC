@@ -168,7 +168,7 @@ if ($user['tipo']==2){
 
 					?>
 					<?php if($respon['dataVencimento'] == $dataHJ){
-						echo '<tr id="dataLimite">';
+						echo '<tr class="danger">';
 					}else{
 						echo '<tr>';
 					}?>

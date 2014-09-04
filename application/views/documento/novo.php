@@ -16,11 +16,11 @@ foreach ($tipodocumentos as $d) {
 }
 
 	echo form_open("documento/salvarDoc");
+	// echo form_hidden('Documento_idDocumento', $idDocumento);
 	echo inputList("Empresa_idEmpresa","Empresa",$empresa);
-	echo inputList("Usuario_idUsuario","Usuario",$usuario);
+	echo inputList("Usuario_idUsuario","Destinátario",$usuario);
 	echo inputList("TipoDocumento_idTipoDocumento","Tipo Documento",$tipo);
-	echo inputTextArea("descricao","Descrição");
-	echo form_error("descricao");
+	// echo inputTextArea("descricao","Descrição");
 
 	echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 	echo form_close();

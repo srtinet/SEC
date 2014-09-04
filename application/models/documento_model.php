@@ -13,7 +13,29 @@ class Documento_model extends CI_Model {
 	}
 
 	public function listarComentarios($where=array()){
-		return $this->db->get_where("descricaoDocumento", $where)->result_array();
+		$this->db->select("descricaoDocumento.*, Usuario.idUsuario, Usuario.nome, Documento.idDocumento");
+		$this->db->from("descricaoDocumento");
+		$this->db->join("Usuario", "Usuario.idUsuario = descricaoDocumento.Usuario_idUsuario");
+		$this->db->join("Documento", "Documento.idDocumento = descricaoDocumento.Documento_idDocumento");
+		$this->db->where($where);
+		// $this->db->order_by("idDescricaoDocumento", "desc");
+		// $this->db->limit(1);
+		return $this->db->get()->result_array();
+
+		// return $this->db->get_where("descricaoDocumento", $where)->result_array();
+	}
+
+	public function listarComentariosLimit($where=array()){
+		$this->db->select("descricaoDocumento.*, Usuario.idUsuario, Usuario.nome, Documento.idDocumento");
+		$this->db->from("descricaoDocumento");
+		$this->db->join("Usuario", "Usuario.idUsuario = descricaoDocumento.Usuario_idUsuario");
+		$this->db->join("Documento", "Documento.idDocumento = descricaoDocumento.Documento_idDocumento");
+		$this->db->where($where);
+		$this->db->order_by("idDescricaoDocumento", "desc");
+		$this->db->limit(1);
+		return $this->db->get()->result_array();
+
+		// return $this->db->get_where("descricaoDocumento", $where)->result_array();
 	}
 
 	public function excluirTipo($id){
@@ -46,7 +68,7 @@ class Documento_model extends CI_Model {
 	}
 
 	public function listarDoc($where=array()){
-		$this->db->select("AceiteDocumento.*,Documento.descricao as descricaoDocumento , Empresa.razaoSocial,TipoDocumento_idTipoDocumento, TipoDocumento.descricao as descricaoTipoDocumento, desUse.nome as destinatario,envUse.nome as remetente");
+		$this->db->select("AceiteDocumento.*,Documento.descricao as descricaoDocumento , Empresa.razaoSocial,TipoDocumento_idTipoDocumento, Documento.dataAbertura, TipoDocumento.descricao as descricaoTipoDocumento, desUse.nome as destinatario,envUse.nome as remetente");
 		$this->db->from("Documento");
 		$this->db->join("AceiteDocumento", "AceiteDocumento.Documento_idDocumento = Documento.idDocumento");
 		$this->db->join("Empresa", "Empresa.idEmpresa = Documento.Empresa_idEmpresa");
@@ -55,10 +77,10 @@ class Documento_model extends CI_Model {
 		$this->db->join("TipoDocumento", "TipoDocumento.idTipoDocumento = Documento.TipoDocumento_idTipoDocumento");
 		$this->db->where('estadoAnterior is null');
 		$this->db->where($where);
-		$this->db->order_by("AceiteDocumento.dataRegistro", "desc"); 
-		
+		$this->db->order_by("AceiteDocumento.dataRegistro", "desc");
+
 		return $this->db->get()->result_array();
-		
+
 
 	}
 	public function aceitar($aceite){
