@@ -21,6 +21,6 @@ if($comentarios){
 echo form_open("documento/cadastrarDescricao");
 echo form_hidden("Documento_idDocumento", $idDocumento);
 echo form_hidden("Usuario_idUsuario", $usuario);
-echo inputText("comentario","Nova Descrição");
+echo inputTextArea("comentario","Nova Descrição");
 echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 echo form_close();

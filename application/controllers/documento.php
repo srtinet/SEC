@@ -17,9 +17,10 @@ class Documento extends CI_Controller{
 	public function cadastrar(){
 		$this->load->model("documento_model");
 		$documento=array(
-			"idDocumento"=>0,
+			// "idDocumento"=>0,
 			"idTipoDocumento" => $this->input->post("idTipoDocumento"),
-			"descricao" => $this->input->post("descricao"));
+			"descricao" => $this->input->post("descricao")
+		);
 		$this->documento_model->salvarTipo($documento);
 		$this->session->set_flashdata('success',"Documento salvo com sucesso");
 		redirect('documento/listarTipo');
@@ -94,7 +95,7 @@ class Documento extends CI_Controller{
 		$this->session->set_flashdata('success',"Documento enviado com sucesso");
 		$this->load->model("documento_model");
 
-		redirect('documento/ver');
+		redirect('documento/formDescricaoComentario/'.$doc);
 
 			// $this->load->model("documento_model");
 			// $this->load->model("empresa_model");

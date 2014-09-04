@@ -70,6 +70,7 @@
 						<th>Remetente</th>
 						<th>Empresa</th>
 						<th>Descrição</th>
+						<th>Modificar Descrição</th>
 						<th>Aceitar</th>
 						<th>Rejeitar</th>
 					</tr>
@@ -82,7 +83,24 @@
 						<td><?php  echo $recebida['descricaoTipoDocumento']  ?> </td>
 						<td><?php  echo $recebida['remetente']  ?> </td>
 						<td><?php  echo $recebida['razaoSocial']   ?> </td>
-						<td><?php  echo character_limiter($recebida['descricaoDocumento'], 90);   ?> </td>
+						<td>
+							<?php
+							$idzao = $recebida['Documento_idDocumento'];
+							if($recebida['descricaoDocumento'] != null){
+								echo $recebida['descricaoDocumento'];
+
+							}else{
+								
+								foreach($comentarioLimits as $comentarioLimit){
+									if($idzao == $comentarioLimit['Documento_idDocumento']){
+										echo "<b>Comentário de ".character_limiter($comentarioLimit['nome'], 15)." :</b><br/>".$comentarioLimit['comentario']."<br/>";
+									}
+								}
+							}
+							?>
+
+						</td>
+						<td><?php echo anchor("documento/formDescricaoComentario/".$recebida['Documento_idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("documento/aceite/".$recebida['idAceiteDocumento'],"Aceitar", array("class" => "btn btn-success"));  ?> </td>
 						<td><?php echo anchor("documento/rejeite/".$recebida['idAceiteDocumento'],"Rejeitar", array("class" => "btn btn-danger"));  ?> </td>
 					</tr>
@@ -162,7 +180,7 @@
 								<tr>
 									<th>Documento</th>
 									<th>Destinatario</th>
-
+									<th>Empresa</th>
 									<th>Descrição</th>
 									<th>Reenviar</th>
 								</tr>
@@ -179,6 +197,7 @@
 								<tr>
 									<td><?php  echo $hisEnviada['descricaoTipoDocumento']  ?> </td>
 									<td><?php  echo $hisEnviada['destinatario']  ?> </td>
+									<td><?php  echo $hisEnviada['razaoSocial']  ?> </td>
 									<td><?php  echo character_limiter($hisEnviada['descricaoDocumento'], 90);   ?> </td>
 
 									<td><?php echo anchor("documento/reenviar","Reenviar", array("class" => "btn btn-danger"));  ?> </td>
@@ -199,6 +218,7 @@
 									<tr>
 										<th>Documento</th>
 										<th>Destinatario</th>
+										<th>Empresa</th>
 										<th>Descrição</th>
 										<th>Reenviar</th>
 									</tr>
@@ -215,6 +235,7 @@
 									<tr>
 										<td><?php  echo $hisRecebida['descricaoTipoDocumento']  ?> </td>
 										<td><?php  echo $hisRecebida['destinatario']  ?> </td>
+										<td><?php  echo $hisRecebida['razaoSocial']  ?> </td>
 										<td><?php  echo character_limiter($hisRecebida['descricaoDocumento'], 90);   ?> </td>
 
 										<td><?php echo anchor("documento/reenviar","Reenviar", array("class" => "btn btn-danger"));  ?> </td>

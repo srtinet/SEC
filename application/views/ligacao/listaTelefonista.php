@@ -57,7 +57,7 @@ if($("#titulo").length){
 					echo form_open("ligacao/alteraEstado");
 					echo form_hidden('estado', 1);
 					echo form_hidden('idTelefonema', $lig['idTelefonema']);
-					echo form_button(array("class"=>"btn btn-success","content"=>"Feita","type"=>"submit"));
+					echo form_button(array("class"=>"btn btn-success","content"=>"Concluída","type"=>"submit"));
 					echo form_close();
 					echo form_open("ligacao/alteraEstado");
 					echo form_hidden('estado', 2);

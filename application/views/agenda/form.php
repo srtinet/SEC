@@ -2,8 +2,8 @@
 if($agendas){
 	foreach($agendas as $agenda){
 		$idAgenda = $agenda['idAgenda'];
-		$nome = $agenda['nome'];
-		$telefone= $agenda['telefone'];
+		$nome = $agenda['Nome'];
+		$telefone= $agenda['Telefone'];
 	}
 }else{
 	$idAgenda = "";

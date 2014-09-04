@@ -21,6 +21,6 @@ foreach ($tipodocumentos as $d) {
 	echo inputList("Usuario_idUsuario","Destinátario",$usuario);
 	echo inputList("TipoDocumento_idTipoDocumento","Tipo Documento",$tipo);
 	// echo inputTextArea("descricao","Descrição");
-
+	echo "<br><h5>Clique em Salvar para Colocar uma Descrição</h5><br>";
 	echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 	echo form_close();

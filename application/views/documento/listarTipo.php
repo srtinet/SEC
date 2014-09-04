@@ -24,7 +24,6 @@
 			<td><?php  echo $documento['descricao']  ?> </td>
 
 			<td><?php echo anchor("documento/form/{$documento['idTipoDocumento']}","Modificar", array("class" => "btn btn-primary"));  ?> </td>
-			<td><?php echo anchor("documento/excluir/{$documento['idTipoDocumento']}","Excluir", array("class" => "btn btn-danger"));  ?> </td>
 			<td>
 				<button class="btn btn-danger " id="conf<?php echo $documento['idTipoDocumento']; ?>" onclick="confirmar('conf<?php echo $documento['idTipoDocumento'];?>')" value="<?php echo base_url("/index.php/documento/excluir/{$documento['idTipoDocumento']}"); ?>">Excluir</button>
 			</td>
