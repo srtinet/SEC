@@ -7,6 +7,7 @@ class Empresa_model extends CI_Model {
 
 	} 
 	public function listarAtividade($where=array()){
+		$this->db->order_by("razaoSocial", "asc");
 		return $this->db->get_where("AtividadeEmpresa", $where)->result_array();
 
 

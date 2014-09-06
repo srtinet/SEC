@@ -3,6 +3,7 @@ class Atividade_model extends CI_Model {
 
 
 public function listar($where=array()){
+	$this->db->order_by("descricao", "asc");
 	return $this->db->get_where("Atividade", $where)->result_array();
 
 

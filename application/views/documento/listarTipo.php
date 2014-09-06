@@ -1,4 +1,4 @@
-<h1>Atividade</h1>
+<h1>Tipos Documento</h1>
 <?= anchor('documento/form', 'Novo', array("class" => "btn btn-primary")); ?>
 <br/>
 <br/>

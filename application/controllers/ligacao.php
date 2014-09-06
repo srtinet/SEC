@@ -32,23 +32,19 @@ class Ligacao extends CI_Controller{
 		$dados = array("lista" => $ligacao);
 		$this->load->template("ligacao/lista",$dados);
 	}
-
 	public function listarTelefonista(){
 		$this->output->enable_profiler(TRUE);
 		$this->load->model("ligacao_model");
 		$ligacao = $this->ligacao_model->listar();
 		$dados=array('lista' => $ligacao);
 		$this->load->template("ligacao/listaTelefonista", $dados);
-
 	}
-
-		public function listarTelefonista2(){
+	public function listarTelefonista2(){
 		$this->load->model("ligacao_model");
 		$ligacao = $this->ligacao_model->listar();
 		$dados=array('lista' => $ligacao);
 		$this->load->view("ligacao/listaTelefonista", $dados);
 	}
-
 	public function alteraEstado(){
 		$estado = array(
 			"idTelefonema" => $this->input->post('idTelefonema'),
@@ -62,6 +58,4 @@ class Ligacao extends CI_Controller{
 			redirect("ligacao/listarTelefonista");
 		}
 	}
-
-
 }
