@@ -82,7 +82,7 @@ if(data){
  					echo form_hidden('idEstadoResponsabilidade', $respon['idEstadoResponsabilidade']);
  					echo form_hidden('nivel', $respon['nivel']);
  					echo form_hidden('local', 2);
- 					echo form_hidden('estado', 2);
+ 					echo form_hidden('estado', 4);
  					echo form_button(array("class"=>"btn btn-success","content"=>"Validar","type"=>"submit"));
  					echo form_close();
  					?></td><td>

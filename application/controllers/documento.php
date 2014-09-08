@@ -6,14 +6,12 @@ class Documento extends CI_Controller{
 		$dados=array("documentos"=>$Tipo);
 		$this->load->template("documento/listarTipo",$dados);
 	}
-
 	public function form($id=0){
 		$this->load->model("documento_model");
 		$documento=$this->documento_model->listarTipo(array("idTipoDocumento"=>$id));
 		$dados=array("TipoDocumento"=>$documento);
 		$this->load->template("documento/form",$dados);
 	}
-
 	public function cadastrar(){
 		$this->load->model("documento_model");
 		$documento=array(
@@ -25,14 +23,12 @@ class Documento extends CI_Controller{
 		$this->session->set_flashdata('success',"Documento salvo com sucesso");
 		redirect('documento/listarTipo');
 	}
-
 	public function excluir($id){
 		$this->load->model("documento_model");
 		$this->documento_model->excluirTipo($id);
 		$this->session->set_flashdata('success', 'Excluido com Sucesso');
 		redirect('documento/listarTipo');
 	}
-
 	public function novo(){
 		$this->load->model("documento_model");
 		$this->load->model("empresa_model");
@@ -55,16 +51,18 @@ class Documento extends CI_Controller{
 
 	public function cadastrarDescricao(){
 		$this->load->model("documento_model");
+		$idDocumento = $this->input->post("Documento_idDocumento");
+		// $estado = null;
 		$comentario=array(
 			"Usuario_idUsuario"=>$this->input->post("Usuario_idUsuario"),
-			"Documento_idDocumento" => $this->input->post("Documento_idDocumento"),
+			"Documento_idDocumento" => $idDocumento,
 			"comentario" => $this->input->post("comentario")
 			);
+		$this->documento_model->mudaEstado($idDocumento, $comentario);
 		$this->documento_model->salvarDescricao($comentario);
 		$this->session->set_flashdata('success',"Comentário salvo com sucesso");
 		redirect('documento/ver');
 	}
-
 	public function salvarDoc(){
 		$this->load->model("documento_model");
 		$usuario=$this->session->userdata('usuario_logado');
@@ -105,10 +103,7 @@ class Documento extends CI_Controller{
 			// $tipo=$this->documento_model->listarTipo();
 			// $dados=array("tipodocumentos"=>$tipo,"empresas"=>$empresa,"usuarios"=>$usuario);
 			// $this->load->template("documento/novo",$dados);
-
-
 	}
-
 	public function ver(){
 		// $this->output->enable_profiler(TRUE);
 		$this->load->model("documento_model");
@@ -129,12 +124,10 @@ class Documento extends CI_Controller{
 			"idAceiteDocumento"=>$id,
 			"dataRegistro"=>date('Y-m-d'),
 			"situacao"=>3
-
 			);
 		$enviadas=$doc=$this->documento_model->aceitar($aceite);
 		redirect("documento/ver");
 	}
-
 	public function rejeite($id){
 		$this->load->model("documento_model");
 		$aceite=array(
@@ -151,11 +144,8 @@ class Documento extends CI_Controller{
 		$aceite=array(
 			"idAceiteDocumento"=>$id,
 			"estadoAnterior"=>'0');
-
 		$this->documento_model->aceitar($aceite);
-
 		$anterior=$this->documento_model->listarAceite(array("idAceiteDocumento"=>$id));
-
 		$aceite=array(
 			"Usuario_idUsuarioDest"=> $anterior['Usuario_idUsuarioDest'],
 			"Usuario_idUsuarioEnv"=> $anterior['Usuario_idUsuarioEnv'],
@@ -178,16 +168,11 @@ class Documento extends CI_Controller{
 
 	public function baixa(){
 		$this->load->model('documento_model');
-
-
 		$aceite=array(
 			"idAceiteDocumento"=>$this->input->post("idAceiteDocumento"),
 			"estadoAnterior"=>'0');
-
 		$id=$this->documento_model->aceitar($aceite);
-
 		$anterior=$this->documento_model->listarAceite(array("idAceiteDocumento"=>$this->input->post("idAceiteDocumento")));
-
 		$aceite=array(
 			"Usuario_idUsuarioDest"=> $anterior['Usuario_idUsuarioDest'],
 			"Usuario_idUsuarioEnv"=> $anterior['Usuario_idUsuarioEnv'],
@@ -195,17 +180,8 @@ class Documento extends CI_Controller{
 			"situacao"=>4,
 			"dataRegistro"=>date('Y-m-d'),
 			"observacao"=>$this->input->post("observacao")
-
-
 			);
 		$doc=$this->documento_model->salvarAceiteDoc($aceite);
 		redirect("documento/ver");
-
-
 	}
-
-
-
-
-
 }

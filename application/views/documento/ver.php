@@ -43,7 +43,7 @@
 								
 								foreach($comentarioLimits as $comentarioLimit){
 									if($idzao == $comentarioLimit['Documento_idDocumento']){
-										echo "<b>Comentário de ".character_limiter($comentarioLimit['nome'], 15)." :</b><br/>".$comentarioLimit['comentario']."<br/>";
+										echo "<b>Observação de ".character_limiter($comentarioLimit['nome'], 15)." :</b><br/>".$comentarioLimit['comentario']."<br/>";
 									}
 								}
 							}
@@ -80,9 +80,9 @@
 					foreach($recebidas as $recebida):
 						?>
 					<tr>
-						<td><?php  echo $recebida['descricaoTipoDocumento']  ?> </td>
-						<td><?php  echo $recebida['remetente']  ?> </td>
-						<td><?php  echo $recebida['razaoSocial']   ?> </td>
+						<td><?php echo $recebida['descricaoTipoDocumento']  ?> </td>
+						<td><?php echo $recebida['remetente']  ?> </td>
+						<td><?php echo $recebida['razaoSocial']   ?> </td>
 						<td>
 							<?php
 							$idzao = $recebida['Documento_idDocumento'];
