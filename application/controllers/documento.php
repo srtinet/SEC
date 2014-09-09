@@ -1,4 +1,4 @@
-'<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Documento extends CI_Controller{
 	public function listarTipo(){
 		$this->load->model("documento_model");
@@ -158,7 +158,7 @@ class Documento extends CI_Controller{
 
 	public function cliente($id){
 		$this->load->model('documento_model');
-		$comentarioLimit = $this->documento_model->listarComentariosLimit();
+		$comentarioLimit = $this->documento_model->listarComentariosLimit(array("Documento_idDocumento"=>$id));
 		$enviadas=$this->documento_model->listarDoc(array("AceiteDocumento.Documento_idDocumento"=>$id));
 		$this->documento_model->salvarDoc(array("idDocumento"=>$id,"cliente"=>1));
 		$dados=array('documentos'=>$enviadas, "comentarioLimits"=>$comentarioLimit);

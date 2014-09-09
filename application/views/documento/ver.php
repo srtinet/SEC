@@ -38,21 +38,14 @@
 						<td>
 							<?php
 							$idzao = $enviado['Documento_idDocumento'];
-							if($enviado['descricaoDocumento'] != null){
-								echo $enviado['descricaoDocumento'];
+				
+								echo $enviado['comentario'];
 
-							}else{
-								
-								foreach($comentarioLimits as $comentarioLimit){
-									if($idzao == $comentarioLimit['Documento_idDocumento']){
-										echo "<b>Observação de ".character_limiter($comentarioLimit['nome'], 15)." :</b><br/>".$comentarioLimit['comentario']."<br/>";
-									}
-								}
-							}
+							
 							?>
 
 						</td>
-						<td><?php echo anchor("documento/formDescricaoComentario/".$enviado['Documento_idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
+						<td><?php echo anchor("documento/formDescricaoComentario/".$enviado['idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("documento/cliente/".$enviado['Documento_idDocumento'],"Cliente", array("class" => "btn btn-info",'target'=>'_blank'));  ?> </td>
 					</tr>
 					<?php
@@ -77,6 +70,7 @@
 				</thead>
 				<tbody>
 					<?php 
+
 					foreach($recebidas as $recebida):
 						?>
 					<tr>
@@ -87,21 +81,14 @@
 						<td>
 							<?php
 							$idzao = $recebida['Documento_idDocumento'];
-							if($recebida['descricaoDocumento'] != null){
-								echo $recebida['descricaoDocumento'];
+							
+								echo $recebida['comentario'];
 
-							}else{
-								
-								foreach($comentarioLimits as $comentarioLimit){
-									if($idzao == $comentarioLimit['Documento_idDocumento']){
-										echo "<b>Comentário de ".character_limiter($comentarioLimit['nome'], 15)." :</b><br/>".$comentarioLimit['comentario']."<br/>";
-									}
-								}
-							}
+						
 							?>
 
 						</td>
-						<td><?php echo anchor("documento/formDescricaoComentario/".$recebida['Documento_idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
+						<td><?php echo anchor("documento/formDescricaoComentario/".$recebida['idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("documento/aceite/".$recebida['idAceiteDocumento'],"Aceitar", array("class" => "btn btn-success"));  ?> </td>
 						<td><?php echo anchor("documento/rejeite/".$recebida['idAceiteDocumento'],"Rejeitar", array("class" => "btn btn-danger"));  ?> </td>
 					</tr>
