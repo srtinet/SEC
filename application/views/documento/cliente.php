@@ -48,17 +48,20 @@ for ($i=0; $i <2; $i++) {
 					<td colspan="2">
 						<?php
 						$idzao = $documento['Documento_idDocumento'];
+						$descricao = 0;
 						if($documento['descricaoDocumento'] != null){
 							$descricao = $documento['descricaoDocumento'];
+							echo "Descrição: ".$descricao;
 						}else{
 							foreach($comentarioLimits as $comentarioLimit){
 								if($idzao == $comentarioLimit['Documento_idDocumento']){
 									$descricao = $comentarioLimit['comentario'];
+									echo "Descrição: ".$descricao;
 								}
 							}
 						}
 						?>
-						Descrição: <?php echo $descricao ?>
+						
 					</td>
 
 

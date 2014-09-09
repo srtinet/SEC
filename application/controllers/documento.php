@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+'<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Documento extends CI_Controller{
 	public function listarTipo(){
 		$this->load->model("documento_model");
@@ -52,7 +52,6 @@ class Documento extends CI_Controller{
 	public function cadastrarDescricao(){
 		$this->load->model("documento_model");
 		$idDocumento = $this->input->post("Documento_idDocumento");
-		// $estado = null;
 		$comentario=array(
 			"Usuario_idUsuario"=>$this->input->post("Usuario_idUsuario"),
 			"Documento_idDocumento" => $idDocumento,
@@ -160,7 +159,7 @@ class Documento extends CI_Controller{
 	public function cliente($id){
 		$this->load->model('documento_model');
 		$comentarioLimit = $this->documento_model->listarComentariosLimit();
-		$enviadas=$this->documento_model->listarDoc(array("Documento_idDocumento"=>$id));
+		$enviadas=$this->documento_model->listarDoc(array("AceiteDocumento.Documento_idDocumento"=>$id));
 		$this->documento_model->salvarDoc(array("idDocumento"=>$id,"cliente"=>1));
 		$dados=array('documentos'=>$enviadas, "comentarioLimits"=>$comentarioLimit);
 		$this->load->relatorio("documento/cliente",$dados);

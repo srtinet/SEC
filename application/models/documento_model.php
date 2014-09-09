@@ -64,21 +64,18 @@ class Documento_model extends CI_Model {
 		$this->db->join("Empresa", "Empresa.idEmpresa = Documento.Empresa_idEmpresa");
 		$this->db->join("Usuario as desUse", "desUse.idUsuario = AceiteDocumento.Usuario_idUsuarioDest");
 		$this->db->join("Usuario as envUse", "envUse.idUsuario = AceiteDocumento.Usuario_idUsuarioEnv");
-		$this->db->join("descricaoDocumento", "descricaoDocumento.Documento_idDocumento = Documento.idDocumento");
+		$this->db->join("descricaoDocumento", "descricaoDocumento.Documento_idDocumento = Documento.idDocumento", "left");
 		$this->db->join("TipoDocumento", "TipoDocumento.idTipoDocumento = Documento.TipoDocumento_idTipoDocumento");
 		$this->db->where('estadoAnterior is null');
 		$this->db->where('descricaoDocumento.estado is null');
 		$this->db->where($where);
-		$this->db->order_by("AceiteDocumento.dataRegistro", "desc");
+		$this->db->order_by("AceiteDocumento.dataRegistro", "asc");
 		return $this->db->get()->result_array();
 	}
 	public function mudaEstado($idDocumento, $comentario,$where=array()){
-
-
-		
-					$this->db->where("estado", null);
-			$this->db->where("Documento_idDocumento",$idDocumento);
-			$this->db->update("descricaoDocumento", array("estado"=>1));
+		$this->db->where("estado", null);
+		$this->db->where("Documento_idDocumento",$idDocumento);
+		$this->db->update("descricaoDocumento", array("estado"=>1));
 
 	}
 	public function aceitar($aceite){
