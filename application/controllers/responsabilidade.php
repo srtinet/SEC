@@ -181,6 +181,16 @@ class Responsabilidade extends CI_Controller{
 		echo json_encode($lista);
 
 	}
+	public function responsabilidade(){
+
+$this->load->model("usuarios_model");
+$this->load->model("empresa_model");
+$usuario=$this->usuarios_model->listar();
+$empresa=$this->empresa_model->listar();
+$dados=array("usuarios"=>$usduario,"empresas"=>$empresa);
+$this->load->template("Reponsabilidade/form",$dados);
+
+	}
 
 	// public function listarResponsabilidadeCliente(){
 	// 	$this->load->model("responsabilidade_model");
