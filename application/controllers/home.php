@@ -4,12 +4,7 @@ class Home extends CI_Controller{
 
 	public function index(){
 		if(isset($this->session->userdata['usuario_logado'])){
-			$usuario = $this->session->userdata['usuario_logado'];
-			if($usuario["telefonista"] == 1){
-				redirect('ligacao/listarTelefonista');
-			}else{
-				redirect('responsabilidade/responsabilidade');
-			}
+			$this->load->template("home",array("usuario_logado"=>$this->session->userdata['usuario_logado']));
 		}else{
 			$this->load->template("home");
 		}
