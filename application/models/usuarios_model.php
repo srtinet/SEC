@@ -1,7 +1,5 @@
 <?php 
 class Usuarios_model extends CI_Model {
-
-
 	public function salvar ($usuarios){
 		if ($usuarios['idUsuario']>0){
 			$this->db->where("idUsuario",$usuarios['idUsuario']);

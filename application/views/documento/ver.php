@@ -35,16 +35,7 @@
 						<td><?php echo $enviado['destinatario'] ?> </td>
 						<td><?php echo $enviado['razaoSocial'] ?> </td>
 						<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura']); ?> </td>
-						<td>
-							<?php
-							$idzao = $enviado['Documento_idDocumento'];
-				
-								echo $enviado['comentario'];
-
-							
-							?>
-
-						</td>
+						<td><?php echo $enviado['comentario'] ?></td>
 						<td><?php echo anchor("documento/formDescricaoComentario/".$enviado['idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("documento/cliente/".$enviado['Documento_idDocumento'],"Cliente", array("class" => "btn btn-info",'target'=>'_blank'));  ?> </td>
 					</tr>
@@ -78,16 +69,7 @@
 						<td><?php echo $recebida['remetente']  ?> </td>
 						<td><?php echo $recebida['razaoSocial']   ?> </td>
 						<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura']); ?> </td>
-						<td>
-							<?php
-							$idzao = $recebida['Documento_idDocumento'];
-							
-								echo $recebida['comentario'];
-
-						
-							?>
-
-						</td>
+						<td><?php echo $recebida['comentario']?></td>
 						<td><?php echo anchor("documento/formDescricaoComentario/".$recebida['idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("documento/aceite/".$recebida['idAceiteDocumento'],"Aceitar", array("class" => "btn btn-success"));  ?> </td>
 						<td><?php echo anchor("documento/rejeite/".$recebida['idAceiteDocumento'],"Rejeitar", array("class" => "btn btn-danger"));  ?> </td>

@@ -187,8 +187,8 @@ $this->load->model("usuarios_model");
 $this->load->model("empresa_model");
 $usuario=$this->usuarios_model->listar();
 $empresa=$this->empresa_model->listar();
-$dados=array("usuarios"=>$usduario,"empresas"=>$empresa);
-$this->load->template("Reponsabilidade/form",$dados);
+$dados=array("usuarios"=>$usuario,"empresas"=>$empresa);
+$this->load->template("Responsabilidade/form",$dados);
 
 	}
 

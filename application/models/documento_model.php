@@ -23,7 +23,7 @@ class Documento_model extends CI_Model {
 	public function listarComentariosLimit($where=array()){
 		$this->db->select("descricaoDocumento.*");
 		$this->db->from("descricaoDocumento");
-			$this->db->where('descricaoDocumento.estado is null');
+		$this->db->where('descricaoDocumento.estado is null');
 		$this->db->where($where);
 
 
