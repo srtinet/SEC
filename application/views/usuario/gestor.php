@@ -1,27 +1,25 @@
 <?php 
-
-
 if ($gestorSl){
 	foreach ($gestorSl as $gestorS ) {
 		$idGestorSetor=$gestorS['idGestorSetor'];
 		$Usuario_idUsuario=$gestorS['Usuario_idUsuario'];
 		$Setor_idSetor=$gestorS['Setor_idSetor'];
-		
-		
 	}
 }
 else{
 	$idGestorSetor=null;
 	$Usuario_idUsuario='';
 	$Setor_idSetor='';
-
-
-
 }
+?>
+<?php
+foreach($usuarios as $usuario){
+	if($usuario['idUsuario'] == $id){?>
+		<h1><?php echo $usuario['nome'] ?> </h1>
+	<?php }
+}
+?>
 
-
-	?>
-<h1><?php echo $usuarios['nome'] ?> </h1>
 
 <?php 
 echo form_open("usuarios/cadGestor");
@@ -35,7 +33,7 @@ foreach ($setores as $setor) {$options[$setor['idSetor']]=$setor['descricao'];}
 echo inputList("Setor_idSetor","Setor",$options,$Setor_idSetor);
 
 
-echo form_hidden('Usuario_idUsuario',$usuarios['idUsuario']);
+echo form_hidden('Usuario_idUsuario',$id);
 echo form_hidden('idGestorSetor',$idGestorSetor);
 
 echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
@@ -49,7 +47,7 @@ echo form_close();
 			<th>Usuario</th>
 			
 			<th>Setor</th>
-		
+
 			<th>Modificar</th>
 			<th>Apagar</th>
 		</tr>

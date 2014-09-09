@@ -7,6 +7,7 @@ class Empresa_model extends CI_Model {
 
 	} 
 	public function listarAtividade($where=array()){
+		$this->db->order_by("razaoSocial", "asc");
 		return $this->db->get_where("AtividadeEmpresa", $where)->result_array();
 
 
@@ -32,6 +33,17 @@ class Empresa_model extends CI_Model {
 
 		return $this->db->get()->result_array();
 	}
+		public function listarSetorDis($where=array()){
+
+		$this->db->select("Setor.descricao,Setor.idSetor");
+		$this->db->from(" SetorUsuario");
+		$this->db->join("Empresa", "Empresa.idEmpresa =  SetorUsuario.Empresa_idEmpresa");
+		$this->db->join("Setor", "Setor.idSetor =  SetorUsuario.Setor_idSetor");
+		$this->db->join("Usuario", "Usuario.idUsuario =  SetorUsuario.Usuario_idUsuario");
+		$this->db->where($where);
+		$this->db->group_by("Setor.descricao"); 
+		return $this->db->get()->result_array();
+	}
 	public function listarAtividadeJoin($where=array()){
 
 		$this->db->select("AtividadeEmpresa.*, Empresa.razaoSocial,Setor.descricao as setorDescricao , Atividade.descricao as atividadeDescricao");
@@ -49,15 +61,19 @@ class Empresa_model extends CI_Model {
 		if ($empresa['idEmpresa']>0){
 			$this->db->where("idEmpresa",$empresa['idEmpresa']);
 			$this->db->update("Empresa",$empresa);
+			return 0;
 
 		}else{
 			$this->db->insert("Empresa",$empresa);
+			return $this->db->insert_id();
 		}
 
+		
+
 	}
-	public function excluir($id){
+	public function excluir($id, $where=array()){
 		$this->db->where("idEmpresa",$id);
-		$this->db->delete('Empresa');
+		$this->db->update("Empresa",$where);
 	}
 	public function excluirAtividade($id){
 		$this->db->where("idAtividadeEmpresa",$id);
@@ -89,4 +105,5 @@ class Empresa_model extends CI_Model {
 		$this->db->where("idSetorUsuario",$id);
 		$this->db->delete('SetorUsuario');
 	}
+
 }

@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Ligacao extends CI_Controller{
 	public function form($id=0){
 		$this->load->model("empresa_model");
@@ -10,8 +9,12 @@ class Ligacao extends CI_Controller{
 
 	public function cadastrar(){
 		$this->load->model("ligacao_model");
+		$empresa = $this->input->post('Empresa_idEmpresa');
+		if($empresa == 0){
+			$empresa = 367;
+		};
 		$ligacao = array(
-			"Empresa_IdEmpresa" => $this->input->post('Empresa_idEmpresa'),
+			"Empresa_IdEmpresa" => $empresa,
 			"Usuario_idUsuario" => $this->input->post('Usuario_idUsuario'),
 			"estado" => $this->input->post('estado'),
 			"observacao" => $this->input->post('observacao')
@@ -22,29 +25,26 @@ class Ligacao extends CI_Controller{
 	}
 
 	public function listar(){
+		$this->output->enable_profiler(TRUE);
 		$usuario = $this->session->userdata['usuario_logado'];
 		$this->load->model("ligacao_model");
 		$ligacao = $this->ligacao_model->listar(array("Usuario_idUsuario"=>$usuario['idUsuario']));
 		$dados = array("lista" => $ligacao);
 		$this->load->template("ligacao/lista",$dados);
 	}
-
 	public function listarTelefonista(){
 		$this->output->enable_profiler(TRUE);
 		$this->load->model("ligacao_model");
 		$ligacao = $this->ligacao_model->listar();
 		$dados=array('lista' => $ligacao);
 		$this->load->template("ligacao/listaTelefonista", $dados);
-
 	}
-
-		public function listarTelefonista2(){
+	public function listarTelefonista2(){
 		$this->load->model("ligacao_model");
 		$ligacao = $this->ligacao_model->listar();
 		$dados=array('lista' => $ligacao);
 		$this->load->view("ligacao/listaTelefonista", $dados);
 	}
-
 	public function alteraEstado(){
 		$estado = array(
 			"idTelefonema" => $this->input->post('idTelefonema'),
@@ -58,6 +58,4 @@ class Ligacao extends CI_Controller{
 			redirect("ligacao/listarTelefonista");
 		}
 	}
-
-
 }

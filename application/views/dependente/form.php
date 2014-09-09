@@ -14,7 +14,16 @@ if($dependentes){
 }
 ?>
 
-<h3>Abertura de Dependente</h3>
+
+<div class="row">
+	<div class="col-lg-8">
+		<h3>Abertura de Dependente</h3>
+	</div>
+	<div class="col-lg-4">
+		<br/>
+		<?php echo anchor("dependente/listar/","Voltar", array("class" => "btn btn-danger"));  ?> 
+	</div>
+</div>
 <?php
 echo form_open("dependente/cadastrar");
 echo form_hidden('idDependente', $idDependente);

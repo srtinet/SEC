@@ -1,7 +1,5 @@
 <?php
-
 class Mensagem_model extends CI_Model{
-	
 	public function listar($where=array()){
 		$this->db->select("Mensagem.*, Recado.idRecado,remetente.nome as nomeRemetente,remetente.idUsuario as idRemetente,destinatario.idUsuario as idDestinatario, destinatario.nome as nomeDestinatario");
 		$this->db->from("Mensagem");

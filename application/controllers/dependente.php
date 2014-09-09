@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Dependente  extends CI_Controller{
 	public function listar($idSocio){
+		// $this->output->enable_profiler(TRUE);
 		$this->load->model("dependente_model");
 		$dependente = $this->dependente_model->listarDependente(array("idSocio" => $idSocio));
 		$dados = array("dependentes" => $dependente, "idSocio" => $idSocio);

@@ -1,7 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Mensagem extends CI_Controller{
-
 	public function listar($idRecado){
 		$this->output->enable_profiler(TRUE);
 		$this->load->model("empresa_model");
@@ -13,7 +11,6 @@ class Mensagem extends CI_Controller{
 		$dados = array("mensagens" => $mensagem, 'idRecado' => $idRecado, "empresas" => $empresa, "usuarios" => $usuario);
 		$this->load->template("mensagem/lista", $dados);
 	}
-
 	public function cadastrarMensagem($idRecado){
 		$this->load->model("mensagem_model");
 		$this->load->model("recado_model");
@@ -25,6 +22,7 @@ class Mensagem extends CI_Controller{
 			);
 		$this->recado_model->salvarMensagem($mensagem);
 		$mensagem = array(
+			"idMensagem" => 1,
 			"Usuario_idUsuarioDes" => $this->input->post("Usuario_idUsuario"),
 			"Usuario_idUsuarioRem" => $usuario['idUsuario'],
 			"Recado_idRecado" => $idRecado,
@@ -35,7 +33,6 @@ class Mensagem extends CI_Controller{
 		$this->session->set_flashdata('success',"Recado Salvo com Sucesso");
 		redirect('recado/listarRecado');
 	}
-
 	public function finalizarConversa($idRecado){
 		$this->load->model("mensagem_model");
 		$this->load->model("recado_model");

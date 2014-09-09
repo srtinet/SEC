@@ -36,11 +36,10 @@ class Responsabilidade extends CI_Controller{
 
 		}
 
-		if($usuario['tipo']== 3){
+		if($usuario['tipo']== 3 || $usuario['tipo'] == 4){
 			$filtroEmpresa= 0;
 			$filtroAtividade= 0;
 			$filtroUsuario= 0;
-
 		}
 
 		if(is_array($this->session->userdata('filtro'))){

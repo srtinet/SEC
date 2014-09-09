@@ -50,6 +50,7 @@ class Responsabilidade_model extends CI_Model {
 			$this->db->where("dataVencimento BETWEEN '" . $data1 . "' AND '" . $data2."'");
 		$this->db->order_by("dataVencimento", "desc"); 
 		$this->db->group_by($agrupar); 
+		$this->db->order_by("razaoSocial", "asc");
 		return $this->db->get()->result_array();
 	}
 	public function listarResponsabilidadeGestor($where=array(),$agrupar=''){

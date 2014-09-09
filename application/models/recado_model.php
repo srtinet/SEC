@@ -1,5 +1,4 @@
 <?php
-
 class Recado_model extends CI_Model{
 	public function listarRecado($where=array()){
 		$this->db->select("Mensagem.*,Recado.*,remetente.nome as nomeRemetente,remetente.idUsuario,destinatario.idUSuario , destinatario.nome as nomeDestinatario, Empresa.razaoSocial");

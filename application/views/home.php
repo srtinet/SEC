@@ -1,5 +1,1 @@
-<?php 
-
-var_dump($usuario_logado);
-
- ?>
+<h1>Home</h1>

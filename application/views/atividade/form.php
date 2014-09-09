@@ -21,7 +21,16 @@
 	}
 
 ?>
-<h1>Atividades</h1>
+
+<div class="row">
+	<div class="col-lg-8">
+		<h1>Atividades</h1>
+	</div>
+	<div class="col-lg-4">
+		<br/>
+		<?php echo anchor("atividade/listar/","Voltar", array("class" => "btn btn-danger"));  ?> 
+	</div>
+</div>
 <?php
 	echo form_open("atividade/cadastrar");
 	echo inputText("descricao", "Descrição", $descricao);

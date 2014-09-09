@@ -119,12 +119,10 @@ function someElementos(valor1, valor2)
 		// alert($('dependente').val());
 		if($('#'+valor1).val() == 1)
 		{
-
 			$('#'+valor2).show();
 		}
 		else
 		{
-
 			$('#'+valor2).hide();
 		}
 	};
@@ -134,14 +132,10 @@ function someElementos(valor1, valor2)
 		// alert($('dependente').val());
 		if($('#'+valor1).val() == 3)
 		{
-
 			$('#'+valor2).show();
 		}
 		else
 		{
-
 			$('#'+valor2).hide();
 		}
 	};
-
-

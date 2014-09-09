@@ -1,4 +1,13 @@
-<h1>Ligações</h1>
+
+<div class="row">
+	<div class="col-lg-8">
+		<h1>Ligações</h1>
+	</div>
+	<div class="col-lg-4">
+		<br/>
+		<?php echo anchor("empresa/listar/","Voltar", array("class" => "btn btn-danger"));  ?> 
+	</div>
+</div>
 <?php
 
 echo form_open("ligacao/cadastrar");

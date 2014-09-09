@@ -1,3 +1,12 @@
+<div class="row">
+	<div class="col-lg-8">
+		<!-- <h3>Setor</h3> -->
+	</div>
+	<div class="col-lg-4">
+		<br/>
+		<?php echo anchor("setor/listar/","Voltar", array("class" => "btn btn-danger"));  ?> 
+	</div>
+</div>
 <?php
 
 if($setor){

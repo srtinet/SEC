@@ -3,8 +3,9 @@
 class Empresa  extends CI_Controller{
 
 	public function listar(){
+		$this->output->enable_profiler(TRUE);
 		$this->load->model("empresa_model");
-		$empresa=$this->empresa_model->listar();
+		$empresa=$this->empresa_model->listar(array("situacao"=>1));
 		$dados=array('empresas'=>$empresa);
 		$this->load->template("empresa/lista",$dados);
 
@@ -19,7 +20,18 @@ class Empresa  extends CI_Controller{
 
 	public function excluir($id){
 		$this->load->model("empresa_model");
-		$empresa=$this->empresa_model->excluir($id);
+		$this->load->model("historico_model");
+		$usuario = $this->session->userdata['usuario_logado']['idUsuario'];
+		$hoje = date("Y/m/d");
+		$historico=array(
+			'Usuario_idUsuario' => $usuario,
+			'dataModificacao' => $hoje,
+			'Empresa_idEmpresa' => $id,
+			'acao' => 3
+			);
+		$this->historico_model->salvarHistorico($historico);
+		$empresa=$this->empresa_model->excluir($id, array("situacao" => 0));
+		$this->session->set_flashdata('success',"Empresa Excluída com Sucesso");
 		redirect('empresa/listar');
 	}
 
@@ -56,6 +68,9 @@ class Empresa  extends CI_Controller{
 		// $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
 		// $sucesso = $this->form_validation->run();
 		// if($sucesso){
+		$usuario = $this->session->userdata['usuario_logado']['idUsuario'];
+		$hoje = date("Y/m/d");
+		$this->load->model("historico_model");
 		$this->load->model("empresa_model");
 		$valor = $this->input->post('uf');
 		switch($valor){
@@ -135,11 +150,15 @@ class Empresa  extends CI_Controller{
 			$valor = 25;
 			break;
 		}
+		$idEmpresa = $this->input->post('idEmpresa');
 		$empresa=array(
-			'idEmpresa' => $this->input->post('idEmpresa'),
+			'idEmpresa' => $idEmpresa,
 			'tipoEmpresa' => $this->input->post('tipoEmpresa'),
 			'enquadramento' => $this->input->post('enquadramento'),
 			'tributacao' => $this->input->post('tributacao'),
+			'dataTributacao' => $this->input->post('dataTributacao'),
+			'pagamentoImpostoRenda' => $this->input->post('pagamentoImpostoRenda'),
+			'formaPagamento' => $this->input->post('formaPagamento'),
 			'ramoAtividade' => $this->input->post('ramoAtividade'),
 			'statusEmpresa' => $this->input->post('statusEmpresa'),
 			'nContmatic' => $this->input->post('nContmatic'),
@@ -170,9 +189,22 @@ class Empresa  extends CI_Controller{
 			'codConselhoRegional' => $this->input->post('codConselhoRegional'),
 			'codJucesp' => $this->input->post('codJucesp'),
 			'codAlvaraBombeiro' => $this->input->post('codAlvaraBombeiro'),
-			'avisoEmail' => $this->input->post('avisoEmail')
+			'avisoEmail' => $this->input->post('avisoEmail'),
+			'situacao' => 1
 			);
-$this->empresa_model->salvar($empresa);
+$ultimaEmpresa = $this->empresa_model->salvar($empresa);
+$acao = 1;
+if($ultimaEmpresa == 0){
+	$ultimaEmpresa = $idEmpresa;
+	$acao = 2;
+}
+$historico=array(
+	'Usuario_idUsuario' => $usuario,
+	'dataModificacao' => $hoje,
+	'Empresa_idEmpresa' => $ultimaEmpresa,
+	'acao' => $acao
+	);
+$this->historico_model->salvarHistorico($historico);
 $this->session->set_flashdata('success',"Empresa Salva com Sucesso");
 redirect('empresa/listar');
 	// 	} else{
@@ -183,7 +215,6 @@ redirect('empresa/listar');
 	// }
 
 }
-
 public function atividade($id_empresa,$id_atividade=0){
 	$this->load->model("empresa_model");
 	$this->load->model("atividade_model");
@@ -192,7 +223,7 @@ public function atividade($id_empresa,$id_atividade=0){
 	$empresaAtividadeSl=$this->empresa_model->listarAtividade(array("idAtividadeEmpresa"=>$id_atividade));
 	$empresaAtividade=$this->empresa_model->listarAtividadeJoin(array("Empresa_idEmpresa"=>$id_empresa));
 	$Atividade=$this->atividade_model->listar();
-	$setor=$this->setor_model->listar();
+	$setor=$this->empresa_model->listarSetorDis(array("idEmpresa"=>$id_empresa));
 	$dados=array("empresas"=>$empresa,"empresaAtividades"=>$empresaAtividade,"atividades"=>$Atividade,"setores"=>$setor,"AtividadeSelecionada"=>$empresaAtividadeSl);
 	$this->load->template("empresa/atividade",$dados);		
 
@@ -224,17 +255,17 @@ public function excluirAtividade($id_atividade,$id_empresa){
 
 }
 
-public function  responsaveis($id_empresa,$id_atividade=0){
+public function responsaveis($id_empresa,$id_atividade=0){
 	$this->load->model("empresa_model");
 	$this->load->model("usuarios_model");
 	$this->load->model("setor_model");
-	$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id_empresa));	
+	$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id_empresa));
 	$setor=$this->setor_model->listar();
 	$usuario=$this->usuarios_model->listar();
 	$setorUsuarioSl=$this->empresa_model->listarSetorJoin(array("idSetorUsuario"=>$id_atividade));
 	$setorUsuario=$this->empresa_model->listarSetorJoin(array("idEmpresa"=>$id_empresa));
 	$dados=array("empresas"=>$empresa,"setorUsuarioEmpresa"=>$setorUsuario,"usuarios"=>$usuario,"setores"=>$setor,"responsaveis"=>$setorUsuarioSl);
-	$this->load->template("empresa/responsaveis",$dados);	
+	$this->load->template("empresa/responsaveis",$dados);
 
 
 }

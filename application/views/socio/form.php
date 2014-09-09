@@ -132,8 +132,8 @@ if($socios){
 	$rg = '';
 	$tituloEleitor = '';
 	$orgaoEmissorRg = '';
-	$dataExpedicao = '';
-	$dataNascimento = '';
+	$dataExpedicao = '0000/00/00';
+	$dataNascimento = '0000/00/00';
 	$uf = '';
 	$naturalidade = '';
 	$logradouro = '';
@@ -153,9 +153,8 @@ if($socios){
 	$proLabore = '';
 	$valorProLabore = '';
 	$aposentado = '';
-	$dataAposentadoriaIdade = '';
-	$dataAposentadoriaContribuicao = '';
-	$dataNascimentoDependente = '';
+	$dataAposentadoriaIdade = '0000/00/00';
+	$dataAposentadoriaContribuicao = '0000/00/00';
 	$dependente = '';
 	$empregadaDomestica = '';
 	$rotinaTrabalhista = '';
@@ -174,7 +173,15 @@ if($socios){
 
 
 ?>
-<h3>Abertura de Sócio</h3>
+<div class="row">
+	<div class="col-lg-8">
+		<h3>Abertura de Sócio</h3>
+	</div>
+	<div class="col-lg-4">
+		<br/>
+		<?php echo anchor("socio/listar/{$idEmpresa}","Voltar", array("class" => "btn btn-danger"));  ?> 
+	</div>
+</div>
 <?php
 echo form_open("socio/cadastrar");
 echo form_hidden('idSocio', $idSocio);
@@ -248,8 +255,8 @@ echo '<h1>Aposentado</h1>';
 
 $options = array(
 	'0'  => 'Selecione',
-	'1'  => 'Sim',
-	'2'  => 'Não'
+	'1'  => 'Não',
+	'2'  => 'Sim'
 	);
 echo inputListSumir("aposentado","Aposentado",$options, $aposentado, "aposentado", "caixaLista2");
 echo '<div id="caixaLista2">';
