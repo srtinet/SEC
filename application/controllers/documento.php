@@ -62,6 +62,7 @@ class Documento extends CI_Controller{
 		$this->session->set_flashdata('success',"Comentário salvo com sucesso");
 		redirect('documento/ver');
 	}
+	
 	public function salvarDoc(){
 		$this->load->model("documento_model");
 		$usuario=$this->session->userdata('usuario_logado');
