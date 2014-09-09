@@ -2,7 +2,7 @@
 // ob_start ();
 class Responsabilidade extends CI_Controller{
 	public function index(){
-		$this->output->enable_profiler(TRUE);
+		$this->output->enable_profiler(FALSE);
 		$this->load->model("responsabilidade_model");
 		$this->load->model("empresa_model");
 		$controle=$this->responsabilidade_model->controle();
@@ -98,7 +98,7 @@ class Responsabilidade extends CI_Controller{
 	}
 
 	public function validar(){
-		$this->output->enable_profiler(TRUE);
+		$this->output->enable_profiler(FALSE);
 		$this->load->model("responsabilidade_model");
 		$usuario=$this->session->userdata('usuario_logado');
 		$responsabilidadelst=$this->responsabilidade_model->listarResponsabilidadeGestor(array("GestorSetor.Usuario_idUsuario"=>$usuario['idUsuario'],"EstadoResponsabilidade.estado"=>'1'));
@@ -171,6 +171,7 @@ class Responsabilidade extends CI_Controller{
 
 	}
 
+
 	public function puxarAnexo(){
 		$this->load->model("anexo_model");
 		$id = $this->input->post('type');
@@ -181,16 +182,19 @@ class Responsabilidade extends CI_Controller{
 		echo json_encode($lista);
 
 	}
-	public function responsabilidade(){
+
+public function responsabilidadeCriar() {
 
 $this->load->model("usuarios_model");
 $this->load->model("empresa_model");
 $usuario=$this->usuarios_model->listar();
 $empresa=$this->empresa_model->listar();
-$dados=array("usuarios"=>$usduario,"empresas"=>$empresa);
-$this->load->template("Reponsabilidade/form",$dados);
+$dados=array("usuarios"=>$usuario,"empresas"=>$empresa);
+$this->load->template("responsabilidade/form",$dados);
 
 	}
+
+
 
 	// public function listarResponsabilidadeCliente(){
 	// 	$this->load->model("responsabilidade_model");
