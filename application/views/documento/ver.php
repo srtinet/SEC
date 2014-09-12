@@ -68,7 +68,7 @@
 						<td><?php echo $recebida['descricaoTipoDocumento']  ?> </td>
 						<td><?php echo $recebida['remetente']  ?> </td>
 						<td><?php echo $recebida['razaoSocial']   ?> </td>
-						<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura']); ?> </td>
+						<td><?php echo dataMysqlParaPtBr($recebida['dataAbertura']); ?> </td>
 						<td><?php echo $recebida['comentario']?></td>
 						<td><?php echo anchor("documento/formDescricaoComentario/".$recebida['idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
 						<td><?php echo anchor("documento/aceite/".$recebida['idAceiteDocumento'],"Aceitar", array("class" => "btn btn-success"));  ?> </td>
@@ -100,7 +100,7 @@
 								<td><?php  echo $rejeitada['descricaoTipoDocumento']  ?> </td>
 								<td><?php  echo $rejeitada['remetente']  ?> </td>
 								<td><?php  echo $rejeitada['razaoSocial']  ?> </td>
-								<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura']); ?> </td>
+								<td><?php echo dataMysqlParaPtBr($rejeitada['dataAbertura']); ?> </td>
 								<td><?php  echo character_limiter($rejeitada['descricaoDocumento'], 70);   ?> </td>
 
 								<td><?php echo anchor("documento/reenviar/".$rejeitada['idAceiteDocumento'],"Reenviar", array("class" => "btn btn-success"));  ?> </td>
@@ -171,7 +171,7 @@
 									<td><?php  echo $hisEnviada['descricaoTipoDocumento']  ?> </td>
 									<td><?php  echo $hisEnviada['destinatario']  ?> </td>
 									<td><?php  echo $hisEnviada['razaoSocial']  ?> </td>
-									<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura']); ?> </td>
+									<td><?php echo dataMysqlParaPtBr($hisEnviada['dataAbertura']); ?> </td>
 									<td><?php  echo character_limiter($hisEnviada['descricaoDocumento'], 90);   ?> </td>
 
 									<td><?php echo anchor("documento/reenviar","Reenviar", array("class" => "btn btn-danger"));  ?> </td>
@@ -191,7 +191,7 @@
 								<thead>
 									<tr>
 										<th>Documento</th>
-										<th>Destinatario</th>
+										<th>Remetente</th>
 										<th>Empresa</th>
 										<th>Data</th>
 										<th>Descrição</th>
@@ -204,9 +204,9 @@
 										?>
 									<tr>
 										<td><?php  echo $hisRecebida['descricaoTipoDocumento']  ?> </td>
-										<td><?php  echo $hisRecebida['destinatario']  ?> </td>
+										<td><?php  echo $hisRecebida['remetente']  ?> </td>
 										<td><?php  echo $hisRecebida['razaoSocial']  ?> </td>
-										<td><?php echo dataMysqlParaPtBr($enviado['dataAbertura']); ?> </td>
+										<td><?php echo dataMysqlParaPtBr($hisRecebida['dataAbertura']); ?> </td>
 										<td><?php  echo character_limiter($hisRecebida['descricaoDocumento'], 90);   ?> </td>
 
 										<td><?php echo anchor("documento/reenviar","Reenviar", array("class" => "btn btn-danger"));  ?> </td>

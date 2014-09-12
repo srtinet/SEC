@@ -26,7 +26,10 @@ for ($i=0; $i <2; $i++) {
 					</td>
 
 					<td>
-						<?php echo date("Y-m-d"); ?>
+						<?php
+						$data = date("Y-m-d");
+						echo dataMysqlParaPtbr($data);
+						 ?>
 					</td>
 				</tr>
 

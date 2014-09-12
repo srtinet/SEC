@@ -251,46 +251,48 @@ if ($user['tipo']==2){
 									</div>
 									<div class="modal-body">
 
-										<?php
+										<?php echo form_open_multipart('upload/do_upload');?>
+										<input type="file" name="userfile[]" id="userfile" multiple='' />
+										<?php echo form_hidden('Responsabilidade_idResponsabilidade', $respon['idResponsabilidade']);?>
+										<input type="text" name="descricao" placeholder="Descrição" class="form-control">
+										<input type="submit" name="submit" value="Salvar" class="btn btn-primary"/>
+									</form>
+<!-- 					 						<?php
 
 										echo form_open_multipart('upload/do_upload');
-										echo form_upload('userfile','','id="userfile"');
+										echo form_upload('files[]','','id="userfile"');
 										echo form_hidden('Responsabilidade_idResponsabilidade', $respon['idResponsabilidade']);
 										echo "<br>";
 										echo inputText("descricao","Descrição");
 										echo form_button(array("class"=>"btn btn-primary","content"=>"Salvar","type"=>"submit"));
 
 										echo form_close();
+										?> -->
 
-
-
-										?>
-
-									</form>
-									<table id="list<?php echo $respon['idResponsabilidade']?>" class="table table-striped table-responsive">
-										<thead>
-											<tr>
-												<th>Anexo</th>
-												<th>Descricao</th>
-											</tr>
-										</thead>
-										<tbody>
-										</div>
-
-										<div class="modal-footer" >
-
-											<button class="btn btn-success" onclick="load_data_anexo(<?php echo $respon['idResponsabilidade'] ?>)">Ver anexo(s)</button>
-
-											<div class="row">
+										<table id="list<?php echo $respon['idResponsabilidade']?>" class="table table-striped table-responsive">
+											<thead>
+												<tr>
+													<th>Anexo</th>
+													<th>Descricao</th>
+												</tr>
+											</thead>
+											<tbody>
 											</div>
-										</div>
-									</table>
-								</div>
 
+											<div class="modal-footer" >
+
+												<button class="btn btn-success" onclick="load_data_anexo(<?php echo $respon['idResponsabilidade'] ?>)">Ver anexo(s)</button>
+
+												<div class="row">
+												</div>
+											</div>
+										</table>
+									</div>
+
+								</div>
 							</div>
-						</div>
-					</td></td>
-					<?php  	}?>
-					<?php  	}?>
-				</tbody>
-			</table>
+						</td></td>
+						<?php  	}?>
+						<?php  	}?>
+					</tbody>
+				</table>
