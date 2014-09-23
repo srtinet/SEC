@@ -1,23 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Empresa  extends CI_Controller{
-
 	public function listar(){
-		$this->output->enable_profiler(TRUE);
+		// $this->output->enable_profiler(TRUE);
 		$this->load->model("empresa_model");
 		$empresa=$this->empresa_model->listar(array("situacao"=>1));
 		$dados=array('empresas'=>$empresa);
 		$this->load->template("empresa/lista",$dados);
 
 	}
-
 	public function form($id=0){
 		$this->load->model("empresa_model");
 		$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id));
 		$dados=array("empresas"=>$empresa);
 		$this->load->template("empresa/form",$dados);
 	}
-
 	public function excluir($id){
 		$this->load->model("empresa_model");
 		$this->load->model("historico_model");
@@ -34,8 +30,6 @@ class Empresa  extends CI_Controller{
 		$this->session->set_flashdata('success',"Empresa Excluída com Sucesso");
 		redirect('empresa/listar');
 	}
-
-
 	public function cadastrar($id=0){
 		// $this->form_validation->set_rules('nContmatic', "Nº Contmatic", "required");
 		// $this->form_validation->set_rules('cnpj', "CNPJ", "required");
@@ -213,7 +207,6 @@ redirect('empresa/listar');
 	// 		$dados=array("empresas"=>$empresa);
 	// 		$this->load->template("empresa/form",$dados);
 	// }
-
 }
 public function atividade($id_empresa,$id_atividade=0){
 	$this->load->model("empresa_model");
@@ -226,10 +219,7 @@ public function atividade($id_empresa,$id_atividade=0){
 	$setor=$this->empresa_model->listarSetorDis(array("idEmpresa"=>$id_empresa));
 	$dados=array("empresas"=>$empresa,"empresaAtividades"=>$empresaAtividade,"atividades"=>$Atividade,"setores"=>$setor,"AtividadeSelecionada"=>$empresaAtividadeSl);
 	$this->load->template("empresa/atividade",$dados);		
-
-
 }
-
 public function cadAtividade(){
 	$this->load->model("empresa_model");
 	$data=dataPtBrParaMysql($this->input->post("dataControle"));
@@ -243,18 +233,13 @@ public function cadAtividade(){
 	$this->empresa_model->cadAtividade($atividade);
 	$this->session->set_flashdata('success',"Atividade vinculada Sucesso");
 	redirect('empresa/atividade/'.$this->input->post("Empresa_idEmpresa"));
-
 }
 public function excluirAtividade($id_atividade,$id_empresa){
 	$this->load->model("empresa_model");
 	$empresa=$this->empresa_model->excluirAtividade($id_atividade);
 	$this->session->set_flashdata('success',"Atividade Excluida com Sucesso");
 	redirect('empresa/atividade/'.$id_empresa);
-
-
-
 }
-
 public function responsaveis($id_empresa,$id_atividade=0){
 	$this->load->model("empresa_model");
 	$this->load->model("usuarios_model");
@@ -266,13 +251,9 @@ public function responsaveis($id_empresa,$id_atividade=0){
 	$setorUsuario=$this->empresa_model->listarSetorJoin(array("idEmpresa"=>$id_empresa));
 	$dados=array("empresas"=>$empresa,"setorUsuarioEmpresa"=>$setorUsuario,"usuarios"=>$usuario,"setores"=>$setor,"responsaveis"=>$setorUsuarioSl);
 	$this->load->template("empresa/responsaveis",$dados);
-
-
 }
-
 public function cadResponsavel(){
 	$this->load->model("empresa_model");
-
 	$responsavel=array(
 		"idSetorUsuario" => $this->input->post("idSetorUsuario"),
 		"Empresa_idEmpresa" => $this->input->post("Empresa_idEmpresa"),
@@ -281,17 +262,25 @@ public function cadResponsavel(){
 	$this->empresa_model->cadResponsavel($responsavel);
 	$this->session->set_flashdata('success',"Atividade vinculada Sucesso");
 	redirect('empresa/responsaveis/'.$this->input->post("Empresa_idEmpresa"));
-
 }
 public function excluirResponsaveis($id_responsavel,$id_empresa){
 	$this->load->model("empresa_model");
 	$empresa=$this->empresa_model->excluirResponsavel($id_responsavel);
 	$this->session->set_flashdata('success',"Atividade Excluida com Sucesso");
 	redirect('empresa/responsaveis/'.$id_empresa);
-
-
+}
+public function info(){
+	$this->load->model("empresa_model");
+	$empresa=$this->empresa_model->listar(array("situacao"=>1));
+	$dados=array('empresas'=>$empresa);
+	$this->load->template("info/info",$dados);
 
 }
-
+public function infoForm($id=0){
+		$this->load->model("empresa_model");
+		$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id));
+		$dados=array("empresas"=>$empresa);
+		$this->load->template("info/info",$dados);
+	}
 
 }

@@ -155,6 +155,7 @@
 									<th>Empresa</th>
 									<th>Data</th>
 									<th>Descrição</th>
+									<th>Modificar Descrição</th>
 									<th>Reenviar</th>
 								</tr>
 							</thead>
@@ -173,7 +174,7 @@
 									<td><?php  echo $hisEnviada['razaoSocial']  ?> </td>
 									<td><?php echo dataMysqlParaPtBr($hisEnviada['dataAbertura']); ?> </td>
 									<td><?php  echo character_limiter($hisEnviada['descricaoDocumento'], 90);   ?> </td>
-
+									<td><?php echo anchor("documento/formDescricaoComentario/".$hisEnviada['idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
 									<td><?php echo anchor("documento/reenviar","Reenviar", array("class" => "btn btn-danger"));  ?> </td>
 
 								</tr>
@@ -190,11 +191,11 @@
 							<table class="table table-striped table-hover table-responsive">
 								<thead>
 									<tr>
-										<th>Documento</th>
 										<th>Remetente</th>
 										<th>Empresa</th>
 										<th>Data</th>
 										<th>Descrição</th>
+										<th>Modificar Descrição</th>
 										<th>Reenviar</th>
 									</tr>
 								</thead>
@@ -203,12 +204,11 @@
 									foreach($hisRecebidas as $hisRecebida):
 										?>
 									<tr>
-										<td><?php  echo $hisRecebida['descricaoTipoDocumento']  ?> </td>
 										<td><?php  echo $hisRecebida['remetente']  ?> </td>
 										<td><?php  echo $hisRecebida['razaoSocial']  ?> </td>
 										<td><?php echo dataMysqlParaPtBr($hisRecebida['dataAbertura']); ?> </td>
 										<td><?php  echo character_limiter($hisRecebida['descricaoDocumento'], 90);   ?> </td>
-
+										<td><?php echo anchor("documento/formDescricaoComentario/".$hisRecebida['idDocumento'],"Modificar Descrição", array("class" => "btn btn-primary"));  ?> </td>
 										<td><?php echo anchor("documento/reenviar","Reenviar", array("class" => "btn btn-danger"));  ?> </td>
 									</tr>
 									<?php

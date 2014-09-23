@@ -79,7 +79,7 @@ class Documento extends CI_Controller{
 			"Usuario_idUsuarioEnv"=> $usuario['idUsuario'],
 			"Documento_idDocumento"=>$doc,
 			"situacao"=>0,
-			"dataRegistro"=>date('Y-m-d'),
+			"dataRegistro"=>date("Y-m-d"),
 			"estadoAnterior"=>0
 			);
 		$acc=$this->documento_model->salvarAceiteDoc($aceite);
@@ -120,9 +120,10 @@ class Documento extends CI_Controller{
 	}
 	public function aceite($id){
 		$this->load->model("documento_model");
+		$hoje = date("Y-m-d");
 		$aceite=array(
 			"idAceiteDocumento"=>$id,
-			"dataRegistro"=>date('Y-m-d'),
+			"dataRegistro"=> $hoje,
 			"situacao"=>3
 			);
 		$enviadas=$doc=$this->documento_model->aceitar($aceite);
@@ -132,7 +133,7 @@ class Documento extends CI_Controller{
 		$this->load->model("documento_model");
 		$aceite=array(
 			"idAceiteDocumento"=>$id,
-			"dataRegistro"=>date('Y-m-d'),
+			"dataRegistro" => date("Y-m-d"),
 			"situacao"=>2
 			);
 		$enviadas=$doc=$this->documento_model->aceitar($aceite);
@@ -151,7 +152,7 @@ class Documento extends CI_Controller{
 			"Usuario_idUsuarioEnv"=> $anterior['Usuario_idUsuarioEnv'],
 			"Documento_idDocumento"=>$anterior['Documento_idDocumento'],
 			"situacao"=>1,
-			"dataRegistro"=>date('Y-m-d')
+			"dataRegistro"=>date("Y-m-d")
 			);
 		$doc=$this->documento_model->salvarAceiteDoc($aceite);
 		redirect("documento/ver");
@@ -178,10 +179,12 @@ class Documento extends CI_Controller{
 			"Usuario_idUsuarioEnv"=> $anterior['Usuario_idUsuarioEnv'],
 			"Documento_idDocumento"=>$anterior['Documento_idDocumento'],
 			"situacao"=>4,
-			"dataRegistro"=>date('Y-m-d'),
+			"dataRegistro"=>date("Y-m-d"),
 			"observacao"=>$this->input->post("observacao")
 			);
 		$doc=$this->documento_model->salvarAceiteDoc($aceite);
 		redirect("documento/ver");
 	}
+
+
 }

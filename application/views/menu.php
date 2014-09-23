@@ -69,6 +69,9 @@ if($usuario['tipo'] != 3){
         <li><?php echo anchor("recado/listarRecado", "Recado<span id='recado' class='badge pull-right numerador'></span>" ); ?></li>
         <li><?php echo anchor("documento/ver", "Documento<span id='documento' class='badge pull-right numerador'></span>" ); ?></li>
         <li ><?php echo anchor("email/enviarEmail", "Enviar Email" ); ?></li>
+        <?php if($usuario['tipo'] == 4){?>
+        <li ><?php echo anchor("empresa/info", "Informações" ); ?></li>
+        <?php } ?>
         <?php
         if($usuario['telefonista'] == 0){ ?>
         <li ><?php echo anchor("ligacao/listar", "Sol. Chamada<span id='ligacao' class='badge pull-right numerador'></span>");?>

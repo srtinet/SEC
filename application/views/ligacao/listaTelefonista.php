@@ -6,31 +6,37 @@
 <div id="container">
 	<script type="text/javascript">
 	var controller = 'ligacao';
-	var base_url = '<?php echo site_url(); //you have to load the "url_helper" to use this function ?>';
-	function load_data_ajax(type){
+	var base_url = '<?php echo site_url();?>';
+	function load_data_ajax(){
 		$.ajax({
 			'url' : base_url + '/' + controller + '/listarTelefonista2',
-			'type' : 'POST', //the way you want to send data to your URL
-			'data' : {'type' : type},
-'success' : function(data){ //probably this request will return anything, it'll be put in var "data"
-var container = $('.table'); //jquery selector (get element by id)
-if(data){
-	container.html(data);
-}
-if($("#titulo").length){
-	$("#titulo").css("display", "none", "position", "absolute");
-}
-}
-});
+				'type' : 'POST', //the way you want to send data to your URL
+				'success' : function(data){ //probably this request will return anything, it'll be put in var "data"
+					if(data)
+					{
+						var html="";
+						var Objeto = eval('(' + data + ')');
+						for (var i = Objeto.length - 1; i >= 0; i--){
+								// action = "<?php echo form_open('ligacao/alteraEstado')?>";
+								// alert(Objeto[i].nome);
+								form ='<form action="http://srtisec.net/index.php/ligacao/alteraEstado" method="post">'+'<input type="hidden" name="estado" value="1">'+'<input type="hidden" name="idTelefonema" value='+Objeto[i].idTelefonema+'>'+'<button class="btn btn-success">Concluida</button>'+'</form>'+'<form action="http://srtisec.net/index.php/ligacao/alteraEstado" method="post">'+'<input type="hidden" name="estado" value="2">'+'<input type="hidden" name="idTelefonema" value='+Objeto[i].idTelefonema+'>'+'<button class="btn btn-danger">Ocupada</button>'+'</form>';
+								// form ='<form action="http://localhost/SEC/index.php/ligacao/alteraEstado" method="post">'+'<input type="hidden" name="estado" value="1">'+'<input type="hidden" name="idTelefonema" value='+Objeto[i].idTelefonema+'>'+'<button class="btn btn-success">Concluida</button>'+'</form>'+'<form action="http://localhost/SEC/index.php/ligacao/alteraEstado" method="post">'+'<input type="hidden" name="estado" value="2">'+'<input type="hidden" name="idTelefonema" value='+Objeto[i].idTelefonema+'>'+'<button class="btn btn-danger">Ocupada</button>'+'</form>';
+								vermelho = 0;
+								if(Objeto[i].estado == 2){
+									vermelho = '<tr class="danger">';
+								}else{
+									vermelho = '<tr>';
+								}
+
+								html += vermelho+"<td>"+Objeto[i].nome+"</td>"+"<td>"+Objeto[i].razaoSocial+"</td>"+"<td>"+Objeto[i].observacao+"</td>"+"<td>"+Objeto[i].telefone+"</td>"+"<td>"+Objeto[i].telefoneResidencial+"</td>"+"<td>"+form+"</td>"+"</tr>";
+						}
+						$('.content').html(html);
+					}
+				}
+			});
 	}
-
-
-	
-	  setInterval(function() { load_data_ajax(); }, 15000);
-
+	setInterval(function() { load_data_ajax(); }, 5000);
 	</script>
-
-
 	<!-- <button onclick="()">Load list (type 1)</button> -->
 	<table class="table table-striped table-hover table-responsive">
 		<thead>
@@ -43,31 +49,8 @@ if($("#titulo").length){
 				<th>Estado</th>
 			</tr>
 		</thead>
-		<tbody>
-			<?php foreach($lista as $lig): ?>
-			<?php if($lig['estado'] == 0 || $lig['estado'] == 2){?>
-			<tr>
-				<td><?php echo $lig['nome']?></td>
-				<td><?php echo $lig['razaoSocial']?></td>
-				<td><?php echo $lig['observacao']?></td>
-				<td><?php echo $lig['telefone']?></td>
-				<td><?php echo $lig['telefoneResidencial']?></td>
-				<td>
-					<?php
-					echo form_open("ligacao/alteraEstado");
-					echo form_hidden('estado', 1);
-					echo form_hidden('idTelefonema', $lig['idTelefonema']);
-					echo form_button(array("class"=>"btn btn-success","content"=>"Concluída","type"=>"submit"));
-					echo form_close();
-					echo form_open("ligacao/alteraEstado");
-					echo form_hidden('estado', 2);
-					echo form_hidden('idTelefonema', $lig['idTelefonema']);
-					echo form_button(array("class"=>"btn btn-danger","content"=>"Ocupado","type"=>"submit"));
-					echo form_close();
-					?>
-				</td>
-				<?php }?>
-			<?php endforeach; ?>
+		<tbody class="content">
+
 		</tbody>
 	</table>
 

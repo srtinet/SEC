@@ -52,8 +52,8 @@ class Documento_model extends CI_Model {
 		}
 		return $this->db->insert_id();
 	}
-	public function salvarAceiteDoc($salvarAceiteDoc){
-		$this->db->insert('AceiteDocumento', $salvarAceiteDoc);
+	public function salvarAceiteDoc($aceite){
+		$this->db->insert('AceiteDocumento', $aceite);
 		return $this->db->insert_id();
 	}
 	public function listarDoc($where=array()){
