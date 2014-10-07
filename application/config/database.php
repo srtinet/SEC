@@ -48,12 +48,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'mysql.srtisec.net';
-// $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'sec_ras';
-// $db['default']['username'] = 'root';
-$db['default']['password'] = 'r2d2@42';
-// $db['default']['password'] = '123';
+// $db['default']['hostname'] = 'mysql.srtisec.net';
+$db['default']['hostname'] = 'localhost';
+// $db['default']['username'] = 'sec_ras';
+$db['default']['username'] = 'root';
+// $db['default']['password'] = 'r2d2@42';
+$db['default']['password'] = '123';
 $db['default']['database'] = 'sec_ras';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

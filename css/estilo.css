@@ -271,3 +271,11 @@ ul{
 	.caixaComentario h2{
 		color:#3265BF;
 	}
+
+	.divisor{
+		height: 1px !important;
+		background-color: #00177C !important;
+	}
+	.forte{
+		font-weight: 900;
+	}

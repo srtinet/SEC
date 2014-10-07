@@ -6,7 +6,6 @@ class Empresa  extends CI_Controller{
 		$empresa=$this->empresa_model->listar(array("situacao"=>1));
 		$dados=array('empresas'=>$empresa);
 		$this->load->template("empresa/lista",$dados);
-
 	}
 	public function form($id=0){
 		$this->load->model("empresa_model");
@@ -274,13 +273,70 @@ public function info(){
 	$empresa=$this->empresa_model->listar(array("situacao"=>1));
 	$dados=array('empresas'=>$empresa);
 	$this->load->template("info/info",$dados);
-
 }
-public function infoForm($id=0){
-		$this->load->model("empresa_model");
-		$empresa=$this->empresa_model->listar(array("idEmpresa"=>$id));
-		$dados=array("empresas"=>$empresa);
-		$this->load->template("info/info",$dados);
-	}
+public function infoForm($idEmpresa){
+// $this->output->enable_profiler(TRUE);
+	$this->load->model("empresa_model");
+	$empresa=$this->empresa_model->listarEmpresa($idEmpresa);
+	// $resul = array();
+	// 	foreach ($empresa as $linha ) {
+	// 		array_push($resul, $linha);
+	// 	}
+	// if($empresa->num_rows() == 0){
+	// 	die("Cliente não Encontrado");
+	// }
+	$dataa = $empresa->row()->dataAbertura;
+	// $dataAbertura = dataPtBrParaMysql($dataa);
+	$empresaLista = array(
+		"idEmpresa" => $empresa->row()->idEmpresa,
+		"razaoSocial" => $empresa->row()->razaoSocial,
+		"tipoEmpresa" => $empresa->row()->tipoEmpresa,
+		"enquadramento" => $empresa->row()->enquadramento,
+		'tributacao' => $empresa->row()->tributacao,
+		'dataTributacao' => $empresa->row()->dataTributacao,
+		'pagamentoImpostoRenda' => $empresa->row()->pagamentoImpostoRenda,
+		'formaPagamento' => $empresa->row()->formaPagamento,
+		'ramoAtividade' => $empresa->row()->ramoAtividade,
+		'statusEmpresa' => $empresa->row()->statusEmpresa,
+		'nContmatic' => $empresa->row()->nContmatic,
+		'cnpj' => $empresa->row()->cnpj,
+		'nomeFantasia' => $empresa->row()->nomeFantasia,
+		'matrizFilial' => $empresa->row()->matrizFilial,
+		'inscricaoMunicipal' => $empresa->row()->inscricaoMunicipal,
+		'inscricaoEstadual' => $empresa->row()->inscricaoEstadual,
+		'telefone' => $empresa->row()->telefone,
+		'telefoneResidencial' => $empresa->row()->telefoneResidencial,
+		'celular' => $empresa->row()->celular,
+		'email' => $empresa->row()->email,
+		'cep' => $empresa->row()->cep,
+		'logradouro' => $empresa->row()->logradouro,
+		'logradouroComercial' => $empresa->row()->logradouroComercial,
+		'numero' => $empresa->row()->numero,
+		'complemento' => $empresa->row()->complemento,
+		'bairro' => $empresa->row()->bairro,
+		'municipio' => $empresa->row()->municipio,
+		'uf' => $empresa->row()->uf,
+		'atividade' => $empresa->row()->atividade,
+		'inicioAtividade' => $empresa->row()->inicioAtividade,
+		'dataAbertura' => $dataa,
+		'cnae' => $empresa->row()->cnae,
+		'codCetesb' => $empresa->row()->codCetesb,
+		'codVigilancia' => $empresa->row()->codVigilancia,
+		'codConselhoRegional' => $empresa->row()->codConselhoRegional,
+		'codJucesp' => $empresa->row()->codJucesp,
+		'codAlvaraBombeiro' => $empresa->row()->codAlvaraBombeiro,
+		'avisoEmail' => $empresa->row()->avisoEmail
+		);
+
+echo json_encode($empresaLista);
+}
+
+public function infoImpresso($idEmpresa){
+// $this->output->enable_profiler(TRUE);
+	$this->load->model("empresa_model");
+	$empresa=$this->empresa_model->listar(array("idEmpresa"=>$idEmpresa));
+	$dados=array('empresas'=>$empresa);
+	$this->load->relatorio("info/perfil",$dados);
+}
 
 }

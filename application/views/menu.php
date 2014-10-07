@@ -69,7 +69,7 @@ if($usuario['tipo'] != 3){
         <li><?php echo anchor("recado/listarRecado", "Recado<span id='recado' class='badge pull-right numerador'></span>" ); ?></li>
         <li><?php echo anchor("documento/ver", "Documento<span id='documento' class='badge pull-right numerador'></span>" ); ?></li>
         <li ><?php echo anchor("email/enviarEmail", "Enviar Email" ); ?></li>
-        <?php if($usuario['tipo'] == 4){?>
+        <?php if($usuario['tipo'] == 2 || $usuario['tipo'] == 4){?>
         <li ><?php echo anchor("empresa/info", "Informações" ); ?></li>
         <?php } ?>
         <?php

@@ -4,7 +4,7 @@
 	<br/>
 </div>
 <div id="container">
-	<script type="text/javascript">
+<script type="text/javascript">
 	var controller = 'ligacao';
 	var base_url = '<?php echo site_url();?>';
 	function load_data_ajax(){
@@ -36,7 +36,7 @@
 			});
 	}
 	setInterval(function() { load_data_ajax(); }, 5000);
-	</script>
+</script>
 	<!-- <button onclick="()">Load list (type 1)</button> -->
 	<table class="table table-striped table-hover table-responsive">
 		<thead>

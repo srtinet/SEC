@@ -11,7 +11,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url("css/datepicker.css") ?>" media="screen">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url("css/bootstrap-datetimepicker.min.css") ?>" media="screen">
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
-
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url("css/estilo.css") ?>" media="screen">
 </head>
 <body>
@@ -33,4 +32,3 @@
 			?>
 		</div></div>
 	</header>
-	

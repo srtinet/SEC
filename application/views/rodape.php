@@ -9,7 +9,6 @@
 
 
 <!-- jQuery -->
-
 <script type="text/javascript" src="<?php echo base_url("js/jquery.min.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("uploadify/jquery.uploadify.js")?>"></script>
 <script type="text/javascript" src="<?php echo base_url("js/jquery.confirm.min.js")?>"></script>

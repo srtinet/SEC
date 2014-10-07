@@ -139,3 +139,27 @@ function someElementos(valor1, valor2)
 			$('#'+valor2).hide();
 		}
 	};
+
+	function trataInfo(Things, dados){
+		for (var i = 0; i <= Things.length; i++) {
+			// Things[i];
+			var variavel1=dados;
+			var variavel2=0;
+			var rr = 0;
+
+			if(variavel1 > 0)
+			{
+				if(variavel1 == i)
+				{
+					variavel2 = Things[i-1];
+					break;
+				}
+			}
+			else
+			{
+				variavel2 = "N/A";
+				break;
+			}
+		};
+		return variavel2;
+	};

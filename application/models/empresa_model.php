@@ -3,9 +3,15 @@ class Empresa_model extends CI_Model {
 	public function listar($where=array()){
 		$this->db->order_by("razaoSocial", "asc");
 		return $this->db->get_where("Empresa", $where)->result_array();
-
-
-	} 
+	}
+	public function listarEmpresa($idEmpresa = null){
+		if ($idEmpresa != null) {
+            $this->db->where("idEmpresa", $idEmpresa);
+        }
+        
+        $this->db->order_by("razaoSocial");
+        return $this->db->get("Empresa");
+	}
 	public function listarAtividade($where=array()){
 		// $this->db->order_by("razaoSocial", "asc");
 		return $this->db->get_where("AtividadeEmpresa", $where)->result_array();
@@ -19,18 +25,15 @@ class Empresa_model extends CI_Model {
 		}else{
 			return $this->db->get_where("SetorUsuario", $where)->row_array();
 		}
-
 	} 
 
 	public function listarSetorJoin($where=array()){
-
 		$this->db->select("SetorUsuario.*,Empresa.razaoSocial,Setor.descricao as setorDescricao , Usuario.nome");
 		$this->db->from(" SetorUsuario");
 		$this->db->join("Empresa", "Empresa.idEmpresa =  SetorUsuario.Empresa_idEmpresa");
 		$this->db->join("Setor", "Setor.idSetor =  SetorUsuario.Setor_idSetor");
 		$this->db->join("Usuario", "Usuario.idUsuario =  SetorUsuario.Usuario_idUsuario");
 		$this->db->where($where);
-
 		return $this->db->get()->result_array();
 	}
 		public function listarSetorDis($where=array()){
