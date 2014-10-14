@@ -1,4 +1,4 @@
-<!-- <div class="bs-example bs-example-tabs">
+<div class="bs-example bs-example-tabs">
 	<ul id="myTab" class="nav nav-tabs" role="tablist">
 		<li class="active"><a href="#visualizada" role="tab" data-toggle="tab">Produtos</a></li>
 		<li class=""><a href="#recebidas" role="tab" data-toggle="tab">Serviços</a></li>
@@ -18,19 +18,19 @@
 						<th>Data</th>
 						<th>Tipo de Operação</th>
 						<!-- <th>Finalizar</th> -->
-		<!-- 			</tr>
+					</tr>
 				</thead>
 				<tbody>
- -->			<!-- 		<?php foreach($pedidosP as $pedidoP) : ?>
+					<?php foreach($pedidosP as $pedidoP) : ?>
 					<tr>
 						<td><?php echo $pedidoP['descricaoProduto']?></td>
 						<td><?php echo $pedidoP['quantidadeProduto']?></td>
 						<td><?php echo $pedidoP['pedidoProdutoAprovado']?></td>
-						<td><?php echo $pedidoP['dataPedido']?></td>
+						<td><?php echo dataMysqlParaPtBr($pedidoP['dataPedido'])?></td>
 						<td><?php echo $pedidoP['tipoOperacao']?></td>
 					</tr>
-				<?php endforeach;?> -->
-<!-- 			</tbody>
+				<?php endforeach;?>
+			</tbody>
 		</table>
 	</div>
 	<div class="tab-pane fade taber" id="recebidas">
@@ -45,28 +45,28 @@
 					<th>Quantidade</th>
 					<th>Data</th>
 					<th>Aprovado</th>
-					<!-- <th>Finalizar</th> -->
-					<!-- </tr> -->
-					<!-- </thead> -->
-					<!-- <tbody> -->
-					<!-- <?php foreach($pedidosS as $pedidoS) : ?> -->
-					<!-- <tr> -->
-					<!-- <td><?php echo $pedidoS['descricaoServico']; ?></td> -->
-					<!-- <td><?php echo $pedidoP['quantidadeServico']?></td> -->
-					<!-- <td><?php echo $pedidoP['dataPedido']?></td> -->
-					<!-- <td><?php echo $pedidoP['pedidoServicoAprovado']?></td> -->
-					<!-- </tr> -->
-					<!-- <?php endforeach;?> -->
-		<!-- </tbody>
+					<th>Finalizar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($pedidosS as $pedidoS) : ?>
+				<tr>
+					<td><?php echo $pedidoS['descricaoServico']; ?></td>
+					<td><?php echo $pedidoS['quantidadeServico']?></td>
+					<td><?php echo $pedidoS['dataPedido']?></td>
+					<td><?php echo $pedidoS['pedidoServicoAprovado']?></td>
+				</tr>
+			<?php endforeach;?>
+		</tbody>
 	</table>
 
 </div>
 </div>
-</div> -->
+</div>
 <!-- -->
 
 
-<h1>Pedidos</h1>
+<!-- <h1>Pedido de Produto</h1>
 <?php $contador=1?>
 <?php echo anchor("pedido/formPedidoProduto", 'Novo', array("class" => "btn btn-primary")); ?>
 <br/>
@@ -81,7 +81,7 @@
 			<!-- <th>Data</th> -->
 			<!-- <th>Tipo de Operação</th> -->
 			<!-- <th>Finalizar</th> -->
-		</tr>
+		<!-- </tr>
 	</thead>
 	<tbody>
 		<?php foreach($pedidos as $pedido) : ?>
@@ -91,11 +91,11 @@
 			<!-- <td><?php echo $pedidoP['pedidoProdutoAprovado']?></td> -->
 			<!-- <td><?php echo $pedidoP['dataPedido']?></td> -->
 			<!-- <td><?php echo $pedidoP['tipoOperacao']?></td> -->
-			<td><?php echo "Pedido Nº ".$contador++?></td>
+<!-- 			<td><?php echo "Pedido Nº ".$contador++?></td>
 			<td><?php echo $pedido['Usuario_idUsuario']?></td>
 			<td><?php echo dataMysqlParaPtBr($pedido['dataPedido'])?></td>
 			<td><?php echo anchor("pedido/form/{$pedido['idPedido']}","Visualizar", array("class" => "btn btn-info"));  ?></td>
 		</tr>
 	<?php endforeach;?>
 </tbody>
-</table>
+</table> -->

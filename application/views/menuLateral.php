@@ -12,7 +12,8 @@
 		<li ><?php echo anchor("ligacao/form", "Solicitar Ligação" ); ?></li>
 		<li ><?php echo anchor("recado/form", "Enviar Recado" ); ?></li>
 		<li ><?php echo anchor("documento/novo", "Enviar documento" ); ?></li>
-		<li ><?php echo anchor("relatorio", "Relatório" ); ?></li>
+		<li ><?php echo anchor("relatorio/montaRelatorio", "Relatório"); ?></li>
+		<!-- <li ><?php echo anchor("relatorio/montaRelatorio", "Relatório", array('target' => '_blank')); ?></li> -->
 	<?php } ?>
 	</ul>
 </div>

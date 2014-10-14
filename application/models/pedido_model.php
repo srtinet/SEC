@@ -29,15 +29,15 @@ class Pedido_model extends CI_Model{
 	}
 
 	public function salvarPedido($pedido){
-		if ($pedido['idPedido']>0){
-			$this->db->where("idPedido",$pedido['idPedido']);
-			$this->db->update("Pedido",$pedido);
+		// if ($pedido['idPedido']>0){
+		// 	$this->db->where("idPedido",$pedido['idPedido']);
+		// 	$this->db->update("Pedido",$pedido);
 			// return 0;
 
-		}else{
+		// }else{
 			$this->db->insert("Pedido",$pedido);
-			// return $this->db->insert_id();
-		}
+			return $this->db->insert_id();
+		// }
 	}
 
 	public function salvarPedidoHasProduto($pedido_has_produto){

@@ -3,12 +3,12 @@ class Pedido  extends CI_Controller{
 	public function listar(){
 		$this->load->model("pedido_model");
 		$this->load->model("produto_model");
-		// $pedidoP = $this->pedido_model->listarPedidoProduto();
-		// $pedidoS = $this->pedido_model->listarPedidoServico();
+		$pedidoP = $this->pedido_model->listarPedidoProduto();
+		$pedidoS = $this->pedido_model->listarPedidoServico();
 		$pedido = $this->pedido_model->listar();
 		$produto = $this->produto_model->listar();
-		// $dados = array("pedidosS"=>$pedidoS, "pedidosP"=>$pedidoP, "pedidos"=>$pedido, "produtos" => $produto);
-		$dados = array("pedidos"=>$pedido, "produtos" => $produto);
+		$dados = array("pedidosS"=>$pedidoS, "pedidosP"=>$pedidoP,"produtos" => $produto);
+		// $dados = array("pedidos"=>$pedido, "produtos" => $produto);
 		$this->load->template("pedido/lista", $dados);
 	}
 
@@ -28,9 +28,9 @@ class Pedido  extends CI_Controller{
 		$this->load->model("pedido_model");
 		$this->load->model("produto_model");
 		$pedidoP = $this->pedido_model->listarPedidoProduto(array("Pedido_idPedido" => $id));
-		$pedidoS = $this->pedido_model->listarPedidoServico(array("Pedido_idPedido" => $id));
+		// $pedidoS = $this->pedido_model->listarPedidoServico(array("Pedido_idPedido" => $id));
 		$produto = $this->produto_model->listar();
-		$dados = array("pedidosS"=>$pedidoS, "pedidosP"=>$pedidoP, "produtos" => $produto);
+		$dados = array("pedidosP"=>$pedidoP, "produtos" => $produto);
 		$this->load->template("pedido/formPedidoProduto", $dados);
 	}
 
@@ -51,10 +51,10 @@ class Pedido  extends CI_Controller{
 			"Usuario_idUsuario" => $usuario['idUsuario'],
 			"dataPedido" => $data
 		);
-		$this->pedido_model->salvarPedido($pedido);
+		$retorno = $this->pedido_model->salvarPedido($pedido);
 		$pedido_has_produto = array(
 			"Produto_idProduto" => $this->input->post('Produto_idProduto'),
-			"Pedido_idPedido" => $this->input->post('idPedido'),
+			"Pedido_idPedido" => $retorno,
 			"quantidadeProduto" => $this->input->post('quantidadeProduto')
 			);
 		$this->pedido_model->salvarPedidoHasProduto($pedido_has_produto);
