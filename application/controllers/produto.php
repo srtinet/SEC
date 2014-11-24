@@ -37,11 +37,4 @@ class Produto  extends CI_Controller{
 		redirect('produto/listar');
 	}
 
-
-	public function excluir2($id){
-		$this->load->model("produto_model");
-		$produto=$this->produto_model->excluir($id);
-		$this->session->set_flashdata('success',"Produto Excluído com Sucesso");
-		redirect('produto/listar');
-	}
 }
