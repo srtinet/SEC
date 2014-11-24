@@ -11,6 +11,8 @@
 // echo '<div class="row">';
 echo '<div class="col-lg-12">';
 echo anchor("relatorio/planilha","Gerar Planilha Excel", array("class" => "btn btn-success"));
+echo "  ";
+echo anchor("relatorio/planilhaSimplificada","Gerar Planilha Excel Simplificada", array("class" => "btn btn-success"));
 echo '</div>';
 echo '<br/><br/><br/>';
 // echo '</div>';

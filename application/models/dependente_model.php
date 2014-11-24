@@ -1,4 +1,4 @@
-// <?php
+<?php
 class Dependente_model extends CI_Model {
 	public function listarDependente($where=array()){
 		$this->db->select("Dependente.nome, Dependente.idDependente, Dependente.dataNascimento, Dependente.idadeAnos, Dependente.Socio_idSocio, Socio.idSocio");

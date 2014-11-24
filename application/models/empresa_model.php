@@ -60,7 +60,7 @@ class Empresa_model extends CI_Model {
 	}
 
 
-	public function salvar ($empresa){
+	public function salvar($empresa){
 		if ($empresa['idEmpresa']>0){
 			$this->db->where("idEmpresa",$empresa['idEmpresa']);
 			$this->db->update("Empresa",$empresa);

@@ -47,11 +47,19 @@ class Relatorio extends CI_Controller{
 		$this->load->relatorio("relatorio/relatorioImpresso",$dados);
 	}
 
-		public function planilha(){
+	public function planilha(){
 		// $this->output->enable_profiler(TRUE);
 		$this->load->model("empresa_model");
 		$empresa=$this->empresa_model->listar();
 		$dados=array('empresas'=>$empresa);
-		$this->load->template("relatorio/planilhaExcelRelatorioEmpresas", $dados);
+		$this->load->planilha("relatorio/planilhaExcelRelatorioEmpresas", $dados);
+	}
+
+	public function planilhaSimplificada(){
+		// $this->output->enable_profiler(TRUE);
+		$this->load->model("empresa_model");
+		$empresa=$this->empresa_model->listar();
+		$dados=array('empresas'=>$empresa);
+		$this->load->planilha("relatorio/planilhaExcelRelatorioEmpresasSimplificado", $dados);
 	}
 }
